@@ -1,9 +1,12 @@
-import example.pepita
+import fantasma.*
+import controles.*
+import cazafantasmas.*
+import items.*
+import personas.*
+describe "tests del juego" {
 
-describe "group of tests for pepita" {
-
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+  test "test" {
+    assert.that(true)
   }
 
 }

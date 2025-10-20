@@ -1,0 +1,1 @@
+//npc podrian llegar a tener un leve movimiento y asustarse

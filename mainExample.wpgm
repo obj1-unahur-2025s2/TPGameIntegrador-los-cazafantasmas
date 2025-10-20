@@ -1,7 +1,10 @@
 import wollok.game.*
 
-import example.pepita
-
+import fantasma.*
+import controles.*
+import cazafantasmas.*
+import items.*
+import personas.*
 program PepitaGame {
 	game.title("Pepita")
 	game.height(10)

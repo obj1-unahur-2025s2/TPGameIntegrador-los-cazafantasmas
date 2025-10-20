@@ -1,0 +1,1 @@
+//el fantasma que controla el jugador
