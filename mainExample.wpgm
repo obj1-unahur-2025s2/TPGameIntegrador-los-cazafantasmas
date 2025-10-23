@@ -5,7 +5,7 @@ import controles.*
 import cazafantasmas.*
 import items.*
 import personas.*
-program PepitaGame {
+program GhotRevenge {
 	game.title("Pepita")
 	game.height(10)
 	game.width(10)
