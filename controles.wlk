@@ -1,37 +1,61 @@
 //controles generales de todo el juego
 import wollok.game.*
 import fantasma.*
+import personas.*
 ///robado para poder armar el movimiento
+object controles{
+	method configurarTeclas(){
+	keyboard.w().onPressDo({ arriba.moverseAProximaPosicion(fantasma.position()) })
+	keyboard.s().onPressDo({ abajo.moverseAProximaPosicion(fantasma.position()) })
+	keyboard.a().onPressDo({ izquierda.moverseAProximaPosicion(fantasma.position()) })
+	keyboard.d().onPressDo({ derecha.moverseAProximaPosicion(fantasma.position()) })
+	keyboard.e().onPressDo({ fantasma.asustar() })
+	}
+/*
+	keyboard.1().onPressDo({ nivelFacil.configurate() })
+	keyboard.2().onPressDo({ nivelDificil.configurate() })
+*/
+}
 
-class Direccion {
 
+ class Direccion {
+	const posicionesInvalidas=[game.at(0,37),game.at(0,38),game.at(0,12),game.at(0,5),game.at(23,5),game.at(6,27),game.at(13,27)]
 	method siguiente(position)
 
 	method esIgual(unaDireccion) = unaDireccion == self
 
-	/* Próxima posición en un tablero al estilo "pacman" */
-	method proximaPosicion(posicion) {
-		var siguientePosicion = self.siguiente(posicion)
-		if (self.esIgual(derecha) && self.esBordeDerecho(posicion)) {
-			siguientePosicion = game.at(0, posicion.y())
-		} else if (self.esIgual(izquierda) and self.esBordeIzquierdo(posicion)) {
-			siguientePosicion = game.at(game.width() - 1, posicion.y())
-		} else if (self.esIgual(abajo) and self.esBordeInferior(posicion)) {
-			siguientePosicion = game.at(posicion.x(), game.height() - 2)
-		} else if (self.esIgual(arriba) and self.esBordeSuperior(posicion)) {
-			siguientePosicion = game.at(posicion.x(), 0)
+	/*method moverseAProximaPosicion(posicion) {
+		const siguientePosicion = game.getObjectsIn(self.siguiente(posicion))
+		if (siguientePosicion.isEmpty() && !self.estaEnElBorde(siguientePosicion)) {
+			fantasma.position(self.siguiente(posicion))}
+		else{
+			fantasma.position(posicion) 
 		}
-		return siguientePosicion
+	
+	}*/
+	/* Próxima posición en un tablero al estilo "pacman" */
+	method moverseAProximaPosicion(posicion) {
+		const siguientePosicion = self.siguiente(posicion)
+		if (!posicionesInvalidas.contains(siguientePosicion)&& !self.estaEnElBorde(siguientePosicion)) {
+			fantasma.position(siguientePosicion)}
+		else{
+			fantasma.position(posicion) 
+		}
 	}
 
-	method esBordeDerecho(posicion) = game.width() == posicion.x() + 1
+	method estaEnElBorde(posicion){
+		const sonBordes=[self.esBordeDerecho(posicion), self.esBordeIzquierdo(posicion),self.esBordeInferior(posicion),self.esBordeSuperior(posicion)]
+		return sonBordes.any({b=> b})
+	}
 
-	method esBordeIzquierdo(posicion) = posicion.x() == 0
+	method esBordeDerecho(posicion) = game.width() -2 == posicion.x() 
 
-	method esBordeInferior(posicion) = posicion.y() == 0
+	method esBordeIzquierdo(posicion) = posicion.x() == -1
+
+	method esBordeInferior(posicion) = posicion.y() == -1
 
 	// Toma en cuenta la franja reservada para los indicadores
-	method esBordeSuperior(posicion) = game.height() == posicion.y() + 2
+	method esBordeSuperior(posicion) = game.height() -3 == posicion.y()+1
 
 }
 
@@ -40,7 +64,6 @@ object izquierda inherits Direccion {
 	override method siguiente(position) = position.left(1)
 
 	method opuesto() = derecha
-
 }
 
 object derecha inherits Direccion {
@@ -48,7 +71,6 @@ object derecha inherits Direccion {
 	override method siguiente(position) = position.right(1)
 
 	method opuesto() = izquierda
-
 }
 
 object abajo inherits Direccion {
@@ -56,7 +78,6 @@ object abajo inherits Direccion {
 	override method siguiente(position) = position.down(1)
 
 	method opuesto() = arriba
-
 }
 
 object arriba inherits Direccion {
@@ -64,9 +85,9 @@ object arriba inherits Direccion {
 	override method siguiente(position) = position.up(1)
 
 	method opuesto() = abajo
-
 }
 
+/*
 //para poder cancelar las posiciones del nivel
 object utilidadesParaJuego {
 
@@ -84,3 +105,4 @@ object utilidadesParaJuego {
 		}
 	}
 }
+*/

@@ -4,7 +4,7 @@ import fantasma.*
 import items.*
 import cazafantasmas.*
 import personas.*
-
+/*
 object gameOver {
 	method position() = game.center()
 	method image() = "gameover.png"
@@ -31,6 +31,8 @@ class Nivel {
 	method hayElementoEn(posicion) = elementosEnNivel.any({ e => e.position() == posicion and e.esInteractivo() })
 
 	/* Metodos que tambien interactuan con los movimientos del personaje */
+
+/*
 	method ponerSalida() {
 		game.addVisual(salida)
 	} // Se agrega la salida al tablero
@@ -189,6 +191,7 @@ object niveFacil inherits Nivel {
 		game.addVisual(personaje)
 			// teclado
 			/*Movimientos del personaje*/
+			/*
 		keyboard.right().onPressDo{ personaje.moverDerecha()}
 		keyboard.left().onPressDo{ personaje.moverIzquierda()}
 		keyboard.up().onPressDo{ personaje.moverArriba()}
@@ -276,6 +279,7 @@ object niveDificil inherits Nivel {
 		game.addVisual(personaje)
 			// teclado
 			/*Movimientos del personaje*/
+			/*
 		keyboard.right().onPressDo{ personaje.moverDerecha()}
 		keyboard.left().onPressDo{ personaje.moverIzquierda()}
 		keyboard.up().onPressDo{ personaje.moverArriba()}
@@ -300,3 +304,4 @@ object niveDificil inherits Nivel {
 	override method siguienteNivel() = nivel2
 
 }
+*/

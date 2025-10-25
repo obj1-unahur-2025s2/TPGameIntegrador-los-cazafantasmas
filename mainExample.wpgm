@@ -1,21 +1,74 @@
 import wollok.game.*
 
 import fantasma.*
-import controles.*
 import cazafantasmas.*
 import items.*
 import personas.*
+import controles.*
+import cosas.*
+
 program GhotRevenge {
-	game.title("Pepita")
-	game.height(10)
-	game.width(10)
+	game.title("GhotRevenge")
+	game.width(50)
+	game.height(30)
+    game.cellSize(40)
 
-	// add assets in asset folder, for example, for the background
-  // game.boardGround("fondo2.jpg")
+   
+    //FONDO
+	game.boardGround("piso.jpg")
 
-	//
 
-	game.showAttributes(pepita) //Debug
+    //OBJETOS EN EL JUEGO
+   const paredAtras1 = new ParedBlanca(position = game.at(0,37))
+    const maderaArriba1 = new MaderaSuperiorEInferior(position = game.at(0,38))
+    const maderaAbajo1 =  new MaderaSuperiorEInferior(position = game.at(0,12))
+    const maderaLateralIzq1 = new MaderaLateral(position = game.at(0,5))
+    const maderaLateralDerConPuerta = new MaderaLateralConPuerta(position = game.at(23,5))
+    
+    const bibliotecaIzq = new Biblioteca (position = game.at(1,35))
+    const bibliotecaDer = new Biblioteca (position = game.at(15,35)) 
+    const velaColganteIzq = new VelaColgante (position = game.at(6,40))
+    const velaColganteDer = new VelaColgante(position = game.at(13,40))
+    const chimenea = new Chimenea(position = game.at(8,35))
+    const cuadro = new Cuadro(position = game.at(9,40))
+    const sillonIzq = new Sillon(position = game.at(6,27))
+    const sillonDer = new Sillon(position = game.at(13,27))
+    const mesaConCopas1 = new MesaConCopas(position = game.at(10,27))
+    const mesaConCandelabroIzq = new MesaConCandelabro(position = game.at(0,18))
+    const mesaConCandelabroDer = new MesaConCandelabro(position = game.at(18,18))
+    const mesaConVela = new MesaConVela(position = game.at(1,27))
+    const macetaFloreada = new Maceta(image= "macetaFloreada.png",position = game.at(21,36))
+    const alfombraRoja = new Alfombra(position = game.at(6,25))
+    const muebleAlreves = new MuebleAlreves(position = game.at(7,19))
+
+    controles.configurarTeclas()
+    
+    //MOSTRAR EN PANTALLA
+    game.addVisual(paredAtras1)
+    game.addVisual(maderaArriba1)
+    game.addVisual(maderaAbajo1)
+    game.addVisual(maderaLateralIzq1)
+    game.addVisual(maderaLateralDerConPuerta)
+    game.addVisual(bibliotecaIzq)
+    game.addVisual(velaColganteIzq)
+    game.addVisual(chimenea)
+    game.addVisual(cuadro)
+    game.addVisual(bibliotecaDer)
+    game.addVisual(macetaFloreada)
+    game.addVisual(alfombraRoja)
+    game.addVisual(mesaConVela)
+    game.addVisual(velaColganteDer)
+    game.addVisual(sillonIzq)
+    game.addVisual(sillonDer)
+    game.addVisual(mesaConCopas1)
+    game.addVisual(mesaConCandelabroIzq)
+    game.addVisual(mesaConCandelabroDer)
+    game.addVisual(muebleAlreves)
+    game.addVisual(fantasma)
+    
+    const rain = game.sound("musicaFondo.mp3")
+    rain.shouldLoop(true)
+    game.schedule(500, { rain.play() })
 
 	game.start()
 }

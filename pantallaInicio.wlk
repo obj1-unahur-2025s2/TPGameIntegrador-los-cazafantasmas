@@ -1,12 +1,5 @@
-//el fantasma que controla el jugador
-import wollok.game.*
-import items.*
-import cazafantasmas.*
-import personas.*
-import controles.*
 
-
-
+/*
 //configuracion de la pantalla de inicio antes de elegir el nibel
 object pantallaInicio {
 
@@ -77,3 +70,4 @@ object dificultad {
 	}
 
 }
+*/

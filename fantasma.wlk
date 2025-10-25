@@ -7,25 +7,45 @@ import controles.*
 
 
 object fantasma {
-  var image= ""
-  var position=game.origin()
+  var image= "FantasmaNormal.png"
+  var position = game.origin()
   var puntaje=0
   var vida=3
 
   method moverse(direccion){
 
   }
-  method recibirDaño(){
+  method resetPosition() {
+		position = game.origin()
+	}
+  method noTieneMasVidas() = vida == 0
 
+  method recibirDaño(){
+	vida=(vida-1).max(0)
+	self.resetPosition()
   }
   method modificarPuntos(num){
-
+	puntaje+=num
   }
-  method asustar(persona){
-
+  method asustar(){
+	self.image("fantasma.png")
+	game.whenCollideDo(self, {p=>p.asustarse(self)})
+	game.schedule(500, {self.image("FantasmaNormal.png")})
+  }
+  method image(){
+	return image
+  }
+  method image(nueva){
+	image=nueva
+  }
+  method position(){
+	return position
+  }
+  method position(nueva){
+	position=nueva
   }
 }
-
+/*
 //esto es robado pero define el punaje
 class Indicador {
 
@@ -37,7 +57,7 @@ class Indicador {
 	method nombreImagenIndicador()
 
 	/* Asignar las imágenes para un número de dos cifras */
-	method definirImagenesContador(unNumero) {
+/*	method definirImagenesContador(unNumero) {
 		const numeroUnidad = unNumero % 10
 		const numeroDecena = (unNumero * 0.1).truncate(0)
 			// Asigno la imagen para decimal
@@ -92,4 +112,4 @@ object reloj {
 	method detener(){
 		game.removeTickEvent("tiempo")
 	}
-}
+}*/

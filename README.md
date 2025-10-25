@@ -7,7 +7,7 @@
 
 ## Reglas de Juego / Instrucciones
 
-Despojado de tu hogar y arto de vivir en las calles, decidis que es tiempo de recuperar tu casa de una vez por todas y para eso es necesario hechar a los nuevos dueños. Sin embargo tu mision no va  ahacer facil, los vecinos ya avisaron a los dueños sobre vos , asique contrataron a los mejores y mas expertos cazadores de fantasma de la ciudad.
+Despojado de tu hogar y arto de vivir en las calles, decidis que es tiempo de recuperar tu casa de una vez por todas y para eso es necesario hechar a los nuevos dueños. Sin embargo tu mision no va a ser facil, los vecinos ya avisaron a los dueños sobre vos , asique contrataron a los mejores y mas expertos cazadores de fantasma de la ciudad.
 Tu mision ahora es asustarlos a todos y evitar ser cazado,contas con tres vidas antes de ser enviado totalmente a la tierra de los muertos y quedar como un perdedor ante los demas fantasmas.
 
 ---personajes---
@@ -37,6 +37,12 @@ Fantasma: https://pop-shop-packs.itch.io/ghost-pixel-asset-pack
 trampas: https://stealthix.itch.io/animated-traps
 
 
+-musica:
+ambiente: https://megumi-ryu.itch.io/mp3onehalloween-music-box2
+https://kronbits.itch.io/freesfx (off 11 sonido de muerte)
+https://ateliermagicae.itch.io/pixel-ui-sound-effects (sonido de eleccion de nivel y de agarrar una pocion)
+https://crowshade.itch.io/horror-music-pack (mind's eyes o the viel of the night para la pantalla del comienso donde elige el nivel)
+
 links no elegidos:
 -https://shubibubi.itch.io/cozy-people
 -https://gif-superretroworld.itch.io/character-pack
@@ -56,7 +62,6 @@ links no elegidos:
 ## Equipo de desarrollo
 
 - Gabriel Michel
-- Luna Mels Robles
 - Aldana Quadrini
 - Abril Rocio Lara
 
