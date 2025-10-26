@@ -17,9 +17,9 @@ object controles{
 */
 }
 
-
  class Direccion {
-	const posicionesInvalidas=[game.at(0,37),game.at(0,38),game.at(0,12),game.at(0,5),game.at(23,5),game.at(6,27),game.at(13,27)]
+	
+	const property posicionesInvalidas=[game.at(0,37),game.at(0,38),game.at(0,12),game.at(0,5),game.at(23,5),game.at(6,27),game.at(13,27)]
 	method siguiente(position)
 
 	method esIgual(unaDireccion) = unaDireccion == self
@@ -37,10 +37,9 @@ object controles{
 	method moverseAProximaPosicion(posicion) {
 		const siguientePosicion = self.siguiente(posicion)
 		if (!posicionesInvalidas.contains(siguientePosicion)&& !self.estaEnElBorde(siguientePosicion)) {
-			fantasma.position(siguientePosicion)}
-		else{
-			fantasma.position(posicion) 
+			fantasma.position(siguientePosicion)
 		}
+		
 	}
 
 	method estaEnElBorde(posicion){
@@ -48,14 +47,14 @@ object controles{
 		return sonBordes.any({b=> b})
 	}
 
-	method esBordeDerecho(posicion) = game.width() -2 == posicion.x() 
+	method esBordeDerecho(posicion) = game.width() -1 == posicion.x() 
 
 	method esBordeIzquierdo(posicion) = posicion.x() == -1
 
 	method esBordeInferior(posicion) = posicion.y() == -1
 
 	// Toma en cuenta la franja reservada para los indicadores
-	method esBordeSuperior(posicion) = game.height() -3 == posicion.y()+1
+	method esBordeSuperior(posicion) = game.height() == posicion.y()+1
 
 }
 
@@ -71,6 +70,14 @@ object derecha inherits Direccion {
 	override method siguiente(position) = position.right(1)
 
 	method opuesto() = izquierda
+}
+object posicionInvalida inherits Direccion {
+	override method siguiente(position){
+
+	}
+	method posicionInvalida(){
+		return posicionesInvalidas
+	}
 }
 
 object abajo inherits Direccion {

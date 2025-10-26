@@ -9,9 +9,9 @@ import cosas.*
 
 program GhotRevenge {
 	game.title("GhotRevenge")
-	game.width(50)
-	game.height(30)
-    game.cellSize(40)
+	game.width(30)
+	game.height(16)
+    game.cellSize(64)
 
    
     //FONDO
@@ -19,6 +19,11 @@ program GhotRevenge {
 
 
     //OBJETOS EN EL JUEGO
+
+    //colocar objetos en pantalla
+    /*objetos.forEach({o=>
+    o.addVisual(positionable)
+    })*/
    const paredAtras1 = new ParedBlanca(position = game.at(0,37))
     const maderaArriba1 = new MaderaSuperiorEInferior(position = game.at(0,38))
     const maderaAbajo1 =  new MaderaSuperiorEInferior(position = game.at(0,12))
@@ -40,7 +45,7 @@ program GhotRevenge {
     const macetaFloreada = new Maceta(image= "macetaFloreada.png",position = game.at(21,36))
     const alfombraRoja = new Alfombra(position = game.at(6,25))
     const muebleAlreves = new MuebleAlreves(position = game.at(7,19))
-
+    const persona=new Persona()
     controles.configurarTeclas()
     
     //MOSTRAR EN PANTALLA
@@ -65,10 +70,12 @@ program GhotRevenge {
     game.addVisual(mesaConCandelabroDer)
     game.addVisual(muebleAlreves)
     game.addVisual(fantasma)
+    game.addVisual(persona)
+    persona.moverseAleatorio()
     
     const rain = game.sound("musicaFondo.mp3")
     rain.shouldLoop(true)
     game.schedule(500, { rain.play() })
-
+    rain.volume(0.5)
 	game.start()
 }
