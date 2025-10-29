@@ -1,4 +1,12 @@
-
+import wollok.game.*
+import niveles.*
+import fantasma.*
+import personas.*
+import cazafantasmas.*
+import puntaje.*
+import cosas.*
+import items.*
+import controles.*
 /*
 //configuracion de la pantalla de inicio antes de elegir el nibel
 object pantallaInicio {

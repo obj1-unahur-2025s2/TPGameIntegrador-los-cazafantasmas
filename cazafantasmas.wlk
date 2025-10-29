@@ -1,58 +1,66 @@
-//los cazafantasmas que van a ser enemigos
+import controles.*
 import wollok.game.*
 import fantasma.*
-/*
+
+//los cazafantasmas que van a ser enemigos
 class Cazafantasma {
-  var position=game.at(0,0)
-  var image=""
-      method image(){
-	return image
-  }
-  method image(nueva){
-	image=nueva
-  }
-  method position(){
-	return position
-  }
-    method position(nueva){
-	position=nueva
-  }
-	method asustarse(jugador){
-  }
-  method moverse(direccion){
-    game.onTick(1500, "cazador", { self.direccionCambiante()
-			position = direccion.proximaPosicion(self.position())
-		})
-	}//robado supuestamente persigue al fantasma
-  method atacar(jugador){
-	jugador.recibirDaño()
-	self.resetPosition()
-  }
-  method puntaje(){
-	return -500
-  }
-  method resetPosition() {
-		position = game.at(numero + 1, numero + 1)
+	var position = game.at(0, 0)
+	var posicionInicial = game.at(0, 0)
+	var image = ""
+	
+	method esInteractivo() = true//el jugador puede interactuar (osea pueden colisionar)
+	
+	method image() = image
+	
+	method image(nueva) {
+		image = nueva
 	}
-//esto tambien es robado  
-    	method acercarseHorizontalA(unPersonaje) {
-		return if (self.estaALaIzquierdaDe(unPersonaje)) {
-			self.position().x() + 1
-		} else {
-			self.position().x() - 1
-		}
+	
+	method position() = position
+	
+	method position(nueva) {
+		position = nueva
 	}
-
-	method acercarseVerticalA(unPersonaje) {
-		return if (self.estaAbajoDe(unPersonaje)) {
-			self.position().y() + 1
-		} else {
-			self.position().y() - 1
-		}
+	
+	method asustarse(jugador) {
+		
 	}
-
+	
+	method instanciar(posicion) {//crea al cazador
+		self.image("cazafantasmas.png")
+		self.position(posicion)
+		posicionInicial = posicion //se define en donde se coloca por primera vez
+	}
+	
+	method chocarse(jugador) {
+		jugador.recibirDaño()
+		self.resetPosition()
+		jugador.modificarPuntos(self.puntaje())
+	}
+	
+	method puntaje() = -300
+	
+	method acercarseA(jugador) {//deberia acercarse a la posicion del jugador y no salirse del mapa
+		game.onTick(1500,"cazador",
+			{ position = { position = new Position(
+						x = self.acercarseHorizontalA(jugador),
+						y = self.acercarseVerticalA(jugador)
+						) } 
+			}
+		)
+	}
+	
+	method resetPosition() {
+		position = posicionInicial
+	}
+	
+	method acercarseHorizontalA(jugador) = if (self.estaALaIzquierdaDe(jugador))izquierda.moverseAProximaPosicion(self.position())
+	                                       else derecha.moverseAProximaPosicion(self.position())
+	
+	method acercarseVerticalA(jugador) = if (self.estaAbajoDe(jugador))abajo.moverseAProximaPosicion(self.position())
+	                                     else arriba.moverseAProximaPosicion(self.position())
+	
 	method estaALaIzquierdaDe(unElemento) = unElemento.position().x() > self.position().x()
-
+	
 	method estaAbajoDe(unElemento) = unElemento.position().y() > self.position().y()
 }
-*/

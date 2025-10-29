@@ -1,27 +1,28 @@
 # GHOST REVENGE
 
-
 ## Capturas
 
 (agregar)
 
 ## Reglas de Juego / Instrucciones
 
-Despojado de tu hogar y arto de vivir en las calles, decidis que es tiempo de recuperar tu casa de una vez por todas y para eso es necesario hechar a los nuevos dueños. Sin embargo tu mision no va a ser facil, los vecinos ya avisaron a los dueños sobre vos , asique contrataron a los mejores y mas expertos cazadores de fantasma de la ciudad.
-Tu mision ahora es asustarlos a todos y evitar ser cazado,contas con tres vidas antes de ser enviado totalmente a la tierra de los muertos y quedar como un perdedor ante los demas fantasmas.
+Despojado de tu hogar y harto de vivir en las calles, decidís que es tiempo de recuperar tu casa de una vez por todas y para eso es necesario echar a los nuevos dueños. Sin embargo tu misión no va a ser fácil, los vecinos ya avisaron a los dueños sobre vos , así que contrataron a los mejores y más expertos cazadores de fantasma de la ciudad.
+Tu misión ahora es asustarlos a todos y evitar ser cazado,contas con tres vidas antes de ser enviado totalmente a la tierra de los muertos y quedar como un perdedor ante los demás fantasmas.
 
----personajes---
+---Personajes---
 
-Fantasma:podes moverte por la casa(WASD) y asustar(E), contas con solo 3 corazones.
+Grimly(el fantasma):podes moverte por la casa(WASD) y asustar(E), contas con sólo 3 corazones.
 
-Cazadores:se encargan de ir a atrapar al fantasma, cuando te atrapen perdes una vida y ademas te resta puntos.
+Cazadores:se encargan de ir a cazar al fantasma, cuando te atrapan pierdes una vida y puntos.
 
 Personas: asustarlas te otorga una cantidad determinada de puntos.
 
 ---Items---
 
-Pocion de plasma: consumirla te regenera un corazon y da puntos.
-Trampa de cazador: pisar una trampa te restara puntos.
+Poción de plasma: consumirla te regenera un corazón y da puntos.
+
+Trampa de cazador: pisar una trampa te restará puntos y te llevará a la posición inicial.
+
 
 sprites y assets:
 -fondo y cosas :

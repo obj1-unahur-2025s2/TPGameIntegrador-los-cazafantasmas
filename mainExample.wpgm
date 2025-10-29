@@ -69,13 +69,15 @@ program GhotRevenge {
     game.addVisual(mesaConCandelabroIzq)
     game.addVisual(mesaConCandelabroDer)
     game.addVisual(muebleAlreves)
-    game.addVisual(fantasma)
+    game.addVisual(grimly)//es el fantasma
     game.addVisual(persona)
     persona.moverseAleatorio()
+
     
-    const rain = game.sound("musicaFondo.mp3")
-    rain.shouldLoop(true)
-    game.schedule(500, { rain.play() })
-    rain.volume(0.5)
+
+    const musicaDeFondo = game.sound("musicaFondo.mp3")
+    musicaDeFondo.shouldLoop(true)
+    musicaDeFondo.volume(0.5)
+    game.schedule(500, { musicaDeFondo.play() })
 	game.start()
 }
