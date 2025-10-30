@@ -8,7 +8,7 @@ import cosas.*
 import items.*
 import controles.*
 /*
-//configuracion de la pantalla de inicio antes de elegir el nibel
+//configuracion de la pantalla de inicio antes de elegir el nivel
 object pantallaInicio {
 
 // La pantalla de configuración inicial

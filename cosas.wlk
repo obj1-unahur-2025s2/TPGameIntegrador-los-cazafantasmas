@@ -1,26 +1,16 @@
 import wollok.game.*
 class ParedBlanca {
-    const property image = "paredBlanca.png"
-	var property position 
+    const property image 
+	var property position  
 }
 
-class MaderaSuperiorEInferior {
-	const property image = "maderaSuperiorEInferior.png"
-	var property position 
-}
-
-class MaderaLateral {
-	const property image = "maderaLateral.png"
-	var property position 
-}
-
-class MaderaLateralConPuerta {
-	const property image = "maderaLateralConPuerta.png"
+class Paredes {
+	const property image 
 	var property position
 }
 
 class Biblioteca {
-    const property image = "biblioteca.png"
+    const property image 
 	var property position 
 }
 
@@ -34,27 +24,17 @@ class Chimenea {
 }
 
 class Cuadro {
-    const property image = "cuadro.png"
+    const property image 
 	var property position 
 }
 
 class Sillon {
-    const property image = "sillon.png"
+    const property image 
 	var property position 
 }
 
-class MesaConCopas {
-    const property image = "mesaConCopas.png"
-	var property position 
-}
-
-class MesaConCandelabro {
-   const property image = "mesaConCandelabro.png"
-	var property position 
-}
-
-class MesaConVela {
-   const property image = "mesaConVela.png"
+class Mesa {
+    const property image 
 	var property position 
 }
 
@@ -68,7 +48,33 @@ class Alfombra {
 	var property position 
 }
 
-class MuebleAlreves {
-   const property image = "muebleAlrevesConCopas.png"
+class TamborConWisky {
+   const property image = "tamborConWisky.png"
+	var property position 
+}
+
+class Gato {
+   const property image = "gato.png"
+	var property position 
+}
+
+class ApoyaPies{
+	const property image = "apoyaPies.png"
+	var property position 
+}
+
+class Mueble {
+    const property image 
+	var property position 
+}
+
+
+class Armario{
+	const property image 
+   var property position 
+}
+
+class Cama {
+    const property image 
 	var property position 
 }

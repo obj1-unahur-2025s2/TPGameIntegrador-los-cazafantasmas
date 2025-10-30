@@ -15,7 +15,7 @@ program GhotRevenge {
 
    
     //FONDO
-	game.boardGround("piso.jpg")
+	game.boardGround("piso.png")
 
 
     //OBJETOS EN EL JUEGO
@@ -24,55 +24,128 @@ program GhotRevenge {
     /*objetos.forEach({o=>
     o.addVisual(positionable)
     })*/
-   const paredAtras1 = new ParedBlanca(position = game.at(0,37))
-    const maderaArriba1 = new MaderaSuperiorEInferior(position = game.at(0,38))
-    const maderaAbajo1 =  new MaderaSuperiorEInferior(position = game.at(0,12))
-    const maderaLateralIzq1 = new MaderaLateral(position = game.at(0,5))
-    const maderaLateralDerConPuerta = new MaderaLateralConPuerta(position = game.at(23,5))
-    
-    const bibliotecaIzq = new Biblioteca (position = game.at(1,35))
-    const bibliotecaDer = new Biblioteca (position = game.at(15,35)) 
-    const velaColganteIzq = new VelaColgante (position = game.at(6,40))
-    const velaColganteDer = new VelaColgante(position = game.at(13,40))
-    const chimenea = new Chimenea(position = game.at(8,35))
-    const cuadro = new Cuadro(position = game.at(9,40))
-    const sillonIzq = new Sillon(position = game.at(6,27))
-    const sillonDer = new Sillon(position = game.at(13,27))
-    const mesaConCopas1 = new MesaConCopas(position = game.at(10,27))
-    const mesaConCandelabroIzq = new MesaConCandelabro(position = game.at(0,18))
-    const mesaConCandelabroDer = new MesaConCandelabro(position = game.at(18,18))
-    const mesaConVela = new MesaConVela(position = game.at(1,27))
-    const macetaFloreada = new Maceta(image= "macetaFloreada.png",position = game.at(21,36))
-    const alfombraRoja = new Alfombra(position = game.at(6,25))
-    const muebleAlreves = new MuebleAlreves(position = game.at(7,19))
-    const persona=new Persona()
-    controles.configurarTeclas()
-    
-    //MOSTRAR EN PANTALLA
-    game.addVisual(paredAtras1)
-    game.addVisual(maderaArriba1)
-    game.addVisual(maderaAbajo1)
-    game.addVisual(maderaLateralIzq1)
-    game.addVisual(maderaLateralDerConPuerta)
-    game.addVisual(bibliotecaIzq)
-    game.addVisual(velaColganteIzq)
-    game.addVisual(chimenea)
-    game.addVisual(cuadro)
-    game.addVisual(bibliotecaDer)
-    game.addVisual(macetaFloreada)
-    game.addVisual(alfombraRoja)
-    game.addVisual(mesaConVela)
-    game.addVisual(velaColganteDer)
-    game.addVisual(sillonIzq)
-    game.addVisual(sillonDer)
-    game.addVisual(mesaConCopas1)
-    game.addVisual(mesaConCandelabroIzq)
-    game.addVisual(mesaConCandelabroDer)
-    game.addVisual(muebleAlreves)
-    game.addVisual(grimly)//es el fantasma
-    game.addVisual(persona)
-    persona.moverseAleatorio()
+      //habitacion1
+    const paredes_1= new Paredes(image="paredes1.png",position = game.at(0, 7))
+    const paredBlanca_1= new ParedBlanca(image="paredBlanca.png",position= game.at(0,13))
+    const bibliotecaIzq_1 = new Biblioteca (image="biblioteca.png",position = game.at(1,13))
+    const bibliotecaDer_1 = new Biblioteca (image= "biblioteca.png",position = game.at(5,13)) 
+    const velaColganteIzq_1 = new VelaColgante (position = game.at(2,14))
+    const velaColganteDer_1 = new VelaColgante(position = game.at(4,14))
+    const chimenea_1 = new Chimenea(position = game.at(3,13))
+    const cuadro_1 = new Cuadro(image="cuadro.png",position = game.at(3,14))
+    const sillonIzq_1 = new Sillon(image= "sillon.png",position = game.at(2,11))
+    const sillonDer_1 = new Sillon(image= "sillon.png",position = game.at(4,11))
+    const mesaConCopas_1 = new Mesa(image= "mesaConCopas.png",position = game.at(3,11))
+    const mesaConCandelabroIzq_1 = new Mesa(image="mesaConCandelabro.png",position = game.at(1,8))
+    const mesaConCandelabroDer_1 = new Mesa(image="mesaConCandelabro.png",position = game.at(6,8))
+    const macetaFloreada_1 = new Maceta(image= "macetaFloreada.png",position = game.at(4,13))
+    const alfombraRoja_1= new Alfombra(position = game.at(2,10))
+    const tamborConWisky_1 = new TamborConWisky(position = game.at(6,13))
+    const gato_1 = new Gato(position=game.at(4,10))
+    const apoyaPies_1 = new ApoyaPies(position=game.at(2,10))
 
+
+        //habitacion2
+    const paredes_2= new Paredes(image="paredes_2.png",position = game.at(20,0 ))
+    const paredBlanca_2 = new ParedBlanca(image="paredBlanca_2.png",position= game.at(21,8))
+    const bibliotecaConPuertas_2= new Biblioteca(image="bibliotecaConPuertas.png",position= game.at(23,8))
+    const armarioConLibro_2 = new Armario(image="armarioConLibro.png",position= game.at(21,1))
+    const cuadroComida_2 =new Cuadro(image="cuadroComida.png",position= game.at(27,9))
+    const cuadroFlor_2 =new Cuadro(image="cuadroFlor.png",position= game.at(22,9))
+    const cuadroMasion_2 =new Cuadro(image="cuadroMasion.png",position= game.at(26,9))
+    const mesaConJarronAmarillo_2 = new Mesa(image="mesaConJarronAmarillo.png",position=game.at(23,1))
+    const mesaConJarronAzul_2 = new Mesa(image="mesaConJarronAzul.png",position=game.at(27,1))
+    const muebleConCajones = new Mueble(image="mesaConCajon.png",position=game.at(21,8))
+    const mesaConCandelabro_2 = new Mesa(image="mesaConCandelabro.png",position=game.at(28,8)) 
+    const mesaConCopasYWisky_2 = new Mesa(image="mesaConCopasYWisky.png",position=game.at(24,8)) 
+    const mesaConSillas_2  = new Mesa(image="mesaConSillas.png",position=game.at(22,4)) 
+    const mesaConCopas_2 = new Mesa(image="mesaConCopas.png",position=game.at(26,6)) 
+    const mesitaDeLuz_2 = new Mesa(image="mesitaDeLuz.png",position=game.at(25,8)) 
+    const muebleConLibro_2 = new Mueble(image="muebleConLibro.png",position=game.at(25,1)) 
+    const sillonDoble_2 = new Sillon(image="sillonDoble.png",position=game.at(26,8)) 
+    const sillonLateral_2 = new Sillon(image="sillonLateral.png",position=game.at(28,6)) 
+    const alfombraRoja_2= new Alfombra(position = game.at(25,5))
+    const apoyaPies_2 = new ApoyaPies(position=game.at(27,5))
+
+
+        //habitacion3
+    const paredes_3= new Paredes(image="paredes_3.png",position = game.at(10, 8))
+    const paredBlanca_3= new ParedBlanca(image="paredBlanca_3.png",position= game.at(10,13))
+    const mesitaDeLuzIzq_3= new Mesa(image="mesitaDeLuz.png",position=game.at(12 , 13))
+    const mesitaDeLuzDer_3= new Mesa(image="mesitaDeLuz.png",position=game.at(15 , 13))
+    const mesaConJarronAmarillo_3 = new Mesa(image="mesaConJarronAmarillo.png",position=game.at(16 , 9))
+    const muebleConCandelabroYLibro_3 = new Mesa(image="muebleConCandelabroYLibro.png",position= game.at(11 , 9))
+    const cuadroHombre_3= new Cuadro (image="cuadroHombre.png",position=game.at(15 , 14))
+    const cuadroMujer_3= new Cuadro (image= "cuadroMujer.png",position= game.at(12 , 14))
+    const cama_3 = new Cama(image= "cama.png",position= game.at(13 , 12))
+
+        //NPCs
+    const npc1 = new Persona(image= "npc1.png",position= game.at(15, 12))
+    
+
+
+    //MOSTRAR EN PANTALLA
+
+    controles.configurarTeclas()
+    npc1.moverseAleatorio()
+    //habitacion1
+    game.addVisualCharacter(paredBlanca_1)
+    game.addVisualCharacter(paredes_1)
+    game.addVisualCharacter(bibliotecaIzq_1)
+    game.addVisualCharacter(velaColganteIzq_1)
+    game.addVisualCharacter(chimenea_1)
+    game.addVisualCharacter(cuadro_1)
+    game.addVisualCharacter(bibliotecaDer_1)
+    game.addVisualCharacter(macetaFloreada_1)
+    game.addVisualCharacter(alfombraRoja_1)
+    game.addVisualCharacter(velaColganteDer_1)
+    game.addVisualCharacter(gato_1)
+    game.addVisualCharacter(tamborConWisky_1)
+    game.addVisualCharacter(grimly)
+    game.addVisualCharacter(sillonIzq_1)
+    game.addVisualCharacter(sillonDer_1)
+    game.addVisualCharacter(mesaConCopas_1)
+    game.addVisualCharacter(mesaConCandelabroIzq_1)
+    game.addVisualCharacter(mesaConCandelabroDer_1)
+    game.addVisualCharacter(apoyaPies_1)
+
+    //habitacion2
+    game.addVisualCharacter(paredBlanca_2)
+    game.addVisualCharacter(paredes_2)
+    game.addVisualCharacter(alfombraRoja_2)
+    game.addVisualCharacter(bibliotecaConPuertas_2)
+    game.addVisualCharacter(armarioConLibro_2)
+    game.addVisualCharacter(cuadroComida_2)
+    game.addVisualCharacter(cuadroFlor_2)
+    game.addVisualCharacter(cuadroMasion_2)
+    game.addVisualCharacter(mesaConJarronAmarillo_2)
+    game.addVisualCharacter(mesaConJarronAzul_2)
+    game.addVisualCharacter(muebleConCajones)
+    game.addVisualCharacter(mesaConCandelabro_2)
+    game.addVisualCharacter(mesaConCopasYWisky_2)
+    game.addVisualCharacter(mesaConSillas_2)
+    game.addVisualCharacter(mesaConCopas_2)
+    game.addVisualCharacter(mesitaDeLuz_2)
+    game.addVisualCharacter(muebleConLibro_2)
+    game.addVisualCharacter(sillonDoble_2)
+    game.addVisualCharacter(sillonLateral_2)
+    game.addVisualCharacter(apoyaPies_2)
+
+    //habitacion3
+    game.addVisualCharacter(paredBlanca_3)
+    game.addVisualCharacter(cuadroMujer_3)
+    game.addVisualCharacter(cuadroHombre_3)
+    game.addVisualCharacter(cama_3)
+    game.addVisualCharacter(mesitaDeLuzIzq_3)
+    game.addVisualCharacter(mesitaDeLuzDer_3)
+    game.addVisualCharacter(muebleConCandelabroYLibro_3)
+    game.addVisualCharacter(mesaConJarronAmarillo_3)
+    game.addVisualCharacter(paredes_3)
+
+
+    //NPCs
+
+    game.addVisualCharacter(npc1)
     
 
     const musicaDeFondo = game.sound("musicaFondo.mp3")
