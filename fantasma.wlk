@@ -34,6 +34,7 @@ object grimly {
 
  method asustar(aqui) {
     self.image("fantasma.png")
+<<<<<<< HEAD
     game.schedule(500, { self.image("fantasmaNormal.png")})
     if(aqui.size() > 1){
       aqui.first().asustarse(self)
@@ -46,6 +47,10 @@ object grimly {
   }
   method asustarse(cosa){
     
+=======
+    game.onCollideDo(self, { p => p.asustarse(self)})
+    game.schedule(400, { self.image("fantasmaNormal.png") })
+>>>>>>> 63b6cf1d6095cba5edf7c060a614455ce855d79f
   }
   
   method morir() {
