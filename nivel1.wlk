@@ -72,18 +72,6 @@ object niveFacil inherits Nivel {
 			// teclado
 			/*Movimientos del personaje*/
 			/*
-		keyboard.right().onPressDo{ personaje.moverDerecha()}
-		keyboard.left().onPressDo{ personaje.moverIzquierda()}
-		keyboard.up().onPressDo{ personaje.moverArriba()}
-		keyboard.down().onPressDo{ personaje.moverAbajo()}
-		keyboard.q().onPressDo{ personaje.agarrarElemento()}
-		keyboard.n().onPressDo({ // al presionar "n" finaliza el juego o da indicaciones
-			if (not self.faltanRequisitos()) {
-				game.say(personaje, "¡¡¡Ganamos!!!")
-				game.schedule(1500, { self.pasarDeNivel()})
-			} else {
-				game.say(personaje, self.estadoActual())
-			}
 		})
 	}
 

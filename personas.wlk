@@ -6,7 +6,7 @@ import fantasma.*
 class Persona {
   var position = game.at(10, 10)
   var image = ""
-  var asustado = false
+
    
   method esInteractivo() = true//el jugador puede interactuar (osea pueden colisionar)
   //movimiento de los npc
@@ -28,8 +28,7 @@ class Persona {
         time += 500
       }
     )
-    
-    if (!asustado) game.schedule(2000, { self.moverseAleatorio() })
+    game.schedule(2000, { self.moverseAleatorio() })
   }
 
   	method instanciar(posicion,cantidad){//crea al npc
@@ -38,14 +37,14 @@ class Persona {
   }
   //que hace cuando se asusta
   method asustarse(jugador) {
-    if (!asustado) {
-      self.image("fantasma.png")
+    self.image("fantasma.png")
       //crear una imagen que represente cuanod un npc en general esta asustado
-      jugador.modificarPuntos(self.puntaje())
-      asustado = true
-    }
+    jugador.modificarPuntos(self.puntaje())
+    game.schedule(2000, {   
+      game.removeVisual(self)
+    })
   }
-  method chocarse(jugador){
+ method accionarObjeto(objeto){
 
   }
   method puntaje() = 200

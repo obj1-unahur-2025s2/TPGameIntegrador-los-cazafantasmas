@@ -50,12 +50,15 @@ object dificultad {
 	const fondoFacil = new Fondo(image = "imgs/fondo facil.png")
 	const property fondoNormal = new Fondo(image = "imgs/fondo normal.png")
 	const fondoDificil = new Fondo(image = "imgs/fondo dificil.png")
-	var property cajas = 5
-	var property enemigos = 4
+	var property pociones=0
+	var property enemigos = 2
+	var property trampas=0
+	const property npc=8
 
 	method facil() {
-		cajas = 3
+		pociones=0
 		enemigos = 2
+		trampas=0
 		if (game.hasVisual(fondoNormal)) {
 			game.removeVisual(fondoNormal)
 			game.addVisual(fondoFacil)
@@ -66,8 +69,9 @@ object dificultad {
 	}
 
 	method dificil() {
-		cajas = 8
-		enemigos = 7
+		pociones=0
+		enemigos = 2
+		trampas=0
 		if (game.hasVisual(fondoFacil)) {
 			game.removeVisual(fondoFacil)
 			game.addVisual(fondoDificil)

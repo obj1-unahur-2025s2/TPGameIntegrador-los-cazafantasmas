@@ -26,8 +26,11 @@ class Item {
   method asustarse(jugador) {
     
   }
-  
-  method chocarse(jugador)
+  method recibirDaño(){
+  }
+  method modificarPuntos(num){
+  }
+  method actuar(jugador)
   
   method instanciar(posicion, cantidad)
 }
@@ -35,10 +38,11 @@ class Item {
 class Pocion inherits Item {
   override method puntaje() = 150
   
-  override method chocarse(jugador) {
+  override method actuar(jugador) {
+    if(game.hasVisual(self)){
     jugador.recuperarVida()
     jugador.modificarPuntos(self.puntaje())
-    game.removeVisual(self.image())
+    game.removeVisual(self)}
   }
   
   override method instanciar(posicion, cantidad) {
@@ -51,10 +55,11 @@ class Pocion inherits Item {
 class Trampa inherits Item {
   override method puntaje() = -100
   
-  override method chocarse(jugador) {
+  override method actuar(jugador) {
+    if(game.hasVisual(self)){
     jugador.modificarPuntos(self.puntaje())
     jugador.resetPosition()
-    game.removeVisual(self.image())
+    game.removeVisual(self)}
   }
   
   override method instanciar(posicion, cantidad) {

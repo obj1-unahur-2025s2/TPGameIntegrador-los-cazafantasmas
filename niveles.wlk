@@ -50,9 +50,7 @@ class Nivel {
 	/* Metodos que tambien interactuan con los movimientos del personaje */
 
 /*
-	method ponerSalida() {
-		game.addVisual(salida)
-	} // Se agrega la salida al tablero
+
 
 	method teletransportar() { // Reacción a la CeldaSorpresaA
 		const unaPosicion = utilidadesParaJuego.posicionArbitraria()
@@ -82,15 +80,15 @@ class Nivel {
 		}
 	}
 
+
 	method configurate() {
 		// Reinicio el estado del personaje
 		self.personaje().reestablecer()
 			// fondo - es importante que sea el primer visual que se agregue
 		game.addVisual(new Fondo()) // Inicio de nivel
-		keyboard.z().onPressDo{ self.pasarDeNivel()} // Tecla secreta para pasar de nivel
-		keyboard.x().onPressDo({
-		}) // ??
-			// El sonido para que esté accesible desde todos los niveles
+		controles.configurarTeclas()
+		cosas.crearCasa()
+		// El sonido para que esté accesible desde todos los niveles
 		keyboard.plusKey().onPressDo({ rain.volume(1)})
 		keyboard.m().onPressDo({ rain.volume(0)})
 		keyboard.minusKey().onPressDo({ rain.volume(0.5)})

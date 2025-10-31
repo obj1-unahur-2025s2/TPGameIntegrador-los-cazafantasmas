@@ -31,11 +31,21 @@ object grimly {
     puntaje = (puntaje + num).max(0)
     //puntaje.actualizarVisual(puntaje) esto es para que se vea en la pantalla el puntaje
   }
-  
-  method asustar() {
+
+ method asustar(aqui) {
     self.image("fantasma.png")
-    game.onCollideDo(self, { p => p.asustarse(self) })
-    game.schedule(400, { self.image("fantasmaNormal.png") })
+    game.schedule(500, { self.image("fantasmaNormal.png")})
+    if(aqui.size() > 1){
+      aqui.first().asustarse(self)
+    }
+  }
+
+
+  method accionarObjeto(objeto){
+    objeto.actuar(self)
+  }
+  method asustarse(cosa){
+    
   }
   
   method morir() {

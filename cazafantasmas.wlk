@@ -6,7 +6,7 @@ import fantasma.*
 class Cazafantasma {
 	var position = game.at(0, 0)
 	var posicionInicial = game.at(0, 0)
-	var image = ""
+	var image = "cazafantasmas.png"
 	
 	method esInteractivo() = true//el jugador puede interactuar (osea pueden colisionar)
 	
@@ -26,39 +26,50 @@ class Cazafantasma {
 		
 	}
 	
-	method instanciar(posicion) {//crea al cazador
+	method instanciar(posicion,cantidad) {//crea al cazador
 		self.image("cazafantasmas.png")
 		self.position(posicion)
 		posicionInicial = posicion //se define en donde se coloca por primera vez
 	}
 	
-	method chocarse(jugador) {
+	method atrapar(jugador) {
 		jugador.recibirDaño()
-		self.resetPosition()
 		jugador.modificarPuntos(self.puntaje())
 	}
 	
 	method puntaje() = -300
 	
+
+	/*method acercarseA(personaje) {
+		const otroPosicion = personaje.position()
+		var newX = position.x() + if (otroPosicion.x() > position.x()) 1 else -1
+		var newY = position.y() + if (otroPosicion.y() > position.y()) 1 else -1
+		// evitamos que se posicionen fuera del tablero
+		newX = innewX.max(0).min(game.width() - 1)
+		newY = newY.max(0).min(game.height() - 1)
+		previousPosition = position
+		position = game.at(newX, newY)
+	}*/
+
 	method acercarseA(jugador) {//deberia acercarse a la posicion del jugador y no salirse del mapa
-		game.onTick(1500,"cazador",
-			{ position = { position = new Position(
-						x = self.acercarseHorizontalA(jugador),
-						y = self.acercarseVerticalA(jugador)
-						) } 
+		game.onTick(1000,"cazador",
+			{ const x = self.acercarseHorizontalA(jugador)
+			  const y = self.acercarseVerticalA(jugador)
+			  if(invalida.noEsPosicionInvalida(x, y)){
+				position = game.at(x,y) 
+			  }
 			}
 		)
 	}
-	
-	method resetPosition() {
-		position = posicionInicial
+	method accionarObjeto(objeto){
+		
 	}
 	
-	method acercarseHorizontalA(jugador) = if (self.estaALaIzquierdaDe(jugador))izquierda.moverseAProximaPosicion(self.position())
-	                                       else derecha.moverseAProximaPosicion(self.position())
+	method acercarseHorizontalA(jugador) = if (self.estaALaIzquierdaDe(jugador))self.position().x() + 1
+	                                       else self.position().x() - 1
 	
-	method acercarseVerticalA(jugador) = if (self.estaAbajoDe(jugador))abajo.moverseAProximaPosicion(self.position())
-	                                     else arriba.moverseAProximaPosicion(self.position())
+	method acercarseVerticalA(jugador) = if (self.estaAbajoDe(jugador))self.position().y() + 1
+	                                     else self.position().y() - 1
 	
 	method estaALaIzquierdaDe(unElemento) = unElemento.position().x() > self.position().x()
 	
