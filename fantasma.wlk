@@ -34,7 +34,7 @@ object grimly {
   
   method asustar() {
     self.image("fantasma.png")
-    game.onCollideDo(self, { p => p.asustarse(self) })
+    game.onCollideDo(self, { p => p.asustarse(self)})
     game.schedule(400, { self.image("fantasmaNormal.png") })
   }
   
