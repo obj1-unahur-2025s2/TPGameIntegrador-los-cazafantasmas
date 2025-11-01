@@ -76,37 +76,21 @@ class Direccion {
 object izquierda inherits Direccion {
 	override method siguiente(position) = position.left(1)
 	
-<<<<<<< HEAD
-=======
-	
->>>>>>> 63b6cf1d6095cba5edf7c060a614455ce855d79f
 }
 
 object derecha inherits Direccion {
 	override method siguiente(position) = position.right(1)
 	
-<<<<<<< HEAD
-=======
-	
->>>>>>> 63b6cf1d6095cba5edf7c060a614455ce855d79f
 }
 
 object abajo inherits Direccion {
 	override method siguiente(position) = position.down(1)
 	
-<<<<<<< HEAD
-=======
-	
->>>>>>> 63b6cf1d6095cba5edf7c060a614455ce855d79f
 }
 
 object arriba inherits Direccion {
 	override method siguiente(position) = position.up(1)
 	
-<<<<<<< HEAD
-=======
-	
->>>>>>> 63b6cf1d6095cba5edf7c060a614455ce855d79f
 }
 
 object invalida inherits Direccion {

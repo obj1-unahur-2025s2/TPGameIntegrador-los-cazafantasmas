@@ -5,7 +5,6 @@ import fantasma.*
 //los cazafantasmas que van a ser enemigos
 class Cazafantasma {
 	var position = game.at(0, 0)
-	var posicionInicial = game.at(0, 0)
 	var image = "cazafantasmas.png"
 	
 	method esInteractivo() = true//el jugador puede interactuar (osea pueden colisionar)
@@ -29,7 +28,6 @@ class Cazafantasma {
 	method instanciar(posicion,cantidad) {//crea al cazador
 		self.image("cazafantasmas.png")
 		self.position(posicion)
-		posicionInicial = posicion //se define en donde se coloca por primera vez
 	}
 	
 	method atrapar(jugador) {

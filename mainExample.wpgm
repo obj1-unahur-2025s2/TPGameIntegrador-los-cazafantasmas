@@ -17,9 +17,6 @@ program GhostRevenge {
     //FONDO
 	game.boardGround("piso.png")
 
-
-    //OBJETOS EN EL JUEGO
-<<<<<<< HEAD
     const npc1 = new Persona(image= "npc1.png",position= game.at(15, 12))
     const cazador=new Cazafantasma()
     const trampa=new Trampa()
@@ -39,24 +36,7 @@ program GhostRevenge {
     game.whenCollideDo(cazador, {grimly => cazador.atrapar(grimly)})
     game.whenCollideDo(trampa, {grimly => grimly.accionarObjeto(trampa)})
     game.whenCollideDo(pocion, {grimly => grimly.accionarObjeto(pocion)})
-=======
 
-    //colocar objetos en pantalla
-    /*objetos.forEach({o=>
-    o.addVisual(positionable)
-    })*/
-      //habitacion1
-    
-
-    //NPCs
-    casa.crearCasa()
-    controles.configurarTeclas()
-    const npc1 = new Persona(image= "npc1.png",position= game.at(15, 12))
-    game.addVisual(npc1)
-    npc1.moverseAleatorio()
-    
->>>>>>> 63b6cf1d6095cba5edf7c060a614455ce855d79f
-    
     const musicaDeFondo = game.sound("musicaFondo.mp3")
     musicaDeFondo.shouldLoop(true)
     musicaDeFondo.volume(0.5)

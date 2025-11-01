@@ -58,18 +58,6 @@ object casa {
     const cuadroHombre_3= new Mueble (image="cuadroHombre.png",position=game.at(15 , 14))
     const cuadroMujer_3= new Mueble (image= "cuadroMujer.png",position= game.at(12 , 14))
     const cama_3 = new Mueble(image= "cama.png",position= game.at(13 , 12))
-<<<<<<< HEAD
-=======
-
-        //NPCs
-    
-    
-
-
-    //MOSTRAR EN PANTALLA
-
-    controles.configurarTeclas()
->>>>>>> 63b6cf1d6095cba5edf7c060a614455ce855d79f
     
     
     game.addVisual(paredBlanca_1)
@@ -105,10 +93,6 @@ object casa {
     game.addVisual(apoyaPies_2)
     game.addVisual(sillonDoble_2)
     game.addVisual(mesitaDeLuz_2)
-<<<<<<< HEAD
-=======
-    game.addVisual(grimly)
->>>>>>> 63b6cf1d6095cba5edf7c060a614455ce855d79f
     game.addVisual(sillonIzq_1)
     game.addVisual(sillonDer_1)
     game.addVisual(mesaConCopas_1)
@@ -116,10 +100,6 @@ object casa {
     game.addVisual(mesaConCandelabroDer_1)
     game.addVisual(muebleConCandelabroYLibro_3)
     game.addVisual(mesaConJarronAmarillo_3)
-<<<<<<< HEAD
-=======
-
->>>>>>> 63b6cf1d6095cba5edf7c060a614455ce855d79f
     game.addVisual(armarioConLibro_2)
     game.addVisual(mesaConJarronAmarillo_2)
     game.addVisual(mesaConJarronAzul_2)
@@ -127,14 +107,6 @@ object casa {
     game.addVisual(mesaConCopas_2)
     game.addVisual(muebleConLibro_2)
     game.addVisual(sillonLateral_2)
-<<<<<<< HEAD
-=======
-
-    
-
-
-    
->>>>>>> 63b6cf1d6095cba5edf7c060a614455ce855d79f
 	}
 }
 
@@ -143,12 +115,8 @@ class Mueble {
     const property image 
 	var property position 
 	method asustarse(jugador){}
-<<<<<<< HEAD
 	method chocarse(jugador){}
     method recibirDaño(){
         
     }
-=======
->>>>>>> 63b6cf1d6095cba5edf7c060a614455ce855d79f
 }
-
