@@ -14,22 +14,20 @@ program GhostRevenge {
     game.cellSize(64)
 
    
-    //FONDO
-	game.boardGround("piso.png")
-
+    
+    casa.crearCasa()
     const npc1 = new Persona(image= "npc1.png",position= game.at(15, 12))
     const cazador=new Cazafantasma()
     const trampa=new Trampa()
     const pocion=new Pocion()
-    game.addVisual(npc1)
-    game.addVisual(grimly)//es el fantasma
     game.addVisual(cazador)
     game.addVisual(trampa)
     game.addVisual(pocion)
-    cazador.instanciar(game.at(5,10),0)
+    game.addVisual(npc1)
+    game.addVisual(grimly)//es el fantasma
+    cazador.instanciar(game.at(27,13),0)
     controles.configurarTeclas()
     npc1.moverseAleatorio()
-    casa.crearCasa()
     cazador.acercarseA(grimly)
     trampa.instanciar(game.at(10,4),0)
     pocion.instanciar(game.at(15,10),0)
@@ -40,6 +38,7 @@ program GhostRevenge {
     const musicaDeFondo = game.sound("musicaFondo.mp3")
     musicaDeFondo.shouldLoop(true)
     musicaDeFondo.volume(0.5)
-    game.schedule(500, { musicaDeFondo.play() })
-	game.start()
+    game.schedule(400, { musicaDeFondo.play() })
+
+	 game.start()
 }

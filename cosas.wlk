@@ -5,6 +5,7 @@ import fantasma.*
 object casa {
 	method crearCasa() {
 	  //habitacion1
+    const fondoCasa = new Mueble(image="piso.png",position = game.at(0, 0))
     const paredes_1= new Mueble(image="paredes1.png",position = game.at(0, 7))
     const paredBlanca_1= new Mueble(image="paredBlanca.png",position= game.at(0,13))
     const bibliotecaIzq_1 = new Mueble (image="biblioteca.png",position = game.at(1,13))
@@ -59,7 +60,7 @@ object casa {
     const cuadroMujer_3= new Mueble (image= "cuadroMujer.png",position= game.at(12 , 14))
     const cama_3 = new Mueble(image= "cama.png",position= game.at(13 , 12))
     
-    
+    game.addVisual(fondoCasa)
     game.addVisual(paredBlanca_1)
     game.addVisual(paredes_1)
     game.addVisual(bibliotecaIzq_1)
@@ -111,6 +112,7 @@ object casa {
 }
 
 
+//esta clase representa a todos los items del juego
 class Mueble {
     const property image 
 	var property position 

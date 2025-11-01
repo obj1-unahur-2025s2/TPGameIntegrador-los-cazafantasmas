@@ -28,7 +28,7 @@ class Persona {
         time += 500
       }
     )
-    game.schedule(2000, { self.moverseAleatorio() })
+    game.schedule(1500, { self.moverseAleatorio() })
   }
 
   	method instanciar(posicion,cantidad){//crea al npc

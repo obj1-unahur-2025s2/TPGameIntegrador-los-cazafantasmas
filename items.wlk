@@ -51,6 +51,8 @@ class Pocion inherits Item {
     self.image("pocionVida.png")
     self.position(posicion)
   }
+
+  
 }
 
 class Trampa inherits Item {
