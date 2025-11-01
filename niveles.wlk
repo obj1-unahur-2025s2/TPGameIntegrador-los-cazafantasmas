@@ -8,24 +8,7 @@ import cosas.*
 import items.*
 import controles.*
 /*
-object gameOver {
-	method position() = game.center()
-	method image() = "gameover.png"
-	method perder() {
-		// game.clear() limpia visuals, teclado, colisiones y acciones
-		game.clear()
-			// después puedo volver a agregar el fondo, y algún visual para que no quede tan pelado
-		game.addVisual(new Fondo(image = "imgs/fondo Completo.png"))
-			// después de un ratito ...
-		game.schedule(1000, { game.clear()
-				// cambio de fondo
-			game.addVisual(new Fondo(image = "imgs/perdimos.png"))
-				// después de un ratito ...
-			game.schedule(4000, { // reinicia el juego
-			pantallaInicio.configurate()})
-		})
-	}
-}
+
 
 
 //todo robado pero configura los niveles de forma general
@@ -160,4 +143,39 @@ object utilidadesParaJuego {
 			rival.acercarseA(pacman)
 		})
 	}
+
+class Fondo {
+
+	const property position = game.at(0, 0)
+	var property image = "imgs/fondo Completo.png"
+
+	method esRecolectable() = false
+
+	method esInteractivo() = false
+
+	method esEnemigo() = false
+
+	method esOro() = false
+
+}
+
+object gameOver {
+	method position() = game.center()
+	method image() = "gameover.png"
+	method perder() {
+		// game.clear() limpia visuals, teclado, colisiones y acciones
+		game.clear()
+			// después puedo volver a agregar el fondo, y algún visual para que no quede tan pelado
+		game.addVisual(new Fondo(image = "imgs/fondo Completo.png"))
+			// después de un ratito ...
+		game.schedule(1000, { game.clear()
+				// cambio de fondo
+			game.addVisual(new Fondo(image = "imgs/perdimos.png"))
+				// después de un ratito ...
+			game.schedule(4000, { // reinicia el juego
+			pantallaInicio.configurate()})
+		})
+	}
+}
+
 */
