@@ -7,79 +7,49 @@ import puntaje.*
 import cosas.*
 import items.*
 import controles.*
-/*
+import nivel1.*
+import nivel2.*
+
 //configuracion de la pantalla de inicio antes de elegir el nivel
 object pantallaInicio {
 
 // La pantalla de configuración inicial
-	const fondoEmpezar = new Fondo(image = "imgs/fondo empezar.png")
-
+	const fondoEmpezar = new Fondo(image = "fondoInicio.jpg") 
+	
 	method configurate() {
-		nivel1.personaje().reestablecer()
-			// Aranca con la dificultad normal
-		game.addVisual(dificultad.fondoNormal())
-		keyboard.x().onPressDo({ if (not game.hasVisual(fondoEmpezar)) {
-				game.addVisual(fondoEmpezar)
-				game.schedule(2000, { nivel1.configurate()})
-			}
-		})
+		game.addVisual(fondoEmpezar)
+		game.addVisual(grimly)
+		controles.configurarTeclas()
 		keyboard.space().onPressDo({ game.addVisual(fondoEmpezar)
 			game.schedule(2000, { game.stop()})
 		})
-		keyboard.num1().onPressDo({ dificultad.facil()})
-		keyboard.num3().onPressDo({ dificultad.dificil()})
-			// combinación de teclas secretas para pasar a niveles
-		const shift2 = new KeyExtendido(keyCodes = [ 'Shift', 'Digit2' ]) // shift + 2
-		const shift3 = new KeyExtendido(keyCodes = [ 'Shift', 'Digit3' ]) // shift + 3
-		shift2.onPressCombinationDo({ if (shift2.key1pressed()) { // TODO: no logré meter esa validación en el bloque de KeyExtendido
-				game.clear()
-				nivel2.configurate()
-			}
-		})
-		shift3.onPressCombinationDo({ if (shift3.key1pressed()) {
-				game.clear()
-				nivelBonus.configurate()
-			}
-		})
+		//musica.empezarMusicaInicio()
+		//musica.pararMusicaJuego()
+		
 	}
 
 }
 
-object dificultad {
-
-	const fondoFacil = new Fondo(image = "imgs/fondo facil.png")
-	const property fondoNormal = new Fondo(image = "imgs/fondo normal.png")
-	const fondoDificil = new Fondo(image = "imgs/fondo dificil.png")
-	var property pociones=0
-	var property enemigos = 2
-	var property trampas=0
-	const property npc=8
-
-	method facil() {
-		pociones=0
-		enemigos = 2
-		trampas=0
-		if (game.hasVisual(fondoNormal)) {
-			game.removeVisual(fondoNormal)
-			game.addVisual(fondoFacil)
-		} else if (game.hasVisual(fondoDificil)) {
-			game.removeVisual(fondoDificil)
-			game.addVisual(fondoFacil)
-		}
-	}
-
-	method dificil() {
-		pociones=0
-		enemigos = 2
-		trampas=0
-		if (game.hasVisual(fondoFacil)) {
-			game.removeVisual(fondoFacil)
-			game.addVisual(fondoDificil)
-		} else if (game.hasVisual(fondoNormal)) {
-			game.removeVisual(fondoNormal)
-			game.addVisual(fondoDificil)
-		}
-	}
-
+object musica {
+  method empezarMusicaInicio(){
+ 	const musicaDeFondo = game.sound("musicaInicio.mp3")
+    	musicaDeFondo.shouldLoop(true)
+    	musicaDeFondo.volume(0.5)
+    	game.schedule(400, { musicaDeFondo.play() })
+  }
+   method empezarMusicaJuego(){
+ 	const musicaDeFondo = game.sound("musicaFondo.mp3")
+    	musicaDeFondo.shouldLoop(true)
+    	musicaDeFondo.volume(0.5)
+    	game.schedule(400, { musicaDeFondo.play() })
+  }
+  method pararMusicaInicio(){
+	const musicaDeFondo = game.sound("musicaInicio.mp3")
+	musicaDeFondo.stop()
+  }
+  method pararMusicaJuego(){
+	const musicaDeFondo = game.sound("musicaFondo.mp3")
+	musicaDeFondo.stop()
+  }
 }
-*/
+

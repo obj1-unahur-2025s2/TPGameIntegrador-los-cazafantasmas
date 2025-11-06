@@ -7,6 +7,115 @@ import puntaje.*
 import cosas.*
 import items.*
 import controles.*
+import pantallaInicio.*
+class Nivel {
+  var property elementosEnNivel = [] // Lista de elementos recolectables interactivos, excepto enemigos
+  method hayElementoEn(posicion) = elementosEnNivel.any({ e => e.position() == posicion && e.esInteractivo() })
+									
+
+  method ponerElementos(cantidad, elemento) { // debe recibir cantidad y EL NOMBRE DE UN ELEMENTO
+	if (cantidad > 0) {
+		const unaPosicion = elegirPosicion.posicionAleatoria()
+			if (not self.hayElementoEn(unaPosicion)) { // si la posicion no está ocupada
+				const unaInstancia = elemento.get(cantidad-1) // instancia el elemento en una posicion
+					elementosEnNivel.add(unaInstancia) // Agrega el elemento a la lista
+					game.addVisual(unaInstancia) // Agrega el elemento al tablero
+					unaInstancia.instanciar(unaPosicion, cantidad)
+					self.ponerElementos(cantidad - 1, elemento) // llamada recursiva al proximo elemento a agregar
+			} else { // Si había elementos, hace llamada recursiva
+					self.ponerElementos(cantidad, elemento)
+			}
+		}
+  }
+
+
+  method configurate() {
+	game.clear()
+	//musica.pararMusicaInicio()
+	//musica.empezarMusicaJuego()
+	
+
+	controles.configurarTeclas()
+	casa.crearCasa()
+	// El sonido para que esté accesible desde todos los niveles
+	/*keyboard.plusKey().onPressDo({ musicaDeFondo.volume(1)})
+	keyboard.m().onPressDo({musicaDeFondo.volume(0)})
+	keyboard.minusKey().onPressDo({ musicaDeFondo.volume(0.5)})
+	keyboard.p().onPressDo({ musicaDeFondo.pause()})
+	keyboard.r().onPressDo({ musicaDeFondo.resume()})
+	keyboard.s().onPressDo({ musicaDeFondo.stop()})*/
+	}
+
+		/*method terminar() {
+		// sonido al ganar el juego
+		game.sound("audio/ganarNivel3.mp3").play()
+			// game.clear() limpia visuals, teclado, colisiones y acciones
+		game.clear()
+			// Fondo final
+		game.addVisual(new Fondo(image = "imgs/fondo ganaste.png"))
+			// después de un ratito ...
+		game.schedule(4000, { // Volver al inicio 
+		pantallaInicio.configurate()})
+
+		// si todos NO están visibles y grimly está vivo entonces ganar, si no perder(o porque grimly se murió o porque hay personas vivas).
+	}
+
+	*/
+}
+
+object elegirPosicion {
+
+  method posicionAleatoria(){//deberia elegir una posicion aleatoria para ponerlo y que no queden uno sobre otro 
+    const x = 0.randomUpTo(game.width()-2).truncate(0)
+    const y = 0.randomUpTo(game.height()-2).truncate(0)
+    if(invalida.noEsPosicionInvalida(x, y) && !game.hasVisual(self)){
+      return game.at(x,y)
+    }
+    else{
+      return self.posicionAleatoria()
+    }
+  }
+	method eliminarVisual(visual) {
+		if(game.hasVisual(visual)) {
+			game.removeVisual(visual)
+		}
+	}
+}
+
+/*object gameOver {
+	method position() = game.center()
+	method image() = "gameover.png"
+	method perder() {
+		// game.clear() limpia visuals, teclado, colisiones y acciones
+		game.clear()
+			// después puedo volver a agregar el fondo, y algún visual para que no quede tan pelado
+		game.addVisual(new Fondo(image = "imgs/fondo Completo.png"))
+			// después de un ratito ...
+		game.schedule(1000, { game.clear()
+				// cambio de fondo
+			game.addVisual(new Fondo(image = "imgs/perdimos.png"))
+				// después de un ratito ...
+			game.schedule(4000, { // reinicia el juego
+			pantallaInicio.configurate()})
+		})
+	}
+}
+*/
+class Fondo {
+
+	const property position = game.at(0, 0)
+	var property image = "imgs/fondo Completo.png"
+
+	method esInteractivo() = false
+	method asustarse(jugador){}
+	method chocarse(jugador){}
+    method recibirDaño(){    
+    }
+    method accionarObjeto(objeto){}
+    method atrapar(){}
+    method modificarPuntos(num){}
+}
+
 /*
 
 
@@ -35,51 +144,6 @@ class Nivel {
 /*
 
 
-	method teletransportar() { // Reacción a la CeldaSorpresaA
-		const unaPosicion = utilidadesParaJuego.posicionArbitraria()
-		if (not self.hayElementoEn(unaPosicion)) {
-			self.personaje().position(unaPosicion)
-		} else {
-			self.teletransportar()
-		}
-	}
-
-	method agregarPollo() { // Reacción a la CeldaSorpresaD
-		self.ponerElementos(1, pollo)
-	}
-
-// EL NOMBRE DEL ELEMENTO ES UN OBJETO QUE GENERA UNA NUEVA INSTANCIA CON EL METODO instanciar()
-	method ponerElementos(cantidad, elemento) { // debe recibir cantidad y EL NOMBRE DE UN ELEMENTO
-		if (cantidad > 0) {
-			const unaPosicion = utilidadesParaJuego.posicionAleatoria()
-			if (not self.hayElementoEn(unaPosicion)) { // si la posicion no está ocupada
-				const unaInstancia = elemento.instanciar(unaPosicion,cantidad) // instancia el elemento en una posicion
-				elementosEnNivel.add(unaInstancia) // Agrega el elemento a la lista
-				game.addVisual(unaInstancia) // Agrega el elemento al tablero
-				self.ponerElementos(cantidad - 1, elemento) // llamada recursiva al proximo elemento a agregar
-			} else { // Si había elementos, hace llamada recursiva
-				self.ponerElementos(cantidad, elemento)
-			}
-		}
-	}
-
-
-	method configurate() {
-		// Reinicio el estado del personaje
-		self.personaje().reestablecer()
-			// fondo - es importante que sea el primer visual que se agregue
-		game.addVisual(new Fondo()) // Inicio de nivel
-		controles.configurarTeclas()
-		cosas.crearCasa()
-		// El sonido para que esté accesible desde todos los niveles
-		keyboard.plusKey().onPressDo({ rain.volume(1)})
-		keyboard.m().onPressDo({ rain.volume(0)})
-		keyboard.minusKey().onPressDo({ rain.volume(0.5)})
-		keyboard.p().onPressDo({ rain.pause()})
-		keyboard.r().onPressDo({ rain.resume()})
-		keyboard.s().onPressDo({ rain.stop()})
-	}
-
 
 
 	method terminar() {
@@ -93,89 +157,4 @@ class Nivel {
 		game.schedule(4000, { // Volver al inicio 
 		pantallaInicio.configurate()})
 	}
-
-	method pasarDeNivel() {
-		// Generar el sonido para pasar de nivel
-		const pasarNivel = game.sound("audio/pasarNivel.mp3")
-		pasarNivel.play()
-			// Fondo base del juego vacío
-		game.addVisual(new Fondo(image = "imgs/fondo Completo.png"))
-			// después de un ratito ...
-		game.schedule(1000, { game.clear()
-				// cambio de fondo. La imagenIntermedia cambia en cada nivel
-			game.addVisual(new Fondo(image = self.imagenIntermedia()))
-				// después de un ratito ...
-			game.schedule(4000, { // ... limpio todo de nuevo
-				game.clear() // y arranco el siguiente nivel
-					// Se configura el próximo nivel
-				self.siguienteNivel().configurate()
-			})
-		})
-	}
-}
-object utilidadesParaJuego {
-
-  method posicionAleatoria(){//deberia elegir una posicion aleatoria para ponerlo y que no queden uno sobre otro 
-    const x = 0.randomUpTo(game.width()-2).truncate(0)
-    const y = 0.randomUpTo(game.height()-2).truncate(0)
-    if(invalida.noEsPosicionInvalida(x, y) && !game.hasVisual(self)){
-      return game.at(x,y)
-    }
-    else{
-      self.posicionAleatoria()
-    }
-  }
-	method eliminarVisual(visual) {
-		if(game.hasVisual(visual)) {
-			game.removeVisual(visual)
-		}
-	}
-}
-//esto deberia estar para que los enemigos de muevan
-	const rivales = [new Rival(numero=1), new Rival(numero=2),new Rival(numero=3),new Rival(numero=4)]
-	
-	rivales.forEach { rival => 
-		game.addVisual(rival)
-		game.whenCollideDo(rival, { personaje =>
-			personaje.chocarCon(rival) // se maneja un método polimórfico
-		})
-		game.onTick(1.randomUpTo(5) * 500, "movimiento", {
-			rival.acercarseA(pacman)
-		})
-	}
-
-class Fondo {
-
-	const property position = game.at(0, 0)
-	var property image = "imgs/fondo Completo.png"
-
-	method esRecolectable() = false
-
-	method esInteractivo() = false
-
-	method esEnemigo() = false
-
-	method esOro() = false
-
-}
-
-object gameOver {
-	method position() = game.center()
-	method image() = "gameover.png"
-	method perder() {
-		// game.clear() limpia visuals, teclado, colisiones y acciones
-		game.clear()
-			// después puedo volver a agregar el fondo, y algún visual para que no quede tan pelado
-		game.addVisual(new Fondo(image = "imgs/fondo Completo.png"))
-			// después de un ratito ...
-		game.schedule(1000, { game.clear()
-				// cambio de fondo
-			game.addVisual(new Fondo(image = "imgs/perdimos.png"))
-				// después de un ratito ...
-			game.schedule(4000, { // reinicia el juego
-			pantallaInicio.configurate()})
-		})
-	}
-}
-
 */

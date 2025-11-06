@@ -1,0 +1,30 @@
+import wollok.game.*
+
+import fantasma.*
+import cazafantasmas.*
+import items.*
+import personas.*
+import controles.*
+import cosas.*
+import niveles.*
+import nivel1.*
+import nivel2.*
+import pantallaInicio.*
+
+program GhostRevenge {
+	game.title("GhostRevenge")
+	game.width(30)
+	game.height(16)
+    game.cellSize(64)
+
+
+    pantallaInicio.configurate()
+
+
+    /*const musicaDeFondo = game.sound("musicaFondo.mp3")
+    musicaDeFondo.shouldLoop(true)
+    musicaDeFondo.volume(0.5)
+    game.schedule(400, { musicaDeFondo.play() })*/
+
+	 game.start()
+}

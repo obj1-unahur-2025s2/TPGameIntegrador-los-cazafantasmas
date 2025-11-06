@@ -60,4 +60,6 @@ class Persona {
   method position(nueva) {
     position = nueva
   }
+  method recibirDaño(){}
+  method modificarPuntos(num){}
 }

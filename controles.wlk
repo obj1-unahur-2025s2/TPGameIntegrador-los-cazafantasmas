@@ -2,7 +2,9 @@
 import wollok.game.*
 import fantasma.*
 import personas.*
-
+import niveles.*
+import nivel1.*
+import nivel2.*
 ///robado para poder armar el movimiento
 object controles {
 	method configurarTeclas() {
@@ -19,12 +21,10 @@ object controles {
 			{ grimly.position(derecha.moverseAProximaPosicion(grimly.position())) }
 		)
 		keyboard.e().onPressDo({ grimly.asustar(game.getObjectsIn(grimly.position())) })
+		keyboard.num1().onPressDo({ nivel1.configurate() })
+		keyboard.num2().onPressDo({ nivel2.configurate() })
 	}
-/*
-	keyboard.1().onPressDo({ nivelFacil.configurate() })//para hacer que se configure el nivel y cargue cuando el jugador lo elige
-	keyboard.2().onPressDo({ nivelDificil.configurate() })
-*/
-	
+
 }
 
 class Direccion {

@@ -98,4 +98,5 @@ class Cazafantasma {
             self.position().up(1)
         else 
             self.position().down(1)
+    method accionarObjeto(objeto){}
 }

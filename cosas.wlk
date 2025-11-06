@@ -1,11 +1,11 @@
 import wollok.game.*
 import controles.*
 import fantasma.*
-
+import niveles.*
 object casa {
 	method crearCasa() {
 	  //habitacion1
-    const fondoCasa = new Mueble(image="piso.png",position = game.at(0, 0))
+    const fondoCasa = new Fondo(image="piso.png",position = game.at(0, 0))
     const paredes_1= new Mueble(image="paredes1.png",position = game.at(0, 7))
     const paredBlanca_1= new Mueble(image="paredBlanca.png",position= game.at(0,13))
     const bibliotecaIzq_1 = new Mueble (image="biblioteca.png",position = game.at(1,13))
@@ -118,7 +118,10 @@ class Mueble {
 	var property position 
 	method asustarse(jugador){}
 	method chocarse(jugador){}
-    method recibirDaño(){
-        
+    method recibirDaño(){    
     }
+    method esInteractivo() = true
+    method accionarObjeto(objeto){}
+    method atrapar(){}
+    method modificarPuntos(num){}
 }
