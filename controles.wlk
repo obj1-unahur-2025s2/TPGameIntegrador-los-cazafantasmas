@@ -1,3 +1,4 @@
+import pantallaInicio.*
 //controles generales de todo el juego
 import wollok.game.*
 import fantasma.*
@@ -148,6 +149,7 @@ class Direccion {
 		}
 	}
 	
+
 	method estaEnElBorde(posicion) {
 		const sonBordes = [
 			self.esBordeDerecho(posicion),

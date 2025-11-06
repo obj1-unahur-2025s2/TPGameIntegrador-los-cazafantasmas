@@ -5,7 +5,7 @@ import cazafantasmas.*
 import personas.*
 
 object grimly {
-  var image = "fantasmaNormal.png"
+  var image = "FantasmaNormal.png"
   var position = game.origin()
   var puntaje = 0
   var vida = 3
@@ -20,6 +20,8 @@ object grimly {
   
   method recibirDaño() {
     vida = (vida - 1).max(0)
+    self.image("fantasmaDaño.png")
+    game.schedule(500, { self.image("FantasmaNormal.png")})
     self.resetPosition()
   }
   
@@ -34,7 +36,7 @@ object grimly {
 
  method asustar(aqui) {
     self.image("fantasma.png")
-    game.schedule(500, { self.image("fantasmaNormal.png")})
+    game.schedule(500, { self.image("FantasmaNormal.png")})
     if(aqui.size() > 1){
       aqui.first().asustarse(self)
     }

@@ -52,7 +52,8 @@ class Nivel {
 			// game.clear() limpia visuals, teclado, colisiones y acciones
 		game.clear()
 			// Fondo final
-		game.addVisual(new Fondo(image = "imgs/fondo ganaste.png"))
+		game.addVisual(new Fondo(image = "victoria_2.png"))
+		game.addVisual(new Fondo(image = "derrota_2.png"))
 			// después de un ratito ...
 		game.schedule(4000, { // Volver al inicio 
 		pantallaInicio.configurate()})
@@ -67,7 +68,7 @@ object elegirPosicion {
 
   method posicionAleatoria(){//deberia elegir una posicion aleatoria para ponerlo y que no queden uno sobre otro 
     const x = 0.randomUpTo(game.width()-2).truncate(0)
-    const y = 0.randomUpTo(game.height()-2).truncate(0)
+    const y = 2.randomUpTo(game.height()-2).truncate(0)
     if(invalida.noEsPosicionInvalida(x, y) && !game.hasVisual(self)){
       return game.at(x,y)
     }
