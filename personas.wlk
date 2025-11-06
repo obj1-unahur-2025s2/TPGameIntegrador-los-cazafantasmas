@@ -38,6 +38,8 @@ class Persona {
   }
   //que hace cuando se asusta
   method asustarse(jugador) {
+    const sonido = game.sound("sonidoAsustar.wav")
+    sonido.play()
     self.image(imageMuerto)
       //crear una imagen que represente cuanod un npc en general esta asustado
     jugador.modificarPuntos(self.puntaje())

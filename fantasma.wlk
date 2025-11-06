@@ -53,8 +53,8 @@ object grimly {
   method morir() {
     //que pasa cuando el fantasma muere
     image = ""
-    const muerte = game.sound(".mp3")
-    muerte.play()
+    const sonido = game.sound("sonidoMuerte.wav")
+    sonido.play()
     //game.schedule(2000, { => gameOver.perder()}) configurarlo en nivel
   }
   

@@ -40,8 +40,10 @@ class Pocion inherits Item {
   override method puntaje() = 150
   
   override method actuar(jugador) {
+    const sonido = game.sound("sonidoPocion.wav")
     if(game.hasVisual(self)){
-    jugador.recuperarVida()
+    jugador.recuperarVida() 
+    sonido.play()
     jugador.modificarPuntos(self.puntaje())
     game.removeVisual(self)}
   }
@@ -59,8 +61,10 @@ class Trampa inherits Item {
   override method puntaje() = -100
   
   override method actuar(jugador) {
+    const sonido = game.sound("sonidoTrampa.wav")
     if(game.hasVisual(self)){
     jugador.modificarPuntos(self.puntaje())
+    sonido.play()
     jugador.resetPosition()
     game.removeVisual(self)}
   }

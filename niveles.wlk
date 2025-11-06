@@ -30,9 +30,8 @@ class Nivel {
 
 
   method configurate() {
-	game.clear()
-	//musica.pararMusicaInicio()
-	//musica.empezarMusicaJuego()
+	musica.pararMusicaInicio()
+	musica.empezarMusicaJuego()
 	
 
 	controles.configurarTeclas()

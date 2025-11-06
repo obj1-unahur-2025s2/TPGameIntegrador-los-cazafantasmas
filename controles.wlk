@@ -22,8 +22,17 @@ object controles {
 			{ grimly.position(derecha.moverseAProximaPosicion(grimly.position())) }
 		)
 		keyboard.e().onPressDo({ grimly.asustar(game.getObjectsIn(grimly.position())) })
-		keyboard.num1().onPressDo({ nivel1.configurate() })
-		keyboard.num2().onPressDo({ nivel2.configurate() })
+		keyboard.num1().onPressDo({  musica.pararMusicaInicio()
+     								 game.clear()
+     								 musica.configurar()
+      								 musica.empezarMusicaJuego()
+      								 nivel1.configurate() })
+
+		keyboard.num2().onPressDo({ musica.pararMusicaInicio()
+ 									 game.clear()
+									 musica.configurar()
+ 									 musica.empezarMusicaJuego()
+ 									 nivel2.configurate()})
 	}
 
 }
