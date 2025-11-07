@@ -19,9 +19,9 @@ object nivel1 inherits Nivel {
 		super()
 		
 		self.ponerElementos(1, enemigos)
-		self.ponerElementos(3, pociones)
+		self.ponerElementos(2, pociones)
 		self.ponerElementos(2, trampas)
-		self.ponerElementos(4, personas)
+		self.ponerElementos(1, personas)
 		grimly.resetPosition()
 		game.addVisual(grimly)
 		enemigos.forEach({e => e.acercarseA(grimly)

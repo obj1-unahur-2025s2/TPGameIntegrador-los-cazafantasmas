@@ -45,14 +45,12 @@ class Nivel {
 	keyboard.s().onPressDo({ musicaDeFondo.stop()})*/
 	}
 
-		/*method terminar() {
+	method ganar() {
 		// sonido al ganar el juego
 		game.sound("audio/ganarNivel3.mp3").play()
-			// game.clear() limpia visuals, teclado, colisiones y acciones
+	     
 		game.clear()
-			// Fondo final
-		game.addVisual(new Fondo(image = "victoria_2.png"))
-		game.addVisual(new Fondo(image = "derrota_2.png"))
+		game.addVisual(pantallaVic.victoria())
 			// después de un ratito ...
 		game.schedule(4000, { // Volver al inicio 
 		pantallaInicio.configurate()})
@@ -60,9 +58,26 @@ class Nivel {
 		// si todos NO están visibles y grimly está vivo entonces ganar, si no perder(o porque grimly se murió o porque hay personas vivas).
 	}
 
-	*/
+	
 }
 
+object pantallaVic{
+	var num=1
+	method victoria(){
+		
+		game.onTick(200, "victoria", {
+			if(num>1){
+				num=1
+				return new Fondo(image="victoria_1.jpg")
+			}
+			else{
+				num=2
+				return new Fondo(image="victoria_2.jpg")
+			}
+		})
+		
+	}
+}
 object elegirPosicion {
 
   method posicionAleatoria(){//deberia elegir una posicion aleatoria para ponerlo y que no queden uno sobre otro 
@@ -104,13 +119,12 @@ object elegirPosicion {
 class Fondo {
 
 	const property position = game.at(0, 0)
-	var property image = "imgs/fondo Completo.png"
+	var property image 
 
 	method esInteractivo() = false
 	method asustarse(jugador){}
 	method chocarse(jugador){}
-    method recibirDaño(){    
-    }
+    method recibirDaño(){}
     method accionarObjeto(objeto){}
     method atrapar(){}
     method modificarPuntos(num){}
@@ -120,7 +134,7 @@ class Fondo {
 
 
 
-//todo robado pero configura los niveles de forma general
+// configura los niveles de forma general
 class Nivel {
 
 	// Elementos del nivel	

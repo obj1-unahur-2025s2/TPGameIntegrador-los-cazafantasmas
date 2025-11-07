@@ -40,6 +40,33 @@ object controles {
 class Direccion {
 	//lista que deberia cargarse con las posiciones de los muebles y paredes
 	const property posicionesInvalidas = [
+		game.at(0, 0),
+		game.at(1, 0),
+		game.at(2, 0),
+		game.at(3, 0),
+		game.at(4, 0),
+		game.at(5, 0),
+		game.at(6, 0),
+		game.at(7, 0),
+		game.at(8, 0),
+		game.at(0, 1),
+		game.at(0, 2),
+		game.at(0, 6),
+		game.at(0, 7),
+		game.at(8, 13),
+		game.at(9, 13),
+		game.at(15, 18),
+		game.at(15, 19),
+		game.at(15, 20),
+		game.at(15, 21),
+		game.at(15, 22),
+		game.at(15, 23),
+		game.at(15, 24),
+		game.at(15, 25),	
+		game.at(15, 26),
+		game.at(15, 27),
+		game.at(15, 28),
+		game.at(15, 29),
 		game.at(0, 7),
 		game.at(0, 8),
 		game.at(0, 9),
@@ -143,6 +170,7 @@ class Direccion {
 		
 
 	]
+
 
 	method siguiente(position)
 	

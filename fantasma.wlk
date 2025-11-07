@@ -6,12 +6,12 @@ import personas.*
 
 object grimly {
   var image = "FantasmaNormal.png"
-  var position = game.origin()
+  var position = game.at(14,0)
   var puntaje = 0
   var vida = 3
   
   method resetPosition() {
-    position = game.origin()
+    position = game.at(14,0)
   }
   
   method vida() = vida

@@ -6,8 +6,7 @@ object casa {
 	method crearCasa() {
 	  //habitacion1
     const fondoCasa = new Fondo(image="piso.png",position = game.at(0, 0))
-    const paredes_1= new Mueble(image="paredes1.png",position = game.at(0, 7))
-    const paredBlanca_1= new Mueble(image="paredBlanca.png",position= game.at(0,13))
+    
     const bibliotecaIzq_1 = new Mueble (image="biblioteca.png",position = game.at(1,13))
     const bibliotecaDer_1 = new Mueble (image= "biblioteca.png",position = game.at(5,13)) 
     const velaColganteIzq_1 = new Mueble (image="velaColgante.png",position = game.at(2,14))
@@ -25,10 +24,10 @@ object casa {
     const gato_1 = new Mueble(image="gato.png",position=game.at(4,10))
     const apoyaPies_1 = new Mueble(image="apoyaPies.png",position=game.at(2,10))
 
-
+    
         //habitacion2
-    const paredes_2= new Mueble(image="paredes_2.png",position = game.at(20,0 ))
-    const paredBlanca_2 = new Mueble(image="paredBlanca_2.png",position= game.at(21,8))
+  
+   
     const bibliotecaConPuertas_2= new Mueble(image="bibliotecaConPuertas.png",position= game.at(23,8))
     const armarioConLibro_2 = new Mueble(image="armarioConLibro.png",position= game.at(21,1))
     const cuadroComida_2 =new Mueble(image="cuadroComida.png",position= game.at(27,9))
@@ -50,8 +49,8 @@ object casa {
 
 
         //habitacion3
-    const paredes_3= new Mueble(image="paredes_3.png",position = game.at(10, 8))
-    const paredBlanca_3= new Mueble(image="paredBlanca_3.png",position= game.at(10,13))
+ 
+    
     const mesitaDeLuzIzq_3= new Mueble(image="mesitaDeLuz.png",position=game.at(12 , 13))
     const mesitaDeLuzDer_3= new Mueble(image="mesitaDeLuz.png",position=game.at(15 , 13))
     const mesaConJarronAmarillo_3 = new Mueble(image="mesaConJarronAmarillo.png",position=game.at(16 , 9))
@@ -61,8 +60,6 @@ object casa {
     const cama_3 = new Mueble(image= "cama.png",position= game.at(13 , 12))
     
     game.addVisual(fondoCasa)
-    game.addVisual(paredBlanca_1)
-    game.addVisual(paredes_1)
     game.addVisual(bibliotecaIzq_1)
     game.addVisual(velaColganteIzq_1)
     game.addVisual(chimenea_1)
@@ -74,15 +71,11 @@ object casa {
     game.addVisual(gato_1)
     game.addVisual(tamborConWisky_1)
     game.addVisual(apoyaPies_1)
-    game.addVisual(paredBlanca_3)
     game.addVisual(cuadroMujer_3)
     game.addVisual(cuadroHombre_3)
     game.addVisual(cama_3)
     game.addVisual(mesitaDeLuzIzq_3)
     game.addVisual(mesitaDeLuzDer_3)
-    game.addVisual(paredes_3)
-    game.addVisual(paredBlanca_2)
-    game.addVisual(paredes_2)
     game.addVisual(bibliotecaConPuertas_2)
     game.addVisual(cuadroComida_2)
     game.addVisual(cuadroFlor_2)

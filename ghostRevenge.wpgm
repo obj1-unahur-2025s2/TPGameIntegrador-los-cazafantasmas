@@ -1,5 +1,4 @@
 import wollok.game.*
-
 import fantasma.*
 import cazafantasmas.*
 import items.*
@@ -19,12 +18,5 @@ program GhostRevenge {
 
 
     pantallaInicio.configurate()
-
-
-    /*const musicaDeFondo = game.sound("musicaFondo.mp3")
-    musicaDeFondo.shouldLoop(true)
-    musicaDeFondo.volume(0.5)
-    game.schedule(400, { musicaDeFondo.play() })*/
-
-	 game.start()
+	game.start()
 }
