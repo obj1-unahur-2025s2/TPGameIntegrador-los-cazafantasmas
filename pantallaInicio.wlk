@@ -17,6 +17,7 @@ object pantallaInicio {
   const fondoEmpezar = new Fondo(image = "fondoInicio.jpg") 
 	
   method configurate() {
+  game.clear()
 	game.addVisual(fondoEmpezar)
 	game.addVisual(grimly)
 	controles.configurarTeclas()

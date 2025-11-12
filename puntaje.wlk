@@ -1,71 +1,100 @@
-import wollok.game.*
-import fantasma.*
 
-/*
-//esto es robado pero define el punaje
-object puntaje {
 
-	// creacion imagenes de numeros
-	var property decimal = new Visual(position = self.positionDecimal())
-	var property unidad = new Visual(position = self.positionUnidad())
-
-	// El nombre que se usa para la imagen del indicador
-	method nombreImagenIndicador()
-
-	/* Asignar las imágenes para un número de dos cifras */
-/*	method definirImagenesContador(unNumero) {
-		const numeroUnidad = unNumero % 10
-		const numeroDecena = (unNumero * 0.1).truncate(0)
-			// Asigno la imagen para decimal
-		self.decimal().image(self.imagenDeValor(numeroDecena))
-			// Asigno la imagen para decimal
-		self.unidad().image(self.imagenDeValor(numeroUnidad))
-	}
-
-	method imagenDeValor(unValor) {
-		return "imgs/" + self.nombreImagenIndicador() + " (" + unValor.toString() + ").png"
-	}
-
-	// La posición del decimal
-	method positionDecimal()
-
-	// La posición de la unidad
-	method positionUnidad()
-
-	// iniciar graficos de numero y titulo
-	method iniciarGrafico(valorInicial, partTituloDecimal, partTituloUnidad) {
-		// Definir las imagenes para decimal y unidad
-		self.definirImagenesContador(valorInicial)
-			// agregar visual unidad y decimal
-		game.addVisual(self.decimal())
-		game.addVisual(self.unidad())
-			// agregar visual de titulo (la posición es la misma que la de los números)
-		game.addVisual(new Visual(position = self.positionDecimal(), image = partTituloDecimal))
-		game.addVisual(new Visual(position = self.positionUnidad(), image = partTituloUnidad))
-	}
-
-	// Actualiza las imágenes según un nuevo valor
-	method actualizarDato(nuevoValor) {
-		self.definirImagenesContador(nuevoValor)
-	}
-
+class Millar {
+    var property position = game.at(27, 15) // Posición 3
+    var property image = ""
 }
-//tambien robado pero otra forma de agregarlo
-object reloj {
-	
-	var tiempo = 0
-	
-	method text() = tiempo.toString()
-	method position() = game.at(1, game.height()-1)
-	
-	method pasarTiempo() {
-		tiempo = tiempo +1
-	}
-	method iniciar(){
-		tiempo = 0
-		game.onTick(100,"tiempo",{self.pasarTiempo()})
-	}
-	method detener(){
-		game.removeTickEvent("tiempo")
-	}
-}*/
+
+class Centena {
+    var property position = game.at(27, 15) // Posición 2
+    var property image = ""
+}
+
+class Decimal { 
+    var property position = game.at(27, 15) // Posición 1
+    var property image = ""
+}
+
+class Unidad {
+    var property position = game.at(27, 15) // Posición 0
+    var property image = ""
+}
+
+
+
+object puntaje {
+    
+    // El puntaje se guarda como un número
+    var property valorActual = 0
+
+    // lo que van a  mostrar las imágenes
+    var property millar = new Millar()
+    var property centena = new Centena()
+    var property decimal = new Decimal()
+    var property unidad = new Unidad()
+
+    
+    // Este método lee la variable 'valorActual' y actualiza las 4 IMÁGENES.
+    method actualizarImagenes() {
+        
+        // Limita el puntaje entre 0 y 9999
+        valorActual = self.valorActual().max(0).min(9999)
+
+        // Descompone el número en dígitos (ej:123) -- "/" te da las veces que un número entra en otro y el "%" te da el resto
+        const val_unidad  = self.valorActual() % 10
+        const val_decena  = (self.valorActual() / 10).truncate(0) % 10
+        const val_centena = (self.valorActual() / 100).truncate(0) % 10
+        const val_mil     = (self.valorActual() / 1000).truncate(0) % 10
+
+        // Asigna las IMÁGENES 
+        self.unidad().image(self.imagenDeValor(0, val_unidad)) 
+		self.decimal().image(self.imagenDeValor(1, val_decena)) 
+		self.centena().image(self.imagenDeValor(2, val_centena)) 
+		self.millar().image(self.imagenDeValor(3, val_mil))
+    }
+
+    // Método auxiliar para construir el nombre de la IMAGEN
+    method imagenDeValor(posicion, valor) {
+        return "posicion" + posicion.toString() + "_num" + valor.toString() + ".png"
+    }
+
+    // metodo para llamar desde el archivo niveles(.configurate)
+
+    method iniciarBarraDePuntos(unValor) {
+        valorActual= unValor
+        self.actualizarImagenes() // Pone las imágenes iniciales
+
+        game.addVisual(self.millar())
+        game.addVisual(self.centena())
+        game.addVisual(self.decimal())
+        game.addVisual(self.unidad())
+    }
+    
+    // Suma o resta puntos y actualiza las imágenes
+    method sumarPuntos(cantidad) {
+        valorActual = valorActual + cantidad
+        self.actualizarImagenes()
+    }
+
+ 
+    // metodo de puntajes segun lo que pase en el juego
+    method puntosPocion() {
+        // Suma 100 puntos
+        self.sumarPuntos(100)
+    }
+
+    method puntosNpc() {
+        // Suma 200 puntos
+        self.sumarPuntos(200)
+    }
+
+    method puntosTrampa() {
+        // Resta 100 puntos
+        self.sumarPuntos(-100)
+    }
+
+    method puntosCazador() {
+        // Resta 300 puntos
+        self.sumarPuntos(-300)
+    }
+}

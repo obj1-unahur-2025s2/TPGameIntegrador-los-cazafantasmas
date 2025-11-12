@@ -1,6 +1,9 @@
+import puntaje.*
 import controles.*
 import wollok.game.*
 import fantasma.*
+import niveles.*
+
 
 //los cazafantasmas que van a ser enemigos
 class Cazafantasma {
@@ -32,14 +35,15 @@ class Cazafantasma {
 	
 	method atrapar(jugador) {
 		jugador.recibirDaño()
-		jugador.modificarPuntos(self.puntaje())
+		puntaje.puntosCazador()
 	}
 	
-	method puntaje() = -300
+	
 
     method acercarseA(jugador) {
         // Inicia el ciclo de persecución automático (ejecutando la lógica cada 500ms).
         game.onTick(600, "cazador", { self.intentarMoverseHacia(jugador) })
+        
     }
 
     method intentarMoverseHacia(jugador) {

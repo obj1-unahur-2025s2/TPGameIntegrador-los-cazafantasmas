@@ -1,13 +1,16 @@
+import nivel2.*
+import nivel1.*
 //npc podrian llegar a tener un leve movimiento y asustarse
 import wollok.game.*
 import controles.*
 import fantasma.*
+import puntaje.*
 
 class Persona {
   var position = game.at(10, 10)
   var image = ""
   var imageMuerto=""
-   
+  var property asustado = false
   method esInteractivo() = true//el jugador puede interactuar (osea pueden colisionar)
   //movimiento de los npc
   method moverseAleatorio() {
@@ -40,18 +43,19 @@ class Persona {
   method asustarse(jugador) {
     const sonido = game.sound("sonidoAsustar.wav")
     sonido.play()
+    if(!asustado){
+      puntaje.puntosNpc()
+      asustado = true
+    }
     self.image(imageMuerto)
-      //crear una imagen que represente cuanod un npc en general esta asustado
-    jugador.modificarPuntos(self.puntaje())
-    game.schedule(1000, {   
+    game.schedule(800, {   
       game.removeVisual(self)
     })
+    
   }
- method accionarObjeto(objeto){
-
-  }
-  method puntaje() = 200
+  method accionarObjeto(objeto){}
   
+
   method image() = image
   
   method image(nueva) {
@@ -68,5 +72,5 @@ class Persona {
     position = nueva
   }
   method recibirDaño(){}
-  method modificarPuntos(num){}
+  
 }

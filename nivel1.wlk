@@ -13,14 +13,14 @@ object nivel1 inherits Nivel {
   const enemigos = [new Cazafantasma ()]
   const pociones = [new Pocion(), new Pocion(), new Pocion()]
   const trampas = [new Trampa(), new Trampa()]
-  const personas = [new Persona(), new Persona(),new Persona(),new Persona()]
+  const property personas = [new Persona(), new Persona(),new Persona(),new Persona()]
 
   override method configurate() {
 		super()
 		
 		self.ponerElementos(1, enemigos)
-		self.ponerElementos(2, pociones)
-		self.ponerElementos(2, trampas)
+		self.ponerElementos(3, pociones)
+		self.ponerElementos(1, trampas)
 		self.ponerElementos(1, personas)
 		grimly.resetPosition()
 		game.addVisual(grimly)

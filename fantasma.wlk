@@ -3,35 +3,31 @@ import wollok.game.*
 import items.*
 import cazafantasmas.*
 import personas.*
+import niveles.*
+import nivel1.*
+import nivel2.*
 
 object grimly {
   var image = "FantasmaNormal.png"
   var position = game.at(14,0)
-  var puntaje = 0
-  var vida = 3
-  
+
   method resetPosition() {
     position = game.at(14,0)
   }
   
-  method vida() = vida
-  
-  method noTieneMasVidas() = vida == 0
-  
   method recibirDaño() {
-    vida = (vida - 1).max(0)
     self.image("fantasmaDaño.png")
     game.schedule(500, { self.image("FantasmaNormal.png")})
+    if(not vida.tieneVidas()){
+       gameOver.perder()
+    }
     self.resetPosition()
+    vida.perderVida()
+
   }
   
   method recuperarVida() {
-    vida = (vida + 1).min(3)
-  }
-  
-  method modificarPuntos(num) {
-    puntaje = (puntaje + num).max(0)
-    //puntaje.actualizarVisual(puntaje) esto es para que se vea en la pantalla el puntaje
+    vida.conseguirVida()
   }
 
  method asustar(aqui) {
@@ -40,23 +36,14 @@ object grimly {
     if(aqui.size() > 1){
       aqui.first().asustarse(self)
     }
+    
   }
 
 
   method accionarObjeto(objeto){
     objeto.actuar(self)
   }
-  method asustarse(cosa){
-    
-  }
-  
-  method morir() {
-    //que pasa cuando el fantasma muere
-    image = ""
-    const sonido = game.sound("sonidoMuerte.wav")
-    sonido.play()
-    //game.schedule(2000, { => gameOver.perder()}) configurarlo en nivel
-  }
+  method asustarse(cosa){}
   
   method image() = image
   
@@ -69,4 +56,49 @@ object grimly {
   method position(nueva) {
     position = nueva
   }
+}
+
+object vida {
+    
+    var property vidasActuales = 3
+
+    // Lista de Corazones Visuales
+    const corazones = [
+        new VisualCorazon(position = game.at(18, 15), image = "corazon_3.png"),
+        new VisualCorazon(position = game.at(18, 15), image = "corazon_2.png"),
+        new VisualCorazon(position = game.at(18, 15), image = "corazon_1.png")
+    ]
+
+    // --- INICIAR ---
+    method iniciarBarraDeVida() {
+        vidasActuales = 3
+        
+        // Recorremos la lista y agregamos todos los corazones
+        corazones.forEach({ corazon => game.addVisual(corazon) })
+    }
+
+    // --- PERDER VIDA ---
+    method perderVida() {
+        if (vidasActuales > 0) {
+            
+			// saca el corazón correspondiente, haciendo uso de la lista (posicion 0,1,2)
+            const corazonASacar = corazones.get(vidasActuales - 1)
+            game.removeVisual(corazonASacar)
+            
+            vidasActuales -= 1
+        }
+    }
+    
+    // --- RECUPERAR VIDA  ---
+    method conseguirVida() {
+        if (vidasActuales < 3) {
+            vidasActuales += 1
+            
+			// agrega el corazón correspondiente, haciendo uso de la lista (posicion 0,1,2)
+            const corazonAPoner = corazones.get(vidasActuales - 1)
+            game.addVisual(corazonAPoner)
+        }
+    }
+
+    method tieneVidas() = vidasActuales > 1
 }

@@ -10,10 +10,10 @@ import items.*
 import controles.*
 
 object nivel2 inherits Nivel {
-   const enemigos = [new Cazafantasma(), new Cazafantasma()]
+  const enemigos = [new Cazafantasma(), new Cazafantasma()]
   const pociones = [new Pocion(), new Pocion(), new Pocion()]
   const trampas = [new Trampa(), new Trampa()]
-  const personas = [new Persona(), new Persona(), new Persona(), new Persona()]
+  const property personas = [new Persona(), new Persona(), new Persona(), new Persona()]
 
   override method configurate() {
 		super()

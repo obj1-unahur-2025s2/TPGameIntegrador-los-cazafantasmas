@@ -1,13 +1,11 @@
 
 import wollok.game.*
 import fantasma.*
-
+import puntaje.*
 //items que puede usar el jugador
 class Item {
   var position = game.at(0, 0)
   var image = ""
-  
-  method puntaje()
   
   method esInteractivo() = true
   //el jugador puede interactuar (osea pueden colisionar)
@@ -29,22 +27,20 @@ class Item {
   }
   method recibirDaño(){
   }
-  method modificarPuntos(num){
-  }
   method actuar(jugador)
   
   method instanciar(posicion, cantidad)
 }
 
 class Pocion inherits Item {
-  override method puntaje() = 150
+
   
   override method actuar(jugador) {
     const sonido = game.sound("sonidoPocion.wav")
     if(game.hasVisual(self)){
-    jugador.recuperarVida() 
     sonido.play()
-    jugador.modificarPuntos(self.puntaje())
+    puntaje.puntosPocion()
+    jugador.recuperarVida() 
     game.removeVisual(self)}
   }
   
@@ -58,14 +54,14 @@ class Pocion inherits Item {
 }
 
 class Trampa inherits Item {
-  override method puntaje() = -100
   
   override method actuar(jugador) {
     const sonido = game.sound("sonidoTrampa.wav")
     if(game.hasVisual(self)){
-    jugador.modificarPuntos(self.puntaje())
     sonido.play()
+    puntaje.puntosTrampa()
     jugador.resetPosition()
+    jugador.recibirDaño() 
     game.removeVisual(self)}
   }
   

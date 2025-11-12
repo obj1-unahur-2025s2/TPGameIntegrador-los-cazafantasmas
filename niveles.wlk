@@ -32,10 +32,11 @@ class Nivel {
   method configurate() {
 	musica.pararMusicaInicio()
 	musica.empezarMusicaJuego()
-	
-
 	controles.configurarTeclas()
-	casa.crearCasa()
+	const fondoCasa = new Fondo(image="piso.png",position = game.at(0, 0))
+	game.addVisual(fondoCasa)
+	vida.iniciarBarraDeVida()
+	puntaje.iniciarBarraDePuntos(0)
 	// El sonido para que esté accesible desde todos los niveles
 	/*keyboard.plusKey().onPressDo({ musicaDeFondo.volume(1)})
 	keyboard.m().onPressDo({musicaDeFondo.volume(0)})
@@ -44,40 +45,9 @@ class Nivel {
 	keyboard.r().onPressDo({ musicaDeFondo.resume()})
 	keyboard.s().onPressDo({ musicaDeFondo.stop()})*/
 	}
-
-	method ganar() {
-		// sonido al ganar el juego
-		game.sound("audio/ganarNivel3.mp3").play()
-	     
-		game.clear()
-		game.addVisual(pantallaVic.victoria())
-			// después de un ratito ...
-		game.schedule(4000, { // Volver al inicio 
-		pantallaInicio.configurate()})
-
-		// si todos NO están visibles y grimly está vivo entonces ganar, si no perder(o porque grimly se murió o porque hay personas vivas).
-	}
-
-	
 }
 
-object pantallaVic{
-	var num=1
-	method victoria(){
-		
-		game.onTick(200, "victoria", {
-			if(num>1){
-				num=1
-				return new Fondo(image="victoria_1.jpg")
-			}
-			else{
-				num=2
-				return new Fondo(image="victoria_2.jpg")
-			}
-		})
-		
-	}
-}
+
 object elegirPosicion {
 
   method posicionAleatoria(){//deberia elegir una posicion aleatoria para ponerlo y que no queden uno sobre otro 
@@ -97,25 +67,74 @@ object elegirPosicion {
 	}
 }
 
-/*object gameOver {
-	method position() = game.center()
-	method image() = "gameover.png"
-	method perder() {
-		// game.clear() limpia visuals, teclado, colisiones y acciones
-		game.clear()
-			// después puedo volver a agregar el fondo, y algún visual para que no quede tan pelado
-		game.addVisual(new Fondo(image = "imgs/fondo Completo.png"))
-			// después de un ratito ...
-		game.schedule(1000, { game.clear()
-				// cambio de fondo
-			game.addVisual(new Fondo(image = "imgs/perdimos.png"))
-				// después de un ratito ...
-			game.schedule(4000, { // reinicia el juego
-			pantallaInicio.configurate()})
-		})
-	}
+object gameOver {
+    
+    method perder() {
+        //Limpiamos todo el juego actual
+        game.clear()
+
+        // primera imagen que se muestra en pantalla
+        const fondoVisual = new Fondo(image = "derrota_1.jpg") 
+        game.addVisual(fondoVisual)
+
+        // Variable contador para saber que numero de imagen toca
+        var numeroImagen = 1 
+
+        game.onTick(1000, "animacionDerrota", { 
+            
+            numeroImagen += 1 
+            
+            if (numeroImagen > 2) { 
+                numeroImagen = 1 
+            }
+
+            // Cambiamos la imagen del visual
+            fondoVisual.image("derrota_" + numeroImagen.toString() + ".jpg")
+        })
+
+        // --- Finaliza a los 14seg y vuelve al inicio
+        game.schedule(14000, { 
+
+            game.removeTickEvent("animacionDerrota")
+            pantallaInicio.configurate()
+        })
+    }
 }
-*/
+
+object gameWin {
+    
+    method ganar() {
+        //Limpiamos todo el juego actual
+        game.clear()
+
+        // primera imagen que se muestra en pantalla
+        const fondoVisual = new Fondo(image = "victoria_1.jpg") 
+        game.addVisual(fondoVisual)
+
+        // Variable contador para saber que numero de imagen toca
+        var numeroImagen = 1 
+
+        game.onTick(1000, "animacionVictoria", { 
+            
+            numeroImagen += 1 
+            
+            if (numeroImagen > 2) { 
+                numeroImagen = 1 
+            }
+
+            // Cambiamos la imagen del visual
+            fondoVisual.image("victoria_" + numeroImagen.toString() + ".jpg")
+        })
+
+        // --- Finaliza a los 14seg y vuelve al inicio
+        game.schedule(14000, { 
+
+            game.removeTickEvent("animacionVictoria")
+            pantallaInicio.configurate()
+        })
+    }
+}
+
 class Fondo {
 
 	const property position = game.at(0, 0)
@@ -127,39 +146,16 @@ class Fondo {
     method recibirDaño(){}
     method accionarObjeto(objeto){}
     method atrapar(){}
-    method modificarPuntos(num){}
+    
 }
 
-/*
+class VisualCorazon {
+    var property position
+    var property image 
+}
 
-
-
-// configura los niveles de forma general
-class Nivel {
-
-	// Elementos del nivel	
-	var property elementosEnNivel = [] // Lista de elementos recolectables interactivos, excepto enemigos
-	var property enemigosEnTablero = [] // Lista de enemigos interactivos
-	// Abstractos
-
-	method personaje()
-
-	method faltanRequisitos()
-
-	method imagenIntermedia()
-
-	method siguienteNivel()
-
-	// Indica si hay elementos interactivo en la posición
-	method hayElementoEn(posicion) = elementosEnNivel.any({ e => e.position() == posicion and e.esInteractivo() })
-
-	/* Metodos que tambien interactuan con los movimientos del personaje */
 
 /*
-
-
-
-
 	method terminar() {
 		// sonido al ganar el juego
 		game.sound("audio/ganarNivel3.mp3").play()

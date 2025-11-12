@@ -53,8 +53,8 @@ class Direccion {
 		game.at(0, 2),
 		game.at(0, 6),
 		game.at(0, 7),
-		game.at(8, 13),
-		game.at(9, 13),
+		game.at(8, 14),
+		game.at(9, 14),
 		game.at(15, 18),
 		game.at(15, 19),
 		game.at(15, 20),
@@ -166,7 +166,20 @@ class Direccion {
 		game.at(29, 6),
 		game.at(29, 7),
 		game.at(29, 8),
-		game.at(29, 9)
+		game.at(29, 9),
+		game.at(29, 14),
+		game.at(28, 14),
+		game.at(27, 14),
+		game.at(26, 14),
+		game.at(25, 14),
+		game.at(24, 14),
+		game.at(23, 14),
+		game.at(22, 14),
+		game.at(21, 14),
+		game.at(20, 14),
+		game.at(19, 14),
+		game.at(18, 14)
+		
 		
 
 	]
