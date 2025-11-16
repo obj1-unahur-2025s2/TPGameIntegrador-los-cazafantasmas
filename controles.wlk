@@ -1,12 +1,12 @@
 import pantallaInicio.*
-//controles generales de todo el juego
 import wollok.game.*
 import fantasma.*
 import personas.*
 import niveles.*
 import nivel1.*
 import nivel2.*
-///robado para poder armar el movimiento
+
+//controles generales de todo el juego
 object controles {
 	method configurarTeclas() {
 		keyboard.w().onPressDo(
@@ -22,23 +22,18 @@ object controles {
 			{ grimly.position(derecha.moverseAProximaPosicion(grimly.position())) }
 		)
 		keyboard.e().onPressDo({ grimly.asustar(game.getObjectsIn(grimly.position())) })
-		keyboard.num1().onPressDo({  musica.pararMusicaInicio()
-     								 game.clear()
-     								 musica.configurar()
-      								 musica.empezarMusicaJuego()
-      								 nivel1.configurate() })
+		
+		keyboard.num1().onPressDo({ nivel1.configurate() })
 
-		keyboard.num2().onPressDo({ musica.pararMusicaInicio()
- 									 game.clear()
-									 musica.configurar()
- 									 musica.empezarMusicaJuego()
- 									 nivel2.configurate()})
+		keyboard.num2().onPressDo({ nivel2.configurate()})
+
+		keyboard.space().onPressDo({ pantallaInicio.configurate() })
 	}
 
 }
 
 class Direccion {
-	//lista que deberia cargarse con las posiciones de los muebles y paredes
+	//lista que deberia cargarse con las posiciones de las posiciones que el fantasma no puede pasar
 	const property posicionesInvalidas = [
 		game.at(0, 0),
 		game.at(1, 0),

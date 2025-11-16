@@ -6,6 +6,8 @@ import personas.*
 import niveles.*
 import nivel1.*
 import nivel2.*
+import pantallaInicio.*
+
 
 object grimly {
   var image = "FantasmaNormal.png"
@@ -16,10 +18,13 @@ object grimly {
   }
   
   method recibirDaño() {
+    const sonidoDaño = game.sound("sonidoTrampa.wav")
+    sonidoDaño.volume(0.15)
+    sonidoDaño.play()
     self.image("fantasmaDaño.png")
-    game.schedule(500, { self.image("FantasmaNormal.png")})
+    game.schedule(200, { self.image("FantasmaNormal.png")})
     if(not vida.tieneVidas()){
-       gameOver.perder()
+      gameOver.perder()
     }
     self.resetPosition()
     vida.perderVida()
@@ -27,6 +32,9 @@ object grimly {
   }
   
   method recuperarVida() {
+    const sonidoVida = game.sound("sonidoPocion.wav")
+     sonidoVida.volume(0.15)
+     sonidoVida.play()
     vida.conseguirVida()
   }
 

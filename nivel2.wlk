@@ -5,23 +5,27 @@ import fantasma.*
 import personas.*
 import cazafantasmas.*
 import puntaje.*
-import cosas.*
 import items.*
 import controles.*
+import pantallaInicio.*
 
 object nivel2 inherits Nivel {
-  const enemigos = [new Cazafantasma(), new Cazafantasma()]
-  const pociones = [new Pocion(), new Pocion(), new Pocion()]
+  const enemigos = [new Cazafantasma(),new Cazafantasma()]
+  const pociones = [new Pocion()]
   const trampas = [new Trampa(), new Trampa()]
-  const property personas = [new Persona(), new Persona(), new Persona(), new Persona()]
+  const property personas = [new Persona(),new Persona(),new Persona()]
 
   override method configurate() {
 		super()
-		
+		const fondoCasa_level2 = new Fondo(image="fondoCasa_level2.png",position = game.at(0, 0))
+		game.addVisual(fondoCasa_level2)
+		vida.iniciarBarraDeVida()
+		puntaje.iniciarBarraDePuntos(0)
 		self.ponerElementos(2, enemigos)
-		self.ponerElementos(3, pociones)
+		self.ponerElementos(1, pociones)
 		self.ponerElementos(2, trampas)
-		self.ponerElementos(4, personas)
+		self.ponerElementos(3, personas)
+		personas.forEach({p=>p.dejarEstarAsustado()})
 		grimly.resetPosition()
 		game.addVisual(grimly)
 		enemigos.forEach({e => e.acercarseA(grimly)
@@ -33,10 +37,16 @@ object nivel2 inherits Nivel {
 		pociones.forEach({po => game.whenCollideDo(po, {grimly => grimly.accionarObjeto(po)})})
 	}
 
-	/*
-		// Se agregan las visuales de estado de Cantidad de Oro, Vida, Llaves, Energía
-		vidaVisual.iniciarGrafico(personaje.vida(), "imgs/vi.png", "imgs/da.png")
-		puntajeVisual.iniciarGrafico(personaje.puntaje(), "imgs/ene.png", "imgs/rgia.png")
-	*/
+	
+	method chequearCondicionVictoria() {    
+			// .all() revisa si TODOS en la lista cumplen la condición
+			const todasAsustadas = self.personas().all({ p => p.estaAsustado() })
+		
+			if (todasAsustadas) {
+      			gameWin.ganar()
+
+			 } 
+
+	}
 }
 

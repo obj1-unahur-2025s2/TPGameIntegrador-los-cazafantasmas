@@ -36,9 +36,6 @@ object puntaje {
     
     // Este método lee la variable 'valorActual' y actualiza las 4 IMÁGENES.
     method actualizarImagenes() {
-        
-        // Limita el puntaje entre 0 y 9999
-        valorActual = self.valorActual().max(0).min(9999)
 
         // Descompone el número en dígitos (ej:123) -- "/" te da las veces que un número entra en otro y el "%" te da el resto
         const val_unidad  = self.valorActual() % 10
@@ -73,6 +70,7 @@ object puntaje {
     // Suma o resta puntos y actualiza las imágenes
     method sumarPuntos(cantidad) {
         valorActual = valorActual + cantidad
+        valorActual = valorActual.max(0).min(9999)  // Limita el puntaje entre 0 y 9999
         self.actualizarImagenes()
     }
 
@@ -95,6 +93,6 @@ object puntaje {
 
     method puntosCazador() {
         // Resta 300 puntos
-        self.sumarPuntos(-300)
+        self.sumarPuntos(-150)
     }
 }

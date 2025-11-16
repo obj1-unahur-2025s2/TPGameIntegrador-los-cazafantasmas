@@ -36,9 +36,7 @@ class Pocion inherits Item {
 
   
   override method actuar(jugador) {
-    const sonido = game.sound("sonidoPocion.wav")
     if(game.hasVisual(self)){
-    sonido.play()
     puntaje.puntosPocion()
     jugador.recuperarVida() 
     game.removeVisual(self)}
@@ -56,9 +54,7 @@ class Pocion inherits Item {
 class Trampa inherits Item {
   
   override method actuar(jugador) {
-    const sonido = game.sound("sonidoTrampa.wav")
     if(game.hasVisual(self)){
-    sonido.play()
     puntaje.puntosTrampa()
     jugador.resetPosition()
     jugador.recibirDaño() 

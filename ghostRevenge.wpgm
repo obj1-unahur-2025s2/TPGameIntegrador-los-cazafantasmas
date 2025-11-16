@@ -4,7 +4,7 @@ import cazafantasmas.*
 import items.*
 import personas.*
 import controles.*
-import cosas.*
+
 import niveles.*
 import nivel1.*
 import nivel2.*
@@ -15,7 +15,6 @@ program GhostRevenge {
 	game.width(30)
 	game.height(16)
     game.cellSize(64)
-
 
     pantallaInicio.configurate()
 	game.start()

@@ -7,7 +7,7 @@ import niveles.*
 
 //los cazafantasmas que van a ser enemigos
 class Cazafantasma {
-	var property position = game.at(0, 0)
+	var position = game.at(0, 0)
 	var image = "cazafantasmas.png"
 	
 	method esInteractivo() = true//el jugador puede interactuar (osea pueden colisionar)
@@ -36,10 +36,13 @@ class Cazafantasma {
 	method atrapar(jugador) {
 		jugador.recibirDaño()
 		puntaje.puntosCazador()
+        if(self.position()== game.at(14, 0) ){   //si el cazador esta en la posicion inicial del fantasma, retrocede 3 celdas
+            self.position(game.at(14, 3))
+        }
 	}
 	
-	
-
+	method accionarObjeto(objeto) {}
+    method recibirDaño() {}
     method acercarseA(jugador) {
         // Inicia el ciclo de persecución automático (ejecutando la lógica cada 500ms).
         game.onTick(600, "cazador", { self.intentarMoverseHacia(jugador) })

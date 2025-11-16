@@ -4,15 +4,17 @@ import fantasma.*
 import personas.*
 import cazafantasmas.*
 import puntaje.*
-import cosas.*
+
 import items.*
 import controles.*
 import pantallaInicio.*
 class Nivel {
   var property elementosEnNivel = [] // Lista de elementos recolectables interactivos, excepto enemigos
+ 
+
   method hayElementoEn(posicion) = elementosEnNivel.any({ e => e.position() == posicion && e.esInteractivo() })
 									
-
+     
   method ponerElementos(cantidad, elemento) { // debe recibir cantidad y EL NOMBRE DE UN ELEMENTO
 	if (cantidad > 0) {
 		const unaPosicion = elegirPosicion.posicionAleatoria()
@@ -26,17 +28,20 @@ class Nivel {
 					self.ponerElementos(cantidad, elemento)
 			}
 		}
-  }
+    }
+
+  
 
 
   method configurate() {
-	musica.pararMusicaInicio()
-	musica.empezarMusicaJuego()
-	controles.configurarTeclas()
-	const fondoCasa = new Fondo(image="piso.png",position = game.at(0, 0))
-	game.addVisual(fondoCasa)
-	vida.iniciarBarraDeVida()
-	puntaje.iniciarBarraDePuntos(0)
+    
+    game.clear()
+    game.removeTickEvent("cazador")
+	  musica.pararMusicaInicio()
+	  musica.empezarMusicaJuego()
+	  controles.configurarTeclas()
+    
+	
 	// El sonido para que esté accesible desde todos los niveles
 	/*keyboard.plusKey().onPressDo({ musicaDeFondo.volume(1)})
 	keyboard.m().onPressDo({musicaDeFondo.volume(0)})
@@ -46,6 +51,8 @@ class Nivel {
 	keyboard.s().onPressDo({ musicaDeFondo.stop()})*/
 	}
 }
+
+
 
 
 object elegirPosicion {
@@ -72,7 +79,10 @@ object gameOver {
     method perder() {
         //Limpiamos todo el juego actual
         game.clear()
-
+        const musicaDerrota=game.sound("musicaDerrota.mp3")
+        musica.pararMusicaJuego()
+        musicaDerrota.volume(0.20)
+        musicaDerrota.play()
         // primera imagen que se muestra en pantalla
         const fondoVisual = new Fondo(image = "derrota_1.jpg") 
         game.addVisual(fondoVisual)
@@ -80,7 +90,7 @@ object gameOver {
         // Variable contador para saber que numero de imagen toca
         var numeroImagen = 1 
 
-        game.onTick(1000, "animacionDerrota", { 
+        game.onTick(800, "animacionDerrota", { 
             
             numeroImagen += 1 
             
@@ -91,13 +101,14 @@ object gameOver {
             // Cambiamos la imagen del visual
             fondoVisual.image("derrota_" + numeroImagen.toString() + ".jpg")
         })
-
-        // --- Finaliza a los 14seg y vuelve al inicio
+      
+        // --- Finaliza a los seg y vuelve al inicio
         game.schedule(14000, { 
-
+            
             game.removeTickEvent("animacionDerrota")
             pantallaInicio.configurate()
         })
+        
     }
 }
 
@@ -106,7 +117,10 @@ object gameWin {
     method ganar() {
         //Limpiamos todo el juego actual
         game.clear()
-
+        const musicaVictoria=game.sound("musicaVictoria.mp3")
+		musica.pararMusicaJuego()
+      	musicaVictoria.volume(0.20)
+      	musicaVictoria.play()
         // primera imagen que se muestra en pantalla
         const fondoVisual = new Fondo(image = "victoria_1.jpg") 
         game.addVisual(fondoVisual)
@@ -114,7 +128,7 @@ object gameWin {
         // Variable contador para saber que numero de imagen toca
         var numeroImagen = 1 
 
-        game.onTick(1000, "animacionVictoria", { 
+        game.onTick(600, "animacionVictoria", { 
             
             numeroImagen += 1 
             
@@ -125,8 +139,9 @@ object gameWin {
             // Cambiamos la imagen del visual
             fondoVisual.image("victoria_" + numeroImagen.toString() + ".jpg")
         })
+       
 
-        // --- Finaliza a los 14seg y vuelve al inicio
+        // --- Finaliza a los seg y vuelve al inicio
         game.schedule(14000, { 
 
             game.removeTickEvent("animacionVictoria")
@@ -154,17 +169,3 @@ class VisualCorazon {
     var property image 
 }
 
-
-/*
-	method terminar() {
-		// sonido al ganar el juego
-		game.sound("audio/ganarNivel3.mp3").play()
-			// game.clear() limpia visuals, teclado, colisiones y acciones
-		game.clear()
-			// Fondo final
-		game.addVisual(new Fondo(image = "imgs/fondo ganaste.png"))
-			// después de un ratito ...
-		game.schedule(4000, { // Volver al inicio 
-		pantallaInicio.configurate()})
-	}
-*/

@@ -4,7 +4,6 @@ import fantasma.*
 import personas.*
 import cazafantasmas.*
 import puntaje.*
-import cosas.*
 import items.*
 import controles.*
 import nivel1.*
@@ -13,20 +12,20 @@ import nivel2.*
 //configuracion de la pantalla de inicio antes de elegir el nivel
 object pantallaInicio {
 
-// La pantalla de configuración inicial
+  // La pantalla de configuración inicial
   const fondoEmpezar = new Fondo(image = "fondoInicio.jpg") 
-	
   method configurate() {
-  game.clear()
-	game.addVisual(fondoEmpezar)
-	game.addVisual(grimly)
-	controles.configurarTeclas()
-	musica.configurar()
-	musica.empezarMusicaInicio()
-	keyboard.space().onPressDo({ game.addVisual(fondoEmpezar)
-		game.schedule(2000, { game.stop()})
-	  })
-	}
+
+    game.clear()
+    grimly.resetPosition()
+    game.removeTickEvent("cazador")
+    game.addVisual(fondoEmpezar)
+    game.addVisual(grimly)
+    controles.configurarTeclas()
+    musica.configurar()
+    musica.empezarMusicaInicio()
+  }
+  
 }
 
 object musica {
@@ -40,9 +39,9 @@ object musica {
   method configurar() {
     if (not configurada) {
       musicaInicio.shouldLoop(true)
-      musicaInicio.volume(0.5)
+      musicaInicio.volume(0.20)
       musicaJuego.shouldLoop(true)
-      musicaJuego.volume(0.5)
+      musicaJuego.volume(0.10)
       configurada = true
     }
   }
