@@ -23,18 +23,17 @@ object controles {
 		)
 		keyboard.e().onPressDo({ grimly.asustar(game.getObjectsIn(grimly.position())) })
 		
-		keyboard.num1().onPressDo({ nivel1.configurate() })
+		keyboard.num1().onPressDo({ if (estadoJuego.nivelActual()!= "nivel1") {nivel1.configurate()}})
 
-		keyboard.num2().onPressDo({ nivel2.configurate()})
+		keyboard.num2().onPressDo({ if(estadoJuego.nivelActual()!="nivel2") {nivel2.configurate()} })
 
-		keyboard.space().onPressDo({ pantallaInicio.configurate() })
+		keyboard.m().onPressDo({ pantallaInicio.configurate() })
 	}
 
 }
 
-class Direccion {
-	//lista que deberia cargarse con las posiciones de las posiciones que el fantasma no puede pasar
-	const property posicionesInvalidas = [
+object posicionesInvalidas {
+	const property niveles = [
 		game.at(0, 0),
 		game.at(1, 0),
 		game.at(2, 0),
@@ -174,12 +173,75 @@ class Direccion {
 		game.at(20, 14),
 		game.at(19, 14),
 		game.at(18, 14)
-		
-		
-
 	]
 
+	const property inicio = [
+		 game.at(0, 10),
+		game.at(1, 10),
+		game.at(2, 10),
+		game.at(3, 10),
+		game.at(4, 10),
+		game.at(5, 10),
+		game.at(6, 10),
+		game.at(7, 10),
+		game.at(8, 10),
+		game.at(9, 10),
+		game.at(10, 10),
+		game.at(11, 10),
+		game.at(12, 10),
+		game.at(13, 10),
+		game.at(14, 10),
+		game.at(15, 10),
+		game.at(16, 10),
+		game.at(17, 10),
+		game.at(18, 10),
+		game.at(19, 10),
+		game.at(20, 10),
+		game.at(21, 10),
+		game.at(22, 10),	
+		game.at(23, 10),
+		game.at(24, 10),
+		game.at(25, 10),
+		game.at(26, 10),
+		game.at(27, 10),
+		game.at(28, 10),
+		game.at(29, 10),
 
+		game.at(9, 7),
+		game.at(10, 7),
+		game.at(11, 7),
+		game.at(12, 7),
+        game.at(13, 7),
+        game.at(14, 7),
+        game.at(15, 7),
+        game.at(16, 7),
+        game.at(17, 7),
+        game.at(18, 7),
+        game.at(19, 7),
+        game.at(20, 7),
+
+        game.at(20, 8),
+        game.at(20, 9),
+        game.at(20, 10),
+
+        game.at(9, 8),
+        game.at(9, 9),
+        game.at(9, 10)
+	]
+
+	var listaActual=inicio
+
+	method listaActual() = listaActual
+	method cargarInicio() {
+        listaActual = inicio
+    }
+	method cargarNiveles() {
+        listaActual = niveles
+    }
+}
+class Direccion {
+	//lista que deberia cargarse con las posiciones de las posiciones que el fantasma no puede pasar
+	
 	method siguiente(position)
 	
 	method esIgual(unaDireccion) = unaDireccion == self
@@ -187,14 +249,13 @@ class Direccion {
 	
 	method moverseAProximaPosicion(posicion) {
 		const siguientePosicion = self.siguiente(posicion)
-		if ((!posicionesInvalidas.contains(siguientePosicion)) && (!self.estaEnElBorde(siguientePosicion))) {
+		if ((!posicionesInvalidas.listaActual().contains(siguientePosicion)) && (!self.estaEnElBorde(siguientePosicion))) {
 			return siguientePosicion
 		} else {
 			return posicion
 		}
 	}
 	
-
 	method estaEnElBorde(posicion) {
 		const sonBordes = [
 			self.esBordeDerecho(posicion),
@@ -239,7 +300,7 @@ object invalida inherits Direccion {
 	override method siguiente(position) {
 	}
 	
-	method posicionInvalida() = posicionesInvalidas
+	method posicionInvalida() = posicionesInvalidas.listaActual()
 	
 	method noEsPosicionInvalida(posX, posY) = (!self.posicionInvalida().contains(game.at(posX, posY))) && (!self.estaEnElBorde(game.at(posX, posY)))
 }

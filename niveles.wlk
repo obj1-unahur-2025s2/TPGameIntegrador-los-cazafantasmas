@@ -1,44 +1,42 @@
-//niveles del juego
+import nivel1.*
 import wollok.game.*
 import fantasma.*
 import personas.*
 import cazafantasmas.*
 import puntaje.*
-
 import items.*
 import controles.*
 import pantallaInicio.*
 class Nivel {
   var property elementosEnNivel = [] // Lista de elementos recolectables interactivos, excepto enemigos
- 
-
+  var nivelActual= ""
+  method nivelActual()= nivelActual
+  method cambiarNivelActual(nuevoNivel){
+    nivelActual= nuevoNivel
+  }
   method hayElementoEn(posicion) = elementosEnNivel.any({ e => e.position() == posicion && e.esInteractivo() })
 									
-     
   method ponerElementos(cantidad, elemento) { // debe recibir cantidad y EL NOMBRE DE UN ELEMENTO
-	if (cantidad > 0) {
-		const unaPosicion = elegirPosicion.posicionAleatoria()
-			if (not self.hayElementoEn(unaPosicion)) { // si la posicion no está ocupada
-				const unaInstancia = elemento.get(cantidad-1) // instancia el elemento en una posicion
-					elementosEnNivel.add(unaInstancia) // Agrega el elemento a la lista
-					game.addVisual(unaInstancia) // Agrega el elemento al tablero
-					unaInstancia.instanciar(unaPosicion, cantidad)
-					self.ponerElementos(cantidad - 1, elemento) // llamada recursiva al proximo elemento a agregar
-			} else { // Si había elementos, hace llamada recursiva
-					self.ponerElementos(cantidad, elemento)
-			}
-		}
+    if (cantidad > 0) {
+      const unaPosicion = elegirPosicion.posicionAleatoria()
+        if (not self.hayElementoEn(unaPosicion)) { // si la posicion no está ocupada
+          const unaInstancia = elemento.get(cantidad-1) // instancia el elemento en una posicion
+            elementosEnNivel.add(unaInstancia) // Agrega el elemento a la lista
+            game.addVisual(unaInstancia) // Agrega el elemento al tablero
+            unaInstancia.instanciar(unaPosicion, cantidad)
+            self.ponerElementos(cantidad - 1, elemento) // llamada recursiva al proximo elemento a agregar
+        } else { // Si había elementos, hace llamada recursiva
+            self.ponerElementos(cantidad, elemento)
+        }
     }
-
-  
-
+  }
 
   method configurate() {
-    
     game.clear()
-    game.removeTickEvent("cazador")
 	  musica.pararMusicaInicio()
 	  musica.empezarMusicaJuego()
+    game.removeTickEvent("cazador")
+    posicionesInvalidas.cargarNiveles()
 	  controles.configurarTeclas()
     
 	
@@ -53,6 +51,15 @@ class Nivel {
 }
 
 
+object estadoJuego {
+    var nivelActual = "" // aca guardaremos el nivelActual
+
+    method nivelActual() = nivelActual
+    
+    method cambiarNivelActual(nuevoNivel) {
+        nivelActual = nuevoNivel
+    }
+}
 
 
 object elegirPosicion {

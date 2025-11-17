@@ -9,22 +9,25 @@ import items.*
 import controles.*
 import pantallaInicio.*
 
+
 object nivel2 inherits Nivel {
-  const enemigos = [new Cazafantasma(),new Cazafantasma()]
+  const enemigos = [new Cazafantasma()]
   const pociones = [new Pocion()]
-  const trampas = [new Trampa(), new Trampa()]
-  const property personas = [new Persona(),new Persona(),new Persona()]
+  const trampas = [new Trampa(), new Trampa(),new Trampa()]
+  const property personas = [new Persona(),new Persona(),new Persona(),new Persona(),new Persona()]
+  
 
   override method configurate() {
 		super()
+		estadoJuego.cambiarNivelActual("nivel2")
 		const fondoCasa_level2 = new Fondo(image="fondoCasa_level2.png",position = game.at(0, 0))
 		game.addVisual(fondoCasa_level2)
 		vida.iniciarBarraDeVida()
 		puntaje.iniciarBarraDePuntos(0)
-		self.ponerElementos(2, enemigos)
+		self.ponerElementos(1, enemigos)
 		self.ponerElementos(1, pociones)
-		self.ponerElementos(2, trampas)
-		self.ponerElementos(3, personas)
+		self.ponerElementos(3, trampas)
+		self.ponerElementos(5, personas)
 		personas.forEach({p=>p.dejarEstarAsustado()})
 		grimly.resetPosition()
 		game.addVisual(grimly)

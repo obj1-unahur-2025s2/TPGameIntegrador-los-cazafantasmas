@@ -15,9 +15,11 @@ object nivel1 inherits Nivel {
   	const pociones = [new Pocion(),new Pocion()]
   	const trampas = [new Trampa()]
   	const property personas = [new Persona(),new Persona(),new Persona()]
-	
+
 	override method configurate() {
+
 		super()
+		estadoJuego.cambiarNivelActual("nivel1")
 		const fondoCasa_level1 = new Fondo(image="fondoCasa_level1.png",position = game.at(0, 0))
 		game.addVisual(fondoCasa_level1)
 		vida.iniciarBarraDeVida()
