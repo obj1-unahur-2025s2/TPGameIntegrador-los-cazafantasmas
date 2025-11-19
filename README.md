@@ -45,7 +45,7 @@ El protagonista fantasmal.
 ### **<img width="24" height="24" alt="cazafantasmas" src="https://github.com/user-attachments/assets/d72f8d3e-ed71-4e1a-ab85-9731f84a6a07" /> Cazadores**
 Expertos contratados por los dueños.
 * **Comportamiento:** Te persiguen si te ven.
-* **Consecuencia:** Si te atrapan, perdés **1 vida** y **puntos**.
+* **Consecuencia:** Si te atrapan, perdés **1 corazón** y **puntos**.
 
 ### **<img width="24" height="24" alt="npc4" src="https://github.com/user-attachments/assets/237f9b32-6469-437b-85d1-9ce2c6787ea7" /> Personas (NPCs)**
 Los nuevos inquilinos molestos.
@@ -59,7 +59,7 @@ Los nuevos inquilinos molestos.
 | Objeto | Efecto |
 | :--- | :--- |
 | **<img width="24" height="24" alt="pocionVida" src="https://github.com/user-attachments/assets/c26c3479-1f78-4255-b8bb-3d61542b08fe"/>Poción** | Regenera **1 corazón** perdido y otorga puntos extra. |
-| **<img width="24" height="24" alt="trampa" src="https://github.com/user-attachments/assets/e6173ac0-c49c-4bd1-ba17-97b0622b590b"/>Trampa** | Te resta puntos y te devuelve a tu posición inicial. |
+| **<img width="24" height="24" alt="trampa" src="https://github.com/user-attachments/assets/e6173ac0-c49c-4bd1-ba17-97b0622b590b"/>Trampa** | Te resta **Puntos**, **1 corazón** y te devuelve a tu posición inicial. |
 
 ---
 
