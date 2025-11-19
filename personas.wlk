@@ -46,7 +46,9 @@ class Persona {
     self.position(posicion)
   }
 
-  
+    	method esCazador(){
+        return false
+    }
   //que hace cuando se asusta
   method asustarse(jugador) {
     if(! self.estaAsustado()){

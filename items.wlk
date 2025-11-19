@@ -30,6 +30,9 @@ class Item {
   method actuar(jugador)
   
   method instanciar(posicion, cantidad)
+  	method esCazador(){
+        return false
+    }
 }
 
 class Pocion inherits Item {
@@ -56,7 +59,6 @@ class Trampa inherits Item {
   override method actuar(jugador) {
     if(game.hasVisual(self)){
     puntaje.puntosTrampa()
-    jugador.resetPosition()
     jugador.recibirDaño() 
     game.removeVisual(self)}
   }

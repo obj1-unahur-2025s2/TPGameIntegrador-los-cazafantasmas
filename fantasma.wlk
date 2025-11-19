@@ -23,11 +23,14 @@ object grimly {
   
   method recibirDaño() {
     const sonidoDaño = game.sound("sonidoTrampa.wav")
+    const sonidoMuerte= game.sound("sonidoMuerte.wav")
     sonidoDaño.volume(0.15)
     sonidoDaño.play()
     self.image("fantasmaDaño.png")
     game.schedule(200, { self.image("FantasmaNormal.png")})
     if(not vidaGrimly.tieneVidas()){
+      sonidoMuerte.volume(0.05)
+      sonidoMuerte.play()
       gameOver.perder()
     }
     self.resetPosition()
@@ -44,6 +47,9 @@ object grimly {
 
  method asustar(aqui) {
     self.image("fantasma.png")
+    const sonidoAtaque= game.sound("sonidoAtaque.wav")
+    sonidoAtaque.volume(0.50)
+    sonidoAtaque.play()
     game.schedule(500, { self.image("FantasmaNormal.png")})
     if(aqui.size() > 1){
       aqui.first().asustarse(self)
@@ -51,7 +57,9 @@ object grimly {
     
   }
 
-
+  	method esCazador(){
+        return false
+    }
   method accionarObjeto(objeto){
     objeto.actuar(self)
   }

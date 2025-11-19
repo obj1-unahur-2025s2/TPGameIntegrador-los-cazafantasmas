@@ -1,3 +1,4 @@
+import puntaje.*
 import wollok.game.*
 import fantasma.*
 import cazafantasmas.*
@@ -9,38 +10,57 @@ import nivel1.*
 import nivel2.*
 import pantallaInicio.*
 
-
 describe "test game" {
-    const cazafantasma=new Cazafantasma()
-    const trampa= new Trampa()
-    const posion= new Pocion()
-  test "fantasma pierde 1 vida, porque el cazador lo atrapa" {
-        cazafantasma.atrapar(grimly)
-        assert.equals(2,grimly.vidasRestantes())
+  const cazafantasma = new Cazafantasma()
+  const trampa = new Trampa()
+  const posion = new Pocion()
+  const persona1 = new Persona()
+  
+  method initialize() {
+    game.addVisual(trampa)
+    game.addVisual(posion)
+    game.addVisual(persona1)
   }
-
-  test "fantasma pierde 1 vida, porque la trampa lo atrapa" {
-        game.addVisual(trampa)
-        trampa.actuar(grimly)
-        assert.equals(2,grimly.vidasRestantes())
+  
+  test "El fantasma pierde 1 vida, porque el cazador lo atrapa" {
+    cazafantasma.atrapar(grimly)
+    assert.equals(2, grimly.vidasRestantes())
   }
-
-  test "fantasma pierde una vida porque una trampa lo atrapa, pero recupera 1 vida, porque toma una posion" {
-        game.addVisual(trampa)
-        trampa.actuar(grimly)
-
-        game.addVisual(posion)
-        posion.actuar(grimly)
-        assert.equals(3,grimly.vidasRestantes())
-  }  
-
-//    test "fantasma gana 200 puntos al asustar a un npc" { 
-//   }
-
-
-
-
-
-
-
+  
+  test "El fantasma pierde 1 vida, porque la trampa lo atrapa" {
+    trampa.actuar(grimly)
+    assert.equals(2, grimly.vidasRestantes())
+  }
+  
+  test "El fantasma pierde una vida porque una trampa lo atrapa, pero recupera 1 vida, porque toma una posion" {
+    trampa.actuar(grimly)
+    posion.actuar(grimly)
+    assert.equals(3, grimly.vidasRestantes())
+  }
+  
+  test "El fantasma gana 200 puntos al asustar a un npc" {
+    persona1.asustarse(grimly)
+    assert.equals(200, puntaje.puntosActuales())
+  }
+  
+  test "El fantasma es atacado tres veces por el cazador y muere" {
+    cazafantasma.atrapar(grimly)
+    cazafantasma.atrapar(grimly)
+    cazafantasma.atrapar(grimly)
+    assert.notThat(vidaGrimly.tieneVidas())
+  }
+  
+  test "El fantasma gana 200 puntos al asustar a un npc pero pisa una trampa y pierde 100 puntos" {
+    persona1.asustarse(grimly)
+    trampa.actuar(grimly)
+    assert.equals(100, puntaje.puntosActuales())
+  }
+  
+  test "El fantasma gana 200 puntos al asustar a un npc pero pisa una trampa y pierde 100 puntos,pero se toma una pocion y recupera esos 100 y tiene todas las vidas " {
+    persona1.asustarse(grimly)
+    trampa.actuar(grimly)
+    posion.actuar(grimly)
+    assert.equals(200, puntaje.puntosActuales())
+    assert.equals(3, grimly.vidasRestantes())
+  }
 }

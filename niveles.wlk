@@ -35,7 +35,6 @@ class Nivel {
     game.clear()
 	  musica.pararMusicaInicio()
 	  musica.empezarMusicaJuego()
-    game.removeTickEvent("cazador")
     posicionesInvalidas.cargarNiveles()
 	  controles.configurarTeclas()
     
@@ -88,7 +87,7 @@ object gameOver {
         game.clear()
         const musicaDerrota=game.sound("musicaDerrota.mp3")
         musica.pararMusicaJuego()
-        musicaDerrota.volume(0.20)
+        musicaDerrota.volume(0.30)
         musicaDerrota.play()
         
         // primera imagen que se muestra en pantalla
@@ -125,7 +124,7 @@ object gameWin {
     method ganar() {
         //Limpiamos todo el juego actual
         game.clear()
-        const musicaVictoria=game.sound("musicaVictoria.mp3")
+        const musicaVictoria=game.sound("musicaVictoria2.mp3")
 		musica.pararMusicaJuego()
       	musicaVictoria.volume(0.20)
       	musicaVictoria.play()
@@ -153,6 +152,7 @@ object gameWin {
         game.schedule(14000, { 
 
             game.removeTickEvent("animacionVictoria")
+            musica.pararMusica(musicaVictoria)
             pantallaInicio.configurate()
         })
     }

@@ -74,6 +74,9 @@ object puntaje {
         self.actualizarImagenes()
     }
 
+    method puntosActuales(){
+        return valorActual
+    }
  
     // metodo de puntajes segun lo que pase en el juego
     method puntosPocion() {

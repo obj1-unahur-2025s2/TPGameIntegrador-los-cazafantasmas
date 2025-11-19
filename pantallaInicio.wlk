@@ -19,7 +19,6 @@ object pantallaInicio {
     estadoJuego.cambiarNivelActual("")
     grimly.image("FantasmaNormal.png")
     grimly.resetPosition()
-    game.removeTickEvent("cazador")
     posicionesInvalidas.cargarInicio()
     controles.configurarTeclas()
     game.addVisual(fondoEmpezar)

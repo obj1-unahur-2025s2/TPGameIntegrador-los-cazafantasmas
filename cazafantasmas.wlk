@@ -1,8 +1,10 @@
+import nivel1.*
 import puntaje.*
 import controles.*
 import wollok.game.*
 import fantasma.*
 import niveles.*
+import nivel2.*
 
 
 //los cazafantasmas que van a ser enemigos
@@ -27,7 +29,9 @@ class Cazafantasma {
 	method asustarse(jugador) {
 		
 	}
-	
+	method esCazador(){
+        return true
+    }
 	method instanciar(posicion,cantidad) {//crea al cazador
 		self.image("cazafantasmas.png")
 		self.position(posicion)
@@ -45,13 +49,14 @@ class Cazafantasma {
     method recibirDaño() {}
     method acercarseA(jugador) {
         // Inicia el ciclo de persecución automático (ejecutando la lógica cada 500ms).
-        game.onTick(600, "cazador", { self.intentarMoverseHacia(jugador) })
-        
+        //game.onTick(600, "cazador", { self.intentarMoverseHacia(jugador) })
+        self.intentarMoverseHacia(jugador)
+        game.schedule(500, {self.acercarseA(jugador)})
     }
 
     method intentarMoverseHacia(jugador) {
         // Calcula la diferencia absoluta para decidir qué eje priorizar.
-        const diferenciaX = (self.position().x() - jugador.position().x()).abs()
+        const diferenciaX = (self.position().x() - jugador.position().x()).abs() 
         const diferenciaY = (self.position().y() - jugador.position().y()).abs()
 
         // Prioriza el eje donde la diferencia es mayor.
@@ -63,13 +68,11 @@ class Cazafantasma {
     }
 
     method intentarMover(nuevaPosicion) {
-        const esValida = invalida.noEsPosicionInvalida(nuevaPosicion.x(), nuevaPosicion.y())
+        const esValida = invalida.noEsPosicionInvalida(nuevaPosicion.x(), nuevaPosicion.y()) && self.noHayOtroCazador(nuevaPosicion)
 
         if (esValida) {
             self.position(nuevaPosicion)
         }
-
-        return esValida
     }
 
     method proximaPosicionHorizontal(unElemento) =
@@ -83,4 +86,8 @@ class Cazafantasma {
             self.position().up(1)
         else 
             self.position().down(1)
+
+    method noHayOtroCazador(nuevaPosicion){
+        return  game.getObjectsIn(game.at(nuevaPosicion.x(), nuevaPosicion.y())).count({o=>o.esCazador()})<nivel2.cantEnemigos()
+    }
 }

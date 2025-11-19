@@ -50,6 +50,8 @@ object nivel1 inherits Nivel {
 			 } 
 
 	}
-	  
+	  	method cantEnemigos(){
+		return enemigos.size()
+	}
 }
 
