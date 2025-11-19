@@ -17,6 +17,7 @@ object pantallaInicio {
   method configurate() {
     game.clear()
     estadoJuego.cambiarNivelActual("")
+    grimly.image("FantasmaNormal.png")
     grimly.resetPosition()
     game.removeTickEvent("cazador")
     posicionesInvalidas.cargarInicio()

@@ -23,9 +23,9 @@ object controles {
 		)
 		keyboard.e().onPressDo({ grimly.asustar(game.getObjectsIn(grimly.position())) })
 		
-		keyboard.num1().onPressDo({ if (estadoJuego.nivelActual()!= "nivel1") {nivel1.configurate()}})
+		keyboard.num1().onPressDo({ if (estadoJuego.nivelActual()!= "nivel1" && estadoJuego.nivelActual()!= "nivel2") {nivel1.configurate()}})
 
-		keyboard.num2().onPressDo({ if(estadoJuego.nivelActual()!="nivel2") {nivel2.configurate()} })
+		keyboard.num2().onPressDo({ if(estadoJuego.nivelActual()!="nivel2" && estadoJuego.nivelActual()!= "nivel1") {nivel2.configurate()} })
 
 		keyboard.m().onPressDo({ pantallaInicio.configurate() })
 	}

@@ -90,6 +90,7 @@ object gameOver {
         musica.pararMusicaJuego()
         musicaDerrota.volume(0.20)
         musicaDerrota.play()
+        
         // primera imagen que se muestra en pantalla
         const fondoVisual = new Fondo(image = "derrota_1.jpg") 
         game.addVisual(fondoVisual)

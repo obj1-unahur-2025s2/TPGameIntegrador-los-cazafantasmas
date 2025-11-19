@@ -13,6 +13,10 @@ object grimly {
   var image = "FantasmaNormal.png"
   var position = game.at(14,0)
 
+    method vidasRestantes() {
+        return vidaGrimly.corazones()
+    }
+
   method resetPosition() {
     position = game.at(14,0)
   }
@@ -23,11 +27,11 @@ object grimly {
     sonidoDaño.play()
     self.image("fantasmaDaño.png")
     game.schedule(200, { self.image("FantasmaNormal.png")})
-    if(not vida.tieneVidas()){
+    if(not vidaGrimly.tieneVidas()){
       gameOver.perder()
     }
     self.resetPosition()
-    vida.perderVida()
+    vidaGrimly.perderVida()
 
   }
   
@@ -35,7 +39,7 @@ object grimly {
     const sonidoVida = game.sound("sonidoPocion.wav")
      sonidoVida.volume(0.15)
      sonidoVida.play()
-    vida.conseguirVida()
+    vidaGrimly.conseguirVida()
   }
 
  method asustar(aqui) {
@@ -66,9 +70,11 @@ object grimly {
   }
 }
 
-object vida {
+object vidaGrimly {
     
-    var property vidasActuales = 3
+    var vidasActuales = 3
+
+    method corazones()=vidasActuales
 
     // Lista de Corazones Visuales
     const corazones = [

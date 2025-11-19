@@ -22,7 +22,7 @@ object nivel1 inherits Nivel {
 		estadoJuego.cambiarNivelActual("nivel1")
 		const fondoCasa_level1 = new Fondo(image="fondoCasa_level1.png",position = game.at(0, 0))
 		game.addVisual(fondoCasa_level1)
-		vida.iniciarBarraDeVida()
+		vidaGrimly.iniciarBarraDeVida()
 		puntaje.iniciarBarraDePuntos(0)
 		self.ponerElementos(1, enemigos)
 		self.ponerElementos(2, pociones)

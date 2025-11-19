@@ -1,0 +1,46 @@
+import wollok.game.*
+import fantasma.*
+import cazafantasmas.*
+import items.*
+import personas.*
+import controles.*
+import niveles.*
+import nivel1.*
+import nivel2.*
+import pantallaInicio.*
+
+
+describe "test game" {
+    const cazafantasma=new Cazafantasma()
+    const trampa= new Trampa()
+    const posion= new Pocion()
+  test "fantasma pierde 1 vida, porque el cazador lo atrapa" {
+        cazafantasma.atrapar(grimly)
+        assert.equals(2,grimly.vidasRestantes())
+  }
+
+  test "fantasma pierde 1 vida, porque la trampa lo atrapa" {
+        game.addVisual(trampa)
+        trampa.actuar(grimly)
+        assert.equals(2,grimly.vidasRestantes())
+  }
+
+  test "fantasma pierde una vida porque una trampa lo atrapa, pero recupera 1 vida, porque toma una posion" {
+        game.addVisual(trampa)
+        trampa.actuar(grimly)
+
+        game.addVisual(posion)
+        posion.actuar(grimly)
+        assert.equals(3,grimly.vidasRestantes())
+  }  
+
+//    test "fantasma gana 200 puntos al asustar a un npc" { 
+//   }
+
+
+
+
+
+
+
+}
