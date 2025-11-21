@@ -10,14 +10,14 @@ class Persona {
   var position = game.at(10, 10)
   var image = ""
   var imageMuerto=""
-  var  asustado = false
+  var asustado = false
 
   method estaAsustado() = asustado
 
   method dejarEstarAsustado() {
      asustado=false
   }
-  method esInteractivo() = true//el jugador puede interactuar (osea pueden colisionar)
+  method esInteractivo() = true //el jugador puede interactuar (o sea pueden colisionar)
   //movimiento de los npc
   method moverseAleatorio() {
     var time = 500
@@ -40,8 +40,8 @@ class Persona {
     game.schedule(1500, { self.moverseAleatorio() })
   }
 
-  method instanciar(posicion,cantidad){//crea al npc
-    self.image("npc"+cantidad.toString()+".png")//metodo carga  las imagenes a cada npc se invoca en nivel
+  method instanciar(posicion,cantidad){ // crea al npc
+    self.image("npc"+cantidad.toString()+".png") // metodo carga  las imagenes a cada npc se invoca en nivel
     self.imageMuerto("npc"+cantidad.toString()+"_muerto"+".png")
     self.position(posicion)
   }
@@ -49,7 +49,7 @@ class Persona {
     	method esCazador(){
         return false
     }
-  //que hace cuando se asusta
+  // que hace cuando se asusta
   method asustarse(jugador) {
     if(! self.estaAsustado()){
       puntaje.puntosNpc()
@@ -68,7 +68,6 @@ class Persona {
   }
   method accionarObjeto(objeto){}
   
-
   method image() = image
   
   method image(nueva) {
@@ -85,5 +84,4 @@ class Persona {
     position = nueva
   }
   method recibirDaño(){}
-  
 }

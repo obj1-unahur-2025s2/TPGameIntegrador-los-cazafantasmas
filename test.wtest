@@ -10,7 +10,7 @@ import nivel1.*
 import nivel2.*
 import pantallaInicio.*
 
-describe "test game" {
+describe "test del game" {
   const cazafantasma = new Cazafantasma()
   const trampa = new Trampa()
   const posion = new Pocion()

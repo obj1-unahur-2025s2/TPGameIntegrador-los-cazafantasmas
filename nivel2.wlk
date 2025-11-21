@@ -9,15 +9,11 @@ import items.*
 import controles.*
 import pantallaInicio.*
 
-
+// nivel 2 del juego
 object nivel2 inherits Nivel {
-  const enemigos = [new Cazafantasma(),new Cazafantasma()]
-  const pociones = [new Pocion()]
-  const trampas = [new Trampa(), new Trampa(),new Trampa()]
-  const property personas = [new Persona(),new Persona(),new Persona(),new Persona()]
+  const property personas = [new Persona(),new Persona(),new Persona()]
   
-
-  override method configurate() {
+  override method configurate() {//configura el nivel 2
 		super()
 		estadoJuego.cambiarNivelActual("nivel2")
 		const fondoCasa_level2 = new Fondo(image="fondoCasa_level2.png",position = game.at(0, 0))
@@ -27,7 +23,7 @@ object nivel2 inherits Nivel {
 		self.ponerElementos(2, enemigos)
 		self.ponerElementos(1, pociones)
 		self.ponerElementos(3, trampas)
-		self.ponerElementos(4, personas)
+		self.ponerElementos(3, personas)
 		personas.forEach({p=>p.dejarEstarAsustado()})
 		grimly.resetPosition()
 		game.addVisual(grimly)
@@ -41,17 +37,8 @@ object nivel2 inherits Nivel {
 	}
 
 	
-	method chequearCondicionVictoria() {    
-			// .all() revisa si TODOS en la lista cumplen la condición
-			const todasAsustadas = self.personas().all({ p => p.estaAsustado() })
-		
-			if (todasAsustadas) {
-      			gameWin.ganar()
-
-			 } 
-
-	}
-	method cantEnemigos(){
+	
+	method cantEnemigos(){//devuelve cuantos enemigos hay
 		return enemigos.size()
 	}
 }

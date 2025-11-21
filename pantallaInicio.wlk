@@ -33,11 +33,11 @@ object musica {
   const property musicaJuego = game.sound("musicaFondo.mp3")
 
   var configurada = false
-  // Inicializamos con el objeto nulo
+  // se inicializa con el objeto nulo
   var sonidoActual = musicaNula 
 
   method configurar() {
-  // Es crucial que la configuración se haga *después* de que se obtienen los sonidos.
+  // configura la música de fondo
     if (not configurada) {
         musicaInicio.shouldLoop(true)
         musicaInicio.volume(0.20)
@@ -49,9 +49,9 @@ object musica {
 
   method cambiarASonido(nuevoSonido) {
     if (sonidoActual != nuevoSonido) {
-    // 1. Detener el sonido actual. Si es 'musicaNula', el método .stop() no hace nada.
+    // detiene el sonido actual. Si es 'musicaNula', el método .stop() no hace nada.
         sonidoActual.stop()
-    // 2. Actualizar el estado y empezar el nuevo sonido.
+    // actualiza el estado y empezar el nuevo sonido.
         sonidoActual = nuevoSonido
         sonidoActual.play()
     }   
@@ -67,7 +67,7 @@ object musica {
 
   method pararMusica(unSonido) {
     if (sonidoActual == unSonido) {
-   // Detener la música y volver al estado Nulo.
+   // detiene la música y vuelve al estado nulo.
         unSonido.stop()
         sonidoActual = musicaNula
     }
@@ -83,70 +83,12 @@ object musica {
 }
 
 object musicaNula {
-// Implementa los métodos que llamarás en 'sonidoActual'
+//implementa los métodos que se usan en 'sonidoActual' (ninguno hace nada)
   method stop() {} 
   method play() {}
-  method shouldLoop(loop) {} // No hace nada
-  method volume(vol) {} // No hace nada
+  method shouldLoop(loop) {} 
+  method volume(vol) {} 
 }
 
-
-// objeto musica como estaba antes 
-/*object musica {
-  const property musicaInicio = game.sound("musicaInicio.wav")
-  const property musicaJuego = game.sound("musicaFondo.mp3")
-
-  var configurada = false
-  var reproduciendoInicio = false
-  var reproduciendoJuego = false
-
-  method configurar() {
-    if (not configurada) {
-      musicaInicio.shouldLoop(true)
-      musicaInicio.volume(0.20)
-      musicaJuego.shouldLoop(true)
-      musicaJuego.volume(0.10)
-      configurada = true
-    }
-  }
-
-
-  method empezarMusicaInicio() {
-    if (reproduciendoJuego) {
-      musicaJuego.stop()
-      reproduciendoJuego = false
-    }
-    if (not reproduciendoInicio) {
-      musicaInicio.play()
-      reproduciendoInicio = true
-    }
-  }
-
-  method empezarMusicaJuego() {
-    if (reproduciendoInicio) {
-      musicaInicio.stop()
-      reproduciendoInicio = false
-    }
-    if (not reproduciendoJuego) {
-      musicaJuego.play()
-      reproduciendoJuego = true
-    }
-  }
-
-  method pararMusicaInicio() {
-    if (reproduciendoInicio) {
-      musicaInicio.stop()
-      reproduciendoInicio = false
-    }
-  }
-
-  method pararMusicaJuego() {
-    if (reproduciendoJuego) {
-      musicaJuego.stop()
-      reproduciendoJuego = false
-    }
-  }
-}
-*/
 
 

@@ -21,17 +21,25 @@ object controles {
 		keyboard.d().onPressDo(
 			{ grimly.position(derecha.moverseAProximaPosicion(grimly.position())) }
 		)
-		keyboard.e().onPressDo({ grimly.asustar(game.getObjectsIn(grimly.position())) })
+		keyboard.e().onPressDo(
+			{ grimly.asustar(game.getObjectsIn(grimly.position())) }
+		)
 		
-		keyboard.num1().onPressDo({ if (estadoJuego.nivelActual()!= "nivel1" && estadoJuego.nivelActual()!= "nivel2") {nivel1.configurate()}})
-
-		keyboard.num2().onPressDo({ if(estadoJuego.nivelActual()!="nivel2" && estadoJuego.nivelActual()!= "nivel1") {nivel2.configurate()} })
-
+		keyboard.num1().onPressDo({ 
+			if ((estadoJuego.nivelActual() != "nivel1") && (estadoJuego.nivelActual() != "nivel2"))
+					{nivel1.configurate()}
+			}
+		)
+		keyboard.num2().onPressDo({ 
+			if ((estadoJuego.nivelActual() != "nivel2") && (estadoJuego.nivelActual() != "nivel1"))
+					{nivel2.configurate()} 
+			}
+		)
 		keyboard.m().onPressDo({ pantallaInicio.configurate() })
 	}
-
 }
 
+//celdas por donde no se puede pasar, una lista para niveles y otra para inicio
 object posicionesInvalidas {
 	const property niveles = [
 		game.at(0, 0),
@@ -56,7 +64,7 @@ object posicionesInvalidas {
 		game.at(15, 22),
 		game.at(15, 23),
 		game.at(15, 24),
-		game.at(15, 25),	
+		game.at(15, 25),
 		game.at(15, 26),
 		game.at(15, 27),
 		game.at(15, 28),
@@ -119,7 +127,7 @@ object posicionesInvalidas {
 		game.at(22, 0),
 		game.at(23, 0),
 		game.at(24, 0),
- 		game.at(25, 0),
+		game.at(25, 0),
 		game.at(26, 0),
 		game.at(27, 0),
 		game.at(28, 0),
@@ -174,9 +182,8 @@ object posicionesInvalidas {
 		game.at(19, 14),
 		game.at(18, 14)
 	]
-
 	const property inicio = [
-		 game.at(0, 10),
+		game.at(0, 10),
 		game.at(1, 10),
 		game.at(2, 10),
 		game.at(3, 10),
@@ -198,7 +205,7 @@ object posicionesInvalidas {
 		game.at(19, 10),
 		game.at(20, 10),
 		game.at(21, 10),
-		game.at(22, 10),	
+		game.at(22, 10),
 		game.at(23, 10),
 		game.at(24, 10),
 		game.at(25, 10),
@@ -206,48 +213,45 @@ object posicionesInvalidas {
 		game.at(27, 10),
 		game.at(28, 10),
 		game.at(29, 10),
-
 		game.at(9, 7),
 		game.at(10, 7),
 		game.at(11, 7),
 		game.at(12, 7),
-        game.at(13, 7),
-        game.at(14, 7),
-        game.at(15, 7),
-        game.at(16, 7),
-        game.at(17, 7),
-        game.at(18, 7),
-        game.at(19, 7),
-        game.at(20, 7),
-
-        game.at(20, 8),
-        game.at(20, 9),
-        game.at(20, 10),
-
-        game.at(9, 8),
-        game.at(9, 9),
-        game.at(9, 10)
+		game.at(13, 7),
+		game.at(14, 7),
+		game.at(15, 7),
+		game.at(16, 7),
+		game.at(17, 7),
+		game.at(18, 7),
+		game.at(19, 7),
+		game.at(20, 7),
+		game.at(20, 8),
+		game.at(20, 9),
+		game.at(20, 10),
+		game.at(9, 8),
+		game.at(9, 9),
+		game.at(9, 10)
 	]
-
-	var listaActual=inicio
-
-	method listaActual() = listaActual
-	method cargarInicio() {
-        listaActual = inicio
-    }
-	method cargarNiveles() {
-        listaActual = niveles
-    }
-}
-class Direccion {
-	//lista que deberia cargarse con las posiciones de las posiciones que el fantasma no puede pasar
+	var listaActual = inicio
 	
+	method listaActual() = listaActual
+	
+	method cargarInicio() {
+		listaActual = inicio
+	}
+	
+	method cargarNiveles() {
+		listaActual = niveles
+	}
+}
+
+class Direccion {
 	method siguiente(position)
 	
 	method esIgual(unaDireccion) = unaDireccion == self
-	/* Próxima posición en un tablero al estilo "pacman" , aplica para el fantasma y los npc */
-	
-	method moverseAProximaPosicion(posicion) {
+	// próxima posición en un tablero, aplica para el fantasma y los npc 
+
+	method moverseAProximaPosicion(posicion) {//mueve a una porxima posicion
 		const siguientePosicion = self.siguiente(posicion)
 		if ((!posicionesInvalidas.listaActual().contains(siguientePosicion)) && (!self.estaEnElBorde(siguientePosicion))) {
 			return siguientePosicion
@@ -256,13 +260,8 @@ class Direccion {
 		}
 	}
 	
-	method estaEnElBorde(posicion) {
-		const sonBordes = [
-			self.esBordeDerecho(posicion),
-			self.esBordeIzquierdo(posicion),
-			self.esBordeInferior(posicion),
-			self.esBordeSuperior(posicion)
-		]
+	method estaEnElBorde(posicion) { // indica si está en alguno de todos los bordes
+		const sonBordes = [self.esBordeDerecho(posicion),self.esBordeIzquierdo(posicion),self.esBordeInferior(posicion),self.esBordeSuperior(posicion)]
 		return sonBordes.any({ b => b })
 	}
 	
@@ -272,35 +271,29 @@ class Direccion {
 	
 	method esBordeInferior(posicion) = posicion.y() == (-1)
 	
-	// Toma en cuenta la franja reservada para los indicadores
-	method esBordeSuperior(posicion) = game.height() == (posicion.y() + 1)
+	method esBordeSuperior(posicion) = game.height() == (posicion.y() + 1) // toma en cuenta la franja reservada para los indicadores
 }
 
 object izquierda inherits Direccion {
 	override method siguiente(position) = position.left(1)
-	
 }
 
 object derecha inherits Direccion {
 	override method siguiente(position) = position.right(1)
-	
 }
 
 object abajo inherits Direccion {
 	override method siguiente(position) = position.down(1)
-	
 }
 
 object arriba inherits Direccion {
 	override method siguiente(position) = position.up(1)
-	
 }
 
 object invalida inherits Direccion {
-	override method siguiente(position) {
-	}
+	override method siguiente(position) {}
 	
-	method posicionInvalida() = posicionesInvalidas.listaActual()
+	method posicionInvalida() = posicionesInvalidas.listaActual() // indica cuales son las posiciones inválidas
 	
-	method noEsPosicionInvalida(posX, posY) = (!self.posicionInvalida().contains(game.at(posX, posY))) && (!self.estaEnElBorde(game.at(posX, posY)))
+	method noEsPosicionInvalida(posX, posY) = (!self.posicionInvalida().contains(game.at(posX, posY))) && (!self.estaEnElBorde(game.at(posX, posY)))//indica si la posición actual no es inválida
 }

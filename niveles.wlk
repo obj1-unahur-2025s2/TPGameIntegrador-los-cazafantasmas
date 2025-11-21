@@ -10,6 +10,10 @@ import pantallaInicio.*
 class Nivel {
   var property elementosEnNivel = [] // Lista de elementos recolectables interactivos, excepto enemigos
   var nivelActual= ""
+  const property enemigos = [new Cazafantasma(),new Cazafantasma()]
+  const property pociones = [new Pocion(),new Pocion()]
+  const property trampas = [new Trampa(),new Trampa(),new Trampa()]
+  method personas()
   method nivelActual()= nivelActual
   method cambiarNivelActual(nuevoNivel){
     nivelActual= nuevoNivel
@@ -37,15 +41,16 @@ class Nivel {
 	  musica.empezarMusicaJuego()
     posicionesInvalidas.cargarNiveles()
 	  controles.configurarTeclas()
-    
-	
-	// El sonido para que esté accesible desde todos los niveles
-	/*keyboard.plusKey().onPressDo({ musicaDeFondo.volume(1)})
-	keyboard.m().onPressDo({musicaDeFondo.volume(0)})
-	keyboard.minusKey().onPressDo({ musicaDeFondo.volume(0.5)})
-	keyboard.p().onPressDo({ musicaDeFondo.pause()})
-	keyboard.r().onPressDo({ musicaDeFondo.resume()})
-	keyboard.s().onPressDo({ musicaDeFondo.stop()})*/
+	}
+
+  method chequearCondicionVictoria() {    
+			// .all() revisa si TODOS en la lista cumplen la condición
+			const todasAsustadas = self.personas().all({ p => p.estaAsustado() })
+		
+			if (todasAsustadas) {
+      			gameWin.ganar()
+			 } 
+
 	}
 }
 

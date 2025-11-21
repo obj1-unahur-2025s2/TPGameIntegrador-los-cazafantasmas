@@ -9,19 +9,20 @@ import nivel2.*
 import pantallaInicio.*
 
 
+// el fantasma que controla el jugador
 object grimly {
   var image = "FantasmaNormal.png"
   var position = game.at(14,0)
 
-    method vidasRestantes() {
-        return vidaGrimly.corazones()
-    }
+  method vidasRestantes() {
+      return vidaGrimly.corazones()
+  }
 
   method resetPosition() {
     position = game.at(14,0)
   }
   
-  method recibirDaño() {
+  method recibirDaño() { // método que se ejecuta cuando grimly recibe daño
     const sonidoDaño = game.sound("sonidoTrampa.wav")
     const sonidoMuerte= game.sound("sonidoMuerte.wav")
     sonidoDaño.volume(0.15)
@@ -35,32 +36,30 @@ object grimly {
     }
     self.resetPosition()
     vidaGrimly.perderVida()
-
   }
   
-  method recuperarVida() {
+  method recuperarVida() { // método que se ejecuta cuando grimly gana una vida
     const sonidoVida = game.sound("sonidoPocion.wav")
-     sonidoVida.volume(0.15)
-     sonidoVida.play()
+    sonidoVida.volume(0.15)
+    sonidoVida.play()
     vidaGrimly.conseguirVida()
   }
 
- method asustar(aqui) {
+ method asustar(aqui) { // método para asustar a los npc
     self.image("fantasma.png")
     const sonidoAtaque= game.sound("sonidoAtaque.wav")
-    sonidoAtaque.volume(0.50)
+    sonidoAtaque.volume(0.20)
     sonidoAtaque.play()
     game.schedule(500, { self.image("FantasmaNormal.png")})
     if(aqui.size() > 1){
       aqui.first().asustarse(self)
     }
-    
   }
 
-  	method esCazador(){
-        return false
-    }
-  method accionarObjeto(objeto){
+  method esCazador(){
+    return false
+  }
+  method accionarObjeto(objeto){ // lo que ejecuta cuando toca una poción o trampa
     objeto.actuar(self)
   }
   method asustarse(cosa){}
@@ -78,13 +77,14 @@ object grimly {
   }
 }
 
+// vida del fantasma grimly
 object vidaGrimly {
     
     var vidasActuales = 3
 
     method corazones()=vidasActuales
 
-    // Lista de Corazones Visuales
+    // lista de corazones visuales
     const corazones = [
         new VisualCorazon(position = game.at(18, 15), image = "corazon_3.png"),
         new VisualCorazon(position = game.at(18, 15), image = "corazon_2.png"),
@@ -103,7 +103,7 @@ object vidaGrimly {
     method perderVida() {
         if (vidasActuales > 0) {
             
-			// saca el corazón correspondiente, haciendo uso de la lista (posicion 0,1,2)
+			  // saca el corazón correspondiente, haciendo uso de la lista (posicion 0,1,2)
             const corazonASacar = corazones.get(vidasActuales - 1)
             game.removeVisual(corazonASacar)
             
