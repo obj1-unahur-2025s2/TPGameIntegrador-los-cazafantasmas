@@ -38,8 +38,7 @@ class Cazafantasma {
   
   // hace daño al jugador y le resta puntos
   method atrapar(jugador) {
-		puntaje.puntosCazador()
-		jugador.recibirDaño()
+		jugador.recibirDaño(puntaje.puntosCazador())
         if(self.position()== game.at(14, 0) ){   //si el cazador esta en la posicion inicial del fantasma, retrocede 3 celdas
             self.position(game.at(14, 3))
         }
@@ -47,7 +46,7 @@ class Cazafantasma {
   
   method accionarObjeto(objeto) {}
   
-  method recibirDaño() {}
+  method recibirDaño(cant) {}
   
   method acercarseA(jugador) { // inicia el ciclo de persecución automático (ejecutando la lógica cada 500ms).
     self.intentarMoverseHacia(jugador)

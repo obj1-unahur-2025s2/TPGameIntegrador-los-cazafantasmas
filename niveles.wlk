@@ -112,7 +112,6 @@ object gameOver {
         puntaje.iniciarBarraDePuntos(puntaje.puntosActuales())
         // --- Finaliza a los seg y vuelve al inicio
         game.schedule(14000, { 
-            
             game.removeTickEvent("animacionDerrota")
             pantallaInicio.configurate()
         })
@@ -166,8 +165,8 @@ class Fondo {
 	method esInteractivo() = false
 	method asustarse(jugador){}
 	method chocarse(jugador){}
-    method recibirDaño(){}
-    method accionarObjeto(objeto){}
-    method atrapar(){}
+  method recibirDaño(cant){}
+  method accionarObjeto(objeto){}
+  method atrapar(){}
     
 }

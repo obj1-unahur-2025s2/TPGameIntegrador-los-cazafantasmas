@@ -6,22 +6,19 @@ import niveles.*
 import nivel1.*
 import nivel2.*
 import pantallaInicio.*
-
+import puntaje.*
 
 // el fantasma que controla el jugador
 object grimly {
   var image = "FantasmaNormal.png"
   var position = game.at(14,0)
 
-  method vidasRestantes() {
-      return vidaGrimly.corazones()
-  }
 
   method resetPosition() {
     position = game.at(14,0)
   }
   
-  method recibirDaño() { // método que se ejecuta cuando grimly recibe daño
+  method recibirDaño(cant) { // método que se ejecuta cuando grimly recibe daño
     const sonidoDaño = game.sound("sonidoTrampa.wav")
     sonidoDaño.volume(0.15)
     sonidoDaño.play()
@@ -31,15 +28,18 @@ object grimly {
     nivel1.chequearCondicionDerrota()
     nivel2.chequearCondicionDerrota()
     vidaGrimly.perderVida()
-    
-
+    self.modificarPuntos(cant)
   }
-  
-  method recuperarVida() { // método que se ejecuta cuando grimly gana una vida
+
+  method modificarPuntos(cant){
+    puntaje.sumarPuntos(cant)
+  }
+  method recuperarVida(cant) { // método que se ejecuta cuando grimly gana una vida
     const sonidoVida = game.sound("sonidoPocion.wav")
     sonidoVida.volume(0.15)
     sonidoVida.play()
     vidaGrimly.conseguirVida()
+    self.modificarPuntos(cant)
   }
 
  method asustar(aqui) { // método para asustar a los npc
@@ -51,7 +51,6 @@ object grimly {
     if(aqui.size() > 1){
       aqui.first().asustarse(self)
     }
-    
   }
 
   method esCazador(){
@@ -85,7 +84,9 @@ object vidaGrimly {
     
     var vidasActuales = 3
 
-    method corazones()=vidasActuales
+  method vidasActuales(){
+    return vidasActuales
+  }
 
     // lista de corazones visuales
     const corazones = [
@@ -125,5 +126,5 @@ object vidaGrimly {
         }
     }
 
-    method tieneVidas() = self.corazones() > 1
+    method tieneVidas() = vidasActuales > 1
 }

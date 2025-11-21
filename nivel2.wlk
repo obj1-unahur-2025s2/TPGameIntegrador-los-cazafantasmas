@@ -7,7 +7,7 @@ import puntaje.*
 import items.*
 import controles.*
 import pantallaInicio.*
-
+import nivel1.*
 //nivel 2 (hijo de "niveles")
 object nivel2 inherits Nivel {
 
@@ -27,7 +27,6 @@ object nivel2 inherits Nivel {
 		self.ponerElementos(1, pociones)
 		self.ponerElementos(3, trampas)
 		self.ponerElementos(3, personas)
-		personas.forEach({p=>p.dejarEstarAsustado()})
 		grimly.resetPosition()
 		game.addVisual(grimly)
 		enemigos.forEach({e => e.acercarseA(grimly)
@@ -39,21 +38,25 @@ object nivel2 inherits Nivel {
 		pociones.forEach({po => game.whenCollideDo(po, {grimly => grimly.accionarObjeto(po)})})
 	}
 
-	
+	method personas(){
+		return personas
+	}
 	override method chequearCondicionVictoria() {    
 			// .all() revisa si TODOS en la lista cumplen la condición
 		const todasAsustadas = personas.all({ p => p.estaAsustado() })
 			if (todasAsustadas) {
       			gameWin.ganar()
+				personas.forEach({p=>p.dejarEstarAsustado()})
 		}
 	}
 
 	override method chequearCondicionDerrota() {    
 		if(not vidaGrimly.tieneVidas()){
 			const sonidoMuerte= game.sound("sonidoMuerte.wav")
-			sonidoMuerte.volume(0.05)
+			sonidoMuerte.volume(0.10)
 			sonidoMuerte.play()
 			gameOver.perder()
+			personas.forEach({p=>p.dejarEstarAsustado()})
     	}
 	}
 	

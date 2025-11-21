@@ -23,7 +23,7 @@ class Item {
   }
 
   method asustarse(jugador) {}
-  method recibirDaño() {}
+  method recibirDaño(cant) {}
   method actuar(jugador)
   method instanciar(posicion, cantidad)
   method esCazador() = false
@@ -33,8 +33,7 @@ class Pocion inherits Item {   //suma los puntos al jugador y le recupera una vi
 
   override method actuar(jugador) {
     if(game.hasVisual(self)){
-    puntaje.puntosPocion()
-    jugador.recuperarVida() 
+    jugador.recuperarVida(puntaje.puntosPocion()) 
     game.removeVisual(self)
     }
   }
@@ -49,8 +48,7 @@ class Trampa inherits Item { //resta puntos al jugador y le quita una vida
  
   override method actuar(jugador) {
     if(game.hasVisual(self)){
-    puntaje.puntosTrampa()
-    jugador.recibirDaño() 
+    jugador.recibirDaño(puntaje.puntosTrampa()) 
     game.removeVisual(self)
     }
   }

@@ -45,15 +45,16 @@ class Persona {
     self.image("npc"+cantidad.toString()+".png") // metodo carga  las imagenes a cada npc se invoca en nivel
     self.imageMuerto("npc"+cantidad.toString()+"_muerto"+".png")
     self.position(posicion)
+    asustado=false
   }
 
-    	method esCazador(){
+  method esCazador(){
         return false
-    }
+  }
   // que hace cuando se asusta
   method asustarse(jugador) {
     if(! self.estaAsustado()){
-      puntaje.puntosNpc()
+      jugador.modificarPuntos(puntaje.puntosNpc())
       asustado = true
       nivel1.chequearCondicionVictoria()
       nivel2.chequearCondicionVictoria()
@@ -65,7 +66,6 @@ class Persona {
     game.schedule(800, {   
       game.removeVisual(self)
     })  
-    
   }
   method accionarObjeto(objeto){}
   
@@ -84,5 +84,5 @@ class Persona {
   method position(nueva) {
     position = nueva
   }
-  method recibirDaño(){}
+  method recibirDaño(cant){}
 }
