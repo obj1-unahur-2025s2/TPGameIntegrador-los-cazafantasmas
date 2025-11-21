@@ -38,8 +38,8 @@ class Cazafantasma {
   
   // hace daño al jugador y le resta puntos
   method atrapar(jugador) {
-		jugador.recibirDaño()
 		puntaje.puntosCazador()
+		jugador.recibirDaño()
         if(self.position()== game.at(14, 0) ){   //si el cazador esta en la posicion inicial del fantasma, retrocede 3 celdas
             self.position(game.at(14, 3))
         }

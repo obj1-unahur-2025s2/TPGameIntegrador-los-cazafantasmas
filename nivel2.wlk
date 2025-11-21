@@ -8,14 +8,14 @@ import items.*
 import controles.*
 import pantallaInicio.*
 
-
+//nivel 2 (hijo de "niveles")
 object nivel2 inherits Nivel {
+
   const enemigos = [new Cazafantasma(),new Cazafantasma()]
   const pociones = [new Pocion()]
-  const trampas = [new Trampa(), new Trampa(),new Trampa()]
+  const trampas = [new Trampa(),new Trampa(),new Trampa()]
   const personas = [new Persona(),new Persona(),new Persona()]
   
-
   override method configurate() {//configura el nivel 2
 		super()
 		estadoJuego.cambiarNivelActual("nivel2")
@@ -47,6 +47,16 @@ object nivel2 inherits Nivel {
       			gameWin.ganar()
 		}
 	}
+
+	override method chequearCondicionDerrota() {    
+		if(not vidaGrimly.tieneVidas()){
+			const sonidoMuerte= game.sound("sonidoMuerte.wav")
+			sonidoMuerte.volume(0.05)
+			sonidoMuerte.play()
+			gameOver.perder()
+    	}
+	}
+	
 	method cantEnemigos(){//devuelve cuantos enemigos hay
 		return enemigos.size()
 	}

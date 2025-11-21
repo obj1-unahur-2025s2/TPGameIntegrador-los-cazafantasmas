@@ -1,4 +1,3 @@
-//el fantasma que controla el jugador
 import wollok.game.*
 import items.*
 import cazafantasmas.*
@@ -24,18 +23,16 @@ object grimly {
   
   method recibirDaño() { // método que se ejecuta cuando grimly recibe daño
     const sonidoDaño = game.sound("sonidoTrampa.wav")
-    const sonidoMuerte= game.sound("sonidoMuerte.wav")
     sonidoDaño.volume(0.15)
     sonidoDaño.play()
     self.image("fantasmaDaño.png")
     game.schedule(200, { self.image("FantasmaNormal.png")})
-    if(not vidaGrimly.tieneVidas()){
-      sonidoMuerte.volume(0.05)
-      sonidoMuerte.play()
-      gameOver.perder()
-    }
     self.resetPosition()
+    nivel1.chequearCondicionDerrota()
+    nivel2.chequearCondicionDerrota()
     vidaGrimly.perderVida()
+    
+
   }
   
   method recuperarVida() { // método que se ejecuta cuando grimly gana una vida
@@ -47,13 +44,14 @@ object grimly {
 
  method asustar(aqui) { // método para asustar a los npc
     self.image("fantasma.png")
-    const sonidoAtaque= game.sound("sonidoAtaque.wav")
-    sonidoAtaque.volume(0.40)
+    const sonidoAtaque= game.sound("sonidoAtaque2.mp3")
+    sonidoAtaque.volume(0.15)
     sonidoAtaque.play()
     game.schedule(500, { self.image("FantasmaNormal.png")})
     if(aqui.size() > 1){
       aqui.first().asustarse(self)
     }
+    
   }
 
   method esCazador(){
@@ -82,6 +80,7 @@ class VisualCorazon {
     var property position
     var property image 
 }
+
 object vidaGrimly {
     
     var vidasActuales = 3
@@ -126,5 +125,5 @@ object vidaGrimly {
         }
     }
 
-    method tieneVidas() = vidasActuales > 1
+    method tieneVidas() = self.corazones() > 1
 }

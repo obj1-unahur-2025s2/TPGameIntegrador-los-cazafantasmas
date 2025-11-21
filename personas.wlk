@@ -6,6 +6,7 @@ import nivel1.*
 import nivel2.*
 import niveles.*
 
+//Npcs
 class Persona {
   var position = game.at(10, 10)
   var image = ""

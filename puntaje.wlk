@@ -1,5 +1,5 @@
 import wollok.game.*
-class Digito {
+class Digito { // de aca salen los 4 digitos para el puntaje
     var property position = game.at(27, 15) // Posición
     var property image = ""
 }
@@ -61,22 +61,22 @@ object puntaje {
  
     // metodo de puntajes segun lo que pase en el juego
     method puntosPocion() {
-        // Suma 500 puntos
-        self.sumarPuntos(500)
+        // Suma puntos
+        self.sumarPuntos(550)
     }
 
     method puntosNpc() {
-        // Suma 1000 puntos
-        self.sumarPuntos(1000)
+        // Suma puntos
+        self.sumarPuntos(1200)
     }
 
     method puntosTrampa() {
-        // Resta 500 puntos
-        self.sumarPuntos(-500)
+        // Resta puntos
+        self.sumarPuntos(-750)
     }
 
     method puntosCazador() {
-        // Resta 1500 puntos
-        self.sumarPuntos(-1500)
+        // Resta puntos
+        self.sumarPuntos(-1000)
     }
 }

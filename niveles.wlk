@@ -8,11 +8,13 @@ import puntaje.*
 import items.*
 import controles.*
 import pantallaInicio.*
+
+//nivel padre (no se puede instanciar)
 class Nivel {
   var property elementosEnNivel = [] // Lista de elementos recolectables interactivos
 
   method hayElementoEn(posicion) = elementosEnNivel.any({ e => e.position() == posicion && e.esInteractivo() })
-									
+ 						
   method ponerElementos(cantidad, elemento) { // debe recibir cantidad y EL NOMBRE DE UN ELEMENTO
     if (cantidad > 0) {
       const unaPosicion = elegirPosicion.posicionAleatoria()
@@ -26,6 +28,7 @@ class Nivel {
             self.ponerElementos(cantidad, elemento)
         }
     }
+    
   }
 
   method configurate() { //configura el nivel
@@ -34,8 +37,12 @@ class Nivel {
 	  musica.empezarMusicaJuego()
     posicionesInvalidas.cargarNiveles()
 	  controles.configurarTeclas()
+    self.vaciarListas()
 	}
   method chequearCondicionVictoria()
+
+  method chequearCondicionDerrota()
+  
   method vaciarListas(){
     elementosEnNivel.clear()
   }
@@ -77,8 +84,7 @@ object gameOver {
     method perder() {
         //Limpiamos todo el juego actual
         game.clear()
-        nivel1.vaciarListas()
-        nivel2.vaciarListas()
+      
         
         const musicaDerrota=game.sound("musicaDerrota.mp3")
         musica.pararMusicaJuego()
@@ -119,8 +125,6 @@ object gameWin {
     method ganar() {
         //Limpiamos todo el juego actual
         game.clear()
-        nivel1.vaciarListas()
-        nivel2.vaciarListas()
         const musicaVictoria=game.sound("musicaVictoria2.mp3")
 		musica.pararMusicaJuego()
       	musicaVictoria.volume(0.20)

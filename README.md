@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="400" height="200" alt="image" src="https://github.com/user-attachments/assets/329dc9d3-0789-4fa8-89f2-74f4e6a83d9a" />
+    <img src="assets/capturas/logo.png" width="450" height="100"/>
 </div>
 
 
@@ -20,8 +20,9 @@ Despojado de tu hogar y harto de vivir en las calles, decidís que es tiempo de 
 ## 📸 Capturas Del Juego
 
 <div align="center">
-  <img width="800" height="1000" alt="captura_inicio" src="https://github.com/user-attachments/assets/c324eecb-7877-46c1-871a-70d42e5ee7e3" />
-  <img width="800" height="1000" alt="image" src="https://github.com/user-attachments/assets/2628b701-6709-4c3c-a6d2-cac1346c7a95" />
+  <img src="assets/capturas/captura1.png" width="800" height="400"/>
+  <img src="assets/capturas/captura2.png" width="800" height="400"/>
+  <img src="assets/capturas/captura3.png" width="800" height="400"/>
 </div>
 
 ---
@@ -37,17 +38,17 @@ Despojado de tu hogar y harto de vivir en las calles, decidís que es tiempo de 
 
 ## Personajes y Enemigos
 
-### **<img width="24" height="24" alt="fantasma" src="https://github.com/user-attachments/assets/01b8c5ac-0768-4e95-9d7c-fd87511299c8" /> Grimly (Tú)**
+### **<img src="assets/fantasma/fantasma.png" width="24" height="24"/> Grimly (Tú)**
 El protagonista fantasmal.
 * **Objetivo:** Asustar a todas las personas para pasar de nivel.
 * **Salud:** 3 Corazones ❤️❤️❤️.
 
-### **<img width="24" height="24" alt="cazafantasmas" src="https://github.com/user-attachments/assets/d72f8d3e-ed71-4e1a-ab85-9731f84a6a07" /> Cazadores**
+### **<img src="assets/cazafantasma/cazafantasmas.png" width="24" height="24"/> Cazadores**
 Expertos contratados por los dueños.
 * **Comportamiento:** Te persiguen si te ven.
 * **Consecuencia:** Si te atrapan, perdés **1 corazón** y **puntos**.
 
-### **<img width="24" height="24" alt="npc4" src="https://github.com/user-attachments/assets/237f9b32-6469-437b-85d1-9ce2c6787ea7" /> Personas (NPCs)**
+### **<img src="assets/npcs/npc4.png" width="24" height="24"/> Personas (NPCs)**
 Los nuevos inquilinos molestos.
 * **Objetivo:** Debes asustarlos a todos.
 * **Recompensa:** Otorgan puntos al ser asustados.
@@ -58,8 +59,8 @@ Los nuevos inquilinos molestos.
 
 | Objeto | Efecto |
 | :--- | :--- |
-| **<img width="24" height="24" alt="pocionVida" src="https://github.com/user-attachments/assets/c26c3479-1f78-4255-b8bb-3d61542b08fe"/>Poción** | Regenera **1 corazón** perdido y otorga puntos extra. |
-| **<img width="24" height="24" alt="trampa" src="https://github.com/user-attachments/assets/e6173ac0-c49c-4bd1-ba17-97b0622b590b"/>Trampa** | Te resta **Puntos**, **1 corazón** y te devuelve a tu posición inicial. |
+| **<img src="assets/items/pocionVida.png" width="24" height="24"/>Poción** | Regenera **1 corazón** perdido y otorga puntos extra. |
+| **<img src="assets/items/trampa.png" width="24" height="24"/>Trampa** | Te resta **Puntos**, **1 corazón** y te devuelve a tu posición inicial. |
 
 ---
 

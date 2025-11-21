@@ -9,7 +9,9 @@ import controles.*
 import pantallaInicio.*
 
 
+//nivel 1 (hijo de "niveles")
 object nivel1 inherits Nivel {
+			
 	const enemigos = [new Cazafantasma()]
   	const pociones = [new Pocion(),new Pocion()]
   	const trampas = [new Trampa()]
@@ -46,6 +48,15 @@ object nivel1 inherits Nivel {
       			gameWin.ganar()
 			} 
 	}
+	override method chequearCondicionDerrota() {    
+		if(not vidaGrimly.tieneVidas()){
+			const sonidoMuerte= game.sound("sonidoMuerte.wav")
+			sonidoMuerte.volume(0.05)
+			sonidoMuerte.play()
+			gameOver.perder()
+    	}
+	}
+
 	  	method cantEnemigos(){//devuelve cuantos enemigos hay
 		return enemigos.size()
 	}
