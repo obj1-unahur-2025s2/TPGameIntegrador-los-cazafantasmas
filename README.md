@@ -38,7 +38,7 @@ Despojado de tu hogar y harto de vivir en las calles, decidís que es tiempo de 
 
 ## Personajes y Enemigos
 
-### **<img src="assets/fantasma/fantasma.png" width="24" height="24"/> Grimly (Tú)**
+### **<img src="assets/Fantasma/fantasma.png" width="24" height="24"/> Grimly (Tú)**
 El protagonista fantasmal.
 * **Objetivo:** Asustar a todas las personas para pasar de nivel.
 * **Salud:** 3 Corazones ❤️❤️❤️.
@@ -48,7 +48,7 @@ Expertos contratados por los dueños.
 * **Comportamiento:** Te persiguen si te ven.
 * **Consecuencia:** Si te atrapan, perdés **1 corazón** y **puntos**.
 
-### **<img src="assets/npcs/npc4.png" width="24" height="24"/> Personas (NPCs)**
+### **<img src="assets/NPCs/npc4.png" width="24" height="24"/> Personas (NPCs)**
 Los nuevos inquilinos molestos.
 * **Objetivo:** Debes asustarlos a todos.
 * **Recompensa:** Otorgan puntos al ser asustados.

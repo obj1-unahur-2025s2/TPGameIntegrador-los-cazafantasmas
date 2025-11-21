@@ -61,22 +61,22 @@ object puntaje {
  
     // metodo de puntajes segun lo que pase en el juego
     method puntosPocion() {
-        // Suma puntos
+        // Suma 500 puntos
         self.sumarPuntos(550)
     }
 
     method puntosNpc() {
-        // Suma puntos
+        // Suma 1200 puntos
         self.sumarPuntos(1200)
     }
 
     method puntosTrampa() {
-        // Resta puntos
+        // Resta 750 puntos
         self.sumarPuntos(-750)
     }
 
     method puntosCazador() {
-        // Resta puntos
+        // Resta 1000 puntos
         self.sumarPuntos(-1000)
     }
 }
