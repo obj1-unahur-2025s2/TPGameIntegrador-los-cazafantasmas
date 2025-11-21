@@ -51,7 +51,7 @@ object musica {
     if (sonidoActual != nuevoSonido) {
     // detiene el sonido actual. Si es 'musicaNula', el método .stop() no hace nada.
         sonidoActual.stop()
-    // actualiza el estado y empezar el nuevo sonido.
+    // actualiza el estado y empieza el nuevo sonido.
         sonidoActual = nuevoSonido
         sonidoActual.play()
     }   
