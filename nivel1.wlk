@@ -1,4 +1,3 @@
-//niveles del juego
 import wollok.game.*
 import niveles.*
 import fantasma.*
@@ -11,11 +10,12 @@ import pantallaInicio.*
 
 
 object nivel1 inherits Nivel {
-	
-  	const property personas = [new Persona(),new Persona(),new Persona()]
+	const enemigos = [new Cazafantasma()]
+  	const pociones = [new Pocion(),new Pocion()]
+  	const trampas = [new Trampa()]
+  	const personas = [new Persona(),new Persona(),new Persona()]
 
 	override method configurate() {//configura el nivel 1
-
 		super()
 		estadoJuego.cambiarNivelActual("nivel1")
 		const fondoCasa_level1 = new Fondo(image="fondoCasa_level1.png",position = game.at(0, 0))
@@ -39,9 +39,14 @@ object nivel1 inherits Nivel {
     	
     }	
 
-	
-	method cantEnemigos(){//devuelve cuantos enemigos hay
+	override method chequearCondicionVictoria() {    
+			// .all() revisa si TODOS en la lista cumplen la condición
+			const todasAsustadas = personas.all({ p => p.estaAsustado() })
+			if (todasAsustadas) {
+      			gameWin.ganar()
+			} 
+	}
+	  	method cantEnemigos(){//devuelve cuantos enemigos hay
 		return enemigos.size()
 	}
 }
-

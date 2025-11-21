@@ -32,10 +32,10 @@ class Item {
 class Pocion inherits Item {   //suma los puntos al jugador y le recupera una vida
 
   override method actuar(jugador) {
-    if (game.hasVisual(self)) {
-      puntaje.puntosPocion()
-      jugador.recuperarVida()
-      game.removeVisual(self)
+    if(game.hasVisual(self)){
+    puntaje.puntosPocion()
+    jugador.recuperarVida() 
+    game.removeVisual(self)
     }
   }
   
@@ -48,10 +48,10 @@ class Pocion inherits Item {   //suma los puntos al jugador y le recupera una vi
 class Trampa inherits Item { //resta puntos al jugador y le quita una vida
  
   override method actuar(jugador) {
-    if (game.hasVisual(self)) {
-      puntaje.puntosTrampa()
-      jugador.recibirDaño()
-      game.removeVisual(self)
+    if(game.hasVisual(self)){
+    puntaje.puntosTrampa()
+    jugador.recibirDaño() 
+    game.removeVisual(self)
     }
   }
   

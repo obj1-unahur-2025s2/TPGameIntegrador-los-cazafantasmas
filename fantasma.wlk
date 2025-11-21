@@ -48,7 +48,7 @@ object grimly {
  method asustar(aqui) { // método para asustar a los npc
     self.image("fantasma.png")
     const sonidoAtaque= game.sound("sonidoAtaque.wav")
-    sonidoAtaque.volume(0.20)
+    sonidoAtaque.volume(0.40)
     sonidoAtaque.play()
     game.schedule(500, { self.image("FantasmaNormal.png")})
     if(aqui.size() > 1){
@@ -78,6 +78,10 @@ object grimly {
 }
 
 // vida del fantasma grimly
+class VisualCorazon {
+    var property position
+    var property image 
+}
 object vidaGrimly {
     
     var vidasActuales = 3

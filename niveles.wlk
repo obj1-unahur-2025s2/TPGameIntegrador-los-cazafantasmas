@@ -1,3 +1,4 @@
+import nivel2.*
 import nivel1.*
 import wollok.game.*
 import fantasma.*
@@ -8,16 +9,8 @@ import items.*
 import controles.*
 import pantallaInicio.*
 class Nivel {
-  var property elementosEnNivel = [] // Lista de elementos recolectables interactivos, excepto enemigos
-  var nivelActual= ""
-  const property enemigos = [new Cazafantasma(),new Cazafantasma()]
-  const property pociones = [new Pocion(),new Pocion()]
-  const property trampas = [new Trampa(),new Trampa(),new Trampa()]
-  method personas()
-  method nivelActual()= nivelActual
-  method cambiarNivelActual(nuevoNivel){
-    nivelActual= nuevoNivel
-  }
+  var property elementosEnNivel = [] // Lista de elementos recolectables interactivos
+
   method hayElementoEn(posicion) = elementosEnNivel.any({ e => e.position() == posicion && e.esInteractivo() })
 									
   method ponerElementos(cantidad, elemento) { // debe recibir cantidad y EL NOMBRE DE UN ELEMENTO
@@ -35,23 +28,17 @@ class Nivel {
     }
   }
 
-  method configurate() {
+  method configurate() { //configura el nivel
     game.clear()
 	  musica.pararMusicaInicio()
 	  musica.empezarMusicaJuego()
     posicionesInvalidas.cargarNiveles()
 	  controles.configurarTeclas()
 	}
-
-  method chequearCondicionVictoria() {    
-			// .all() revisa si TODOS en la lista cumplen la condición
-			const todasAsustadas = self.personas().all({ p => p.estaAsustado() })
-		
-			if (todasAsustadas) {
-      			gameWin.ganar()
-			 } 
-
-	}
+  method chequearCondicionVictoria()
+  method vaciarListas(){
+    elementosEnNivel.clear()
+  }
 }
 
 
@@ -90,6 +77,9 @@ object gameOver {
     method perder() {
         //Limpiamos todo el juego actual
         game.clear()
+        nivel1.vaciarListas()
+        nivel2.vaciarListas()
+        
         const musicaDerrota=game.sound("musicaDerrota.mp3")
         musica.pararMusicaJuego()
         musicaDerrota.volume(0.30)
@@ -113,7 +103,7 @@ object gameOver {
             // Cambiamos la imagen del visual
             fondoVisual.image("derrota_" + numeroImagen.toString() + ".jpg")
         })
-      
+        puntaje.iniciarBarraDePuntos(puntaje.puntosActuales())
         // --- Finaliza a los seg y vuelve al inicio
         game.schedule(14000, { 
             
@@ -129,6 +119,8 @@ object gameWin {
     method ganar() {
         //Limpiamos todo el juego actual
         game.clear()
+        nivel1.vaciarListas()
+        nivel2.vaciarListas()
         const musicaVictoria=game.sound("musicaVictoria2.mp3")
 		musica.pararMusicaJuego()
       	musicaVictoria.volume(0.20)
@@ -151,8 +143,7 @@ object gameWin {
             // Cambiamos la imagen del visual
             fondoVisual.image("victoria_" + numeroImagen.toString() + ".jpg")
         })
-       
-
+        puntaje.iniciarBarraDePuntos(puntaje.puntosActuales())
         // --- Finaliza a los seg y vuelve al inicio
         game.schedule(14000, { 
 
@@ -176,9 +167,3 @@ class Fondo {
     method atrapar(){}
     
 }
-
-class VisualCorazon {
-    var property position
-    var property image 
-}
-
