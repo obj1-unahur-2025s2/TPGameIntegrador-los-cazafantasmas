@@ -11,11 +11,6 @@ import pantallaInicio.*
 
 //Iniciar Juego
 program GhostRevenge {
-	game.title("GhostRevenge")
-	game.width(30)
-	game.height(16)
-    game.cellSize(64)
-
-    pantallaInicio.configurate()
-	game.start()
+    ventana.configurar()
+    historia.configurar()
 }

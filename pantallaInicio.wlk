@@ -9,6 +9,30 @@ import controles.*
 import nivel1.*
 import nivel2.*
 
+
+//configura la ventana del juego
+object ventana {
+    method configurar() {
+        game.title("GhostRevenge")
+        game.width(30)
+        game.height(16)
+        game.cellSize(64)
+        game.start()
+    }
+}
+
+//configura la pantalla que cuenta la historia
+object historia {
+    const fondo = new Fondo(image = "fondoHistoria.jpg") 
+
+    method configurar() {
+        musica.configurar() 
+        musica.empezarMusicaInicio()
+        game.addVisual(fondo)
+        keyboard.m().onPressDo({ pantallaInicio.configurate() }) 
+    }
+}
+
 //configuracion de la pantalla de inicio antes de elegir el nivel
 object pantallaInicio {
 
