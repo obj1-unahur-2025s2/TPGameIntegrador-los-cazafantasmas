@@ -12,6 +12,9 @@ import pantallaInicio.*
 //nivel padre (no se puede instanciar)
 class Nivel {
   var property elementosEnNivel = [] // Lista de elementos recolectables interactivos
+  const property enemigos = [new Cazafantasma(nivelActual=self),new Cazafantasma(nivelActual=self)]
+  const property pociones = [new Pocion(),new Pocion()]
+  const property trampas = [new Trampa(),new Trampa(),new Trampa()]
 
   method hayElementoEn(posicion) = elementosEnNivel.any({ e => e.position() == posicion && e.esInteractivo() })
  						
@@ -30,6 +33,7 @@ class Nivel {
     }
     
   }
+  method personas()
 
   method configurate() { //configura el nivel
     game.clear()
@@ -39,10 +43,27 @@ class Nivel {
 	  controles.configurarTeclas()
     self.vaciarListas()
 	}
-  method chequearCondicionVictoria()
+ method chequearCondicionVictoria() {    
+			// .all() revisa si TODOS en la lista cumplen la condición
+			const todasAsustadas = self.personas().all({ p => p.estaAsustado() })
+			if (todasAsustadas) {
+      			gameWin.ganar()
+				self.personas().forEach({p=>p.dejarEstarAsustado()})
+			} 
+	}
+  method chequearCondicionDerrota() {    
+		if(not vidaGrimly.tieneVidas()){
+			const sonidoMuerte= game.sound("sonidoMuerte.wav")
+			sonidoMuerte.volume(0.10)
+			sonidoMuerte.play()
+			gameOver.perder()
+			self.personas().forEach({p=>p.dejarEstarAsustado()})
+    	}
+	}
+	method cantEnemigos(){//devuelve cuantos enemigos hay
+		return enemigos.size()
+	}
 
-  method chequearCondicionDerrota()
-  
   method vaciarListas(){
     elementosEnNivel.clear()
   }

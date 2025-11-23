@@ -10,7 +10,7 @@ import nivel2.*
 class Cazafantasma {
   var position = game.at(0, 0)
   var image = "cazafantasmas.png"
-  
+  var nivelActual
   method esInteractivo() = true
   // el jugador puede interactuar (o sea pueden colisionar)
   
@@ -43,7 +43,10 @@ class Cazafantasma {
             self.position(game.at(14, 3))
         }
 	}
-  
+    method actualizarNivelActual(nivel){
+    nivelActual=nivel
+  }
+
   method accionarObjeto(objeto) {}
   
   method recibirDaño(cant) {}
@@ -90,5 +93,5 @@ class Cazafantasma {
         self.position().down(1)
     }
   //methodo para evitar que losc azadores esten siempre en la misma posicion
-  method noHayOtroCazador(nuevaPosicion) = game.getObjectsIn(game.at(nuevaPosicion.x(), nuevaPosicion.y())).count({ o => o.esCazador() }) < nivel2.cantEnemigos() 
+  method noHayOtroCazador(nuevaPosicion) = game.getObjectsIn(game.at(nuevaPosicion.x(), nuevaPosicion.y())).count({ o => o.esCazador() }) < nivelActual.cantEnemigos() 
 }

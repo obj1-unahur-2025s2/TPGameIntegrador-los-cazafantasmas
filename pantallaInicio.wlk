@@ -11,12 +11,13 @@ import nivel2.*
 
 
 //configura la ventana del juego
-object ventana {
+object juego {
     method configurar() {
         game.title("GhostRevenge")
         game.width(30)
         game.height(16)
         game.cellSize(64)
+        historia.configurar()
         game.start()
     }
 }
@@ -49,6 +50,7 @@ object pantallaInicio {
     game.addVisual(grimly)
     musica.configurar()
     musica.empezarMusicaInicio()
+    keyboard.h().onPressDo({ historia.configurar() }) 
   }
 }
 

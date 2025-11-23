@@ -12,6 +12,7 @@ class Persona {
   var image = ""
   var imageMuerto=""
   var asustado = false
+  var nivelActual 
 
   method estaAsustado() = asustado
 
@@ -56,8 +57,7 @@ class Persona {
     if(! self.estaAsustado()){
       jugador.modificarPuntos(puntaje.puntosNpc())
       asustado = true
-      nivel1.chequearCondicionVictoria()
-      nivel2.chequearCondicionVictoria()
+      nivelActual.chequearCondicionVictoria()
     }
     const sonidoAsustar = game.sound("sonidoAsustar.wav")
     sonidoAsustar.volume(0.15)
@@ -85,4 +85,8 @@ class Persona {
     position = nueva
   }
   method recibirDaño(cant){}
+
+  method actualizarNivelActual(nivel){
+    nivelActual=nivel
+  }
 }

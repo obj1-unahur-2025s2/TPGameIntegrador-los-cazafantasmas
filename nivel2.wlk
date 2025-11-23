@@ -9,12 +9,9 @@ import controles.*
 import pantallaInicio.*
 import nivel1.*
 //nivel 2 (hijo de "niveles")
-object nivel2 inherits Nivel {
+class Nivel2 inherits Nivel {
 
-  const enemigos = [new Cazafantasma(),new Cazafantasma()]
-  const pociones = [new Pocion()]
-  const trampas = [new Trampa(),new Trampa(),new Trampa()]
-  const personas = [new Persona(),new Persona(),new Persona()]
+  const personas = [new Persona(nivelActual=self),new Persona(nivelActual=self),new Persona(nivelActual=self)]
   
   override method configurate() {//configura el nivel 2
 		super()
@@ -28,6 +25,7 @@ object nivel2 inherits Nivel {
 		self.ponerElementos(3, trampas)
 		self.ponerElementos(3, personas)
 		grimly.resetPosition()
+		grimly.actualizarNivelActual(self)
 		game.addVisual(grimly)
 		enemigos.forEach({e => e.acercarseA(grimly)
 							   game.whenCollideDo(e, {grimly => e.atrapar(grimly)})
@@ -38,29 +36,8 @@ object nivel2 inherits Nivel {
 		pociones.forEach({po => game.whenCollideDo(po, {grimly => grimly.accionarObjeto(po)})})
 	}
 
-	method personas(){
+	override method personas(){
 		return personas
 	}
-	override method chequearCondicionVictoria() {    
-			// .all() revisa si TODOS en la lista cumplen la condición
-		const todasAsustadas = personas.all({ p => p.estaAsustado() })
-			if (todasAsustadas) {
-      			gameWin.ganar()
-				personas.forEach({p=>p.dejarEstarAsustado()})
-		}
-	}
 
-	override method chequearCondicionDerrota() {    
-		if(not vidaGrimly.tieneVidas()){
-			const sonidoMuerte= game.sound("sonidoMuerte.wav")
-			sonidoMuerte.volume(0.10)
-			sonidoMuerte.play()
-			gameOver.perder()
-			personas.forEach({p=>p.dejarEstarAsustado()})
-    	}
-	}
-	
-	method cantEnemigos(){//devuelve cuantos enemigos hay
-		return enemigos.size()
-	}
 }

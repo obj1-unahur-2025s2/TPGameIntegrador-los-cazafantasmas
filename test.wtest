@@ -11,11 +11,11 @@ import nivel2.*
 import pantallaInicio.*
 
 describe "test del game" {
-  const cazafantasma = new Cazafantasma()
+  const cazafantasma = new Cazafantasma(nivelActual=nivel1)
   const trampa = new Trampa()
   const posion = new Pocion()
-  const persona1 = new Persona()
-  
+  const persona1 = new Persona(nivelActual=nivel1)
+  const nivel1 = new Nivel1()
   method initialize() {
     game.addVisual(trampa)
     game.addVisual(posion)

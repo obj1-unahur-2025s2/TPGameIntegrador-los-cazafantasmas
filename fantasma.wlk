@@ -12,7 +12,7 @@ import puntaje.*
 object grimly {
   var image = "FantasmaNormal.png"
   var position = game.at(14,0)
-
+  var nivelActual=new Nivel1()
 
   method resetPosition() {
     position = game.at(14,0)
@@ -25,8 +25,7 @@ object grimly {
     self.image("fantasmaDaño.png")
     game.schedule(200, { self.image("FantasmaNormal.png")})
     self.resetPosition()
-    nivel1.chequearCondicionDerrota()
-    nivel2.chequearCondicionDerrota()
+    nivelActual.chequearCondicionDerrota()
     vidaGrimly.perderVida()
     self.modificarPuntos(cant)
   }
@@ -71,6 +70,9 @@ object grimly {
   
   method position(nueva) {
     position = nueva
+  }
+  method actualizarNivelActual(nivel){
+    nivelActual=nivel
   }
 }
 

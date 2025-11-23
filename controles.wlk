@@ -9,6 +9,9 @@ import nivel2.*
 //controles generales de todo el juego
 object controles {
 	method configurarTeclas() {
+		const nivel1 = new Nivel1()
+		const nivel2 = new Nivel2()
+
 		keyboard.w().onPressDo(
 			{ grimly.position(arriba.moverseAProximaPosicion(grimly.position())) }
 		)
@@ -27,7 +30,7 @@ object controles {
 		
 		keyboard.num1().onPressDo({ 
 			if ((estadoJuego.nivelActual() != "nivel1") && (estadoJuego.nivelActual() != "nivel2"))
-					{nivel1.configurate()}
+					{nivel1.configurate()}//agregar new nivel
 			}
 		)
 		keyboard.num2().onPressDo({ 

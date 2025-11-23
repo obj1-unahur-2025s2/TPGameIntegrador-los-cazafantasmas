@@ -11,6 +11,5 @@ import pantallaInicio.*
 
 //Iniciar Juego
 program GhostRevenge {
-    ventana.configurar()
-    historia.configurar()
+    juego.configurar()
 }
