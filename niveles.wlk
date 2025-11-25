@@ -9,6 +9,9 @@ import items.*
 import controles.*
 import pantallaInicio.*
 
+const gameWin = new GameWin()
+const gameOver = new GameOver()
+
 //nivel padre (no se puede instanciar)
 class Nivel {
   var property elementosEnNivel = [] // Lista de elementos recolectables interactivos
@@ -82,7 +85,6 @@ object estadoJuego {
 
 
 object elegirPosicion {
-
   method posicionAleatoria(){//deberia elegir una posicion aleatoria para ponerlo y que no queden uno sobre otro 
     const x = 0.randomUpTo(game.width()-2).truncate(0)
     const y = 2.randomUpTo(game.height()-2).truncate(0)
@@ -100,7 +102,68 @@ object elegirPosicion {
 	}
 }
 
-object gameOver {
+class TerminarJuego {
+
+  method ejecutarFinal(cancion, volumen, prefijoImagen, tiempoTick, nombreTick) {
+    //Limpia todo el juego actual
+    game.clear()
+
+		musica.pararMusicaJuego()
+		const sonido = game.sound(cancion)
+		sonido.volume(volumen)
+		sonido.play()
+
+    // primera imagen que se muestra en pantalla
+		const fondoVisual = new Fondo(image = prefijoImagen + "1.jpg") 
+		game.addVisual(fondoVisual)
+
+    // variable contador para saber que numero de imagen toca
+		var numeroImagen = 1
+
+		game.onTick(tiempoTick, nombreTick, {
+			numeroImagen += 1 
+			if (numeroImagen > 2) numeroImagen = 1
+      // cambia la imagen del visual
+			fondoVisual.image(prefijoImagen + numeroImagen.toString() + ".jpg")
+		})
+
+		puntaje.iniciarBarraDePuntos(puntaje.puntosActuales())
+    // finaliza a los segundos y vuelve al inicio
+		game.schedule(14000, {
+			game.removeTickEvent(nombreTick)
+			musica.pararMusica(sonido)
+			pantallaInicio.configurate()
+		})
+  }
+}
+
+
+class GameOver inherits TerminarJuego {
+  method perder() {
+    self.ejecutarFinal(
+      "musicaDerrota.mp3",
+      0.30,
+      "derrota_",
+      800,
+      "animacionDerrota"
+    )
+  }
+}
+
+class GameWin inherits TerminarJuego {
+  method ganar() {
+    self.ejecutarFinal(
+      "musicaVictoria2.mp3",
+      0.20,
+      "victoria_",
+      600,
+      "animacionVictoria"
+    )
+  }
+}
+
+
+/*object gameOver {
     
     method perder() {
         //Limpiamos todo el juego actual
@@ -146,7 +209,7 @@ object gameWin {
         //Limpiamos todo el juego actual
         game.clear()
         const musicaVictoria=game.sound("musicaVictoria2.mp3")
-		musica.pararMusicaJuego()
+		    musica.pararMusicaJuego()
       	musicaVictoria.volume(0.20)
       	musicaVictoria.play()
         // primera imagen que se muestra en pantalla
@@ -176,7 +239,7 @@ object gameWin {
             pantallaInicio.configurate()
         })
     }
-}
+}*/
 
 class Fondo {
 
