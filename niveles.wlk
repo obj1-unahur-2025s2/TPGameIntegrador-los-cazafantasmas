@@ -9,8 +9,6 @@ import items.*
 import controles.*
 import pantallaInicio.*
 
-const gameWin = new GameWin()
-const gameOver = new GameOver()
 
 //nivel padre (no se puede instanciar)
 class Nivel {
@@ -50,16 +48,18 @@ class Nivel {
 			// .all() revisa si TODOS en la lista cumplen la condición
 			const todasAsustadas = self.personas().all({ p => p.estaAsustado() })
 			if (todasAsustadas) {
-      			gameWin.ganar()
+        const gameWin= new TerminarJuego(cancion="musicaVictoria2.mp3",volumen=0.20,prefijoImagen="victoria_",tiempoTick=600,nombreTick="animacionVictoria")
+      	gameWin.ejecutarFinal()
 				self.personas().forEach({p=>p.dejarEstarAsustado()})
 			} 
 	}
   method chequearCondicionDerrota() {    
 		if(not vidaGrimly.tieneVidas()){
+      const gameOver= new TerminarJuego(cancion="musicaDerrota.mp3",volumen=0.30,prefijoImagen="derrota_",tiempoTick=800,nombreTick="animacionDerrota")
 			const sonidoMuerte= game.sound("sonidoMuerte.wav")
 			sonidoMuerte.volume(0.10)
 			sonidoMuerte.play()
-			gameOver.perder()
+			gameOver.ejecutarFinal()
 			self.personas().forEach({p=>p.dejarEstarAsustado()})
     	}
 	}
@@ -103,8 +103,12 @@ object elegirPosicion {
 }
 
 class TerminarJuego {
-
-  method ejecutarFinal(cancion, volumen, prefijoImagen, tiempoTick, nombreTick) {
+  const cancion
+  const volumen
+  const prefijoImagen
+  const tiempoTick
+  const nombreTick
+  method ejecutarFinal() {
     //Limpia todo el juego actual
     game.clear()
 
@@ -137,109 +141,6 @@ class TerminarJuego {
   }
 }
 
-
-class GameOver inherits TerminarJuego {
-  method perder() {
-    self.ejecutarFinal(
-      "musicaDerrota.mp3",
-      0.30,
-      "derrota_",
-      800,
-      "animacionDerrota"
-    )
-  }
-}
-
-class GameWin inherits TerminarJuego {
-  method ganar() {
-    self.ejecutarFinal(
-      "musicaVictoria2.mp3",
-      0.20,
-      "victoria_",
-      600,
-      "animacionVictoria"
-    )
-  }
-}
-
-
-/*object gameOver {
-    
-    method perder() {
-        //Limpiamos todo el juego actual
-        game.clear()
-      
-        
-        const musicaDerrota=game.sound("musicaDerrota.mp3")
-        musica.pararMusicaJuego()
-        musicaDerrota.volume(0.30)
-        musicaDerrota.play()
-        
-        // primera imagen que se muestra en pantalla
-        const fondoVisual = new Fondo(image = "derrota_1.jpg") 
-        game.addVisual(fondoVisual)
-
-        // Variable contador para saber que numero de imagen toca
-        var numeroImagen = 1 
-
-        game.onTick(800, "animacionDerrota", { 
-            
-            numeroImagen += 1 
-            
-            if (numeroImagen > 2) { 
-                numeroImagen = 1 
-            }
-
-            // Cambiamos la imagen del visual
-            fondoVisual.image("derrota_" + numeroImagen.toString() + ".jpg")
-        })
-        puntaje.iniciarBarraDePuntos(puntaje.puntosActuales())
-        // --- Finaliza a los seg y vuelve al inicio
-        game.schedule(14000, { 
-            game.removeTickEvent("animacionDerrota")
-            pantallaInicio.configurate()
-        })
-        
-    }
-}
-
-object gameWin {
-    
-    method ganar() {
-        //Limpiamos todo el juego actual
-        game.clear()
-        const musicaVictoria=game.sound("musicaVictoria2.mp3")
-		    musica.pararMusicaJuego()
-      	musicaVictoria.volume(0.20)
-      	musicaVictoria.play()
-        // primera imagen que se muestra en pantalla
-        const fondoVisual = new Fondo(image = "victoria_1.jpg") 
-        game.addVisual(fondoVisual)
-
-        // Variable contador para saber que numero de imagen toca
-        var numeroImagen = 1 
-
-        game.onTick(600, "animacionVictoria", { 
-            
-            numeroImagen += 1 
-            
-            if (numeroImagen > 2) { 
-                numeroImagen = 1 
-            }
-
-            // Cambiamos la imagen del visual
-            fondoVisual.image("victoria_" + numeroImagen.toString() + ".jpg")
-        })
-        puntaje.iniciarBarraDePuntos(puntaje.puntosActuales())
-        // --- Finaliza a los seg y vuelve al inicio
-        game.schedule(14000, { 
-
-            game.removeTickEvent("animacionVictoria")
-            musica.pararMusica(musicaVictoria)
-            pantallaInicio.configurate()
-        })
-    }
-}*/
 
 class Fondo {
 

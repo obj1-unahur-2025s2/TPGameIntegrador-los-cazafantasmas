@@ -53,7 +53,7 @@ class Cazafantasma {
   
   method acercarseA(jugador) { // inicia el ciclo de persecución automático (ejecutando la lógica cada 500ms).
     self.intentarMoverseHacia(jugador)
-    game.schedule(500, { self.acercarseA(jugador) })
+    game.schedule(700, { self.acercarseA(jugador) })
   }
   
   method intentarMoverseHacia(jugador) {
