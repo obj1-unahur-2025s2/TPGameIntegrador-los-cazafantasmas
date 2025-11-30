@@ -16,6 +16,7 @@ class Nivel1 inherits Nivel {
 			new Persona(nivelActual=self),new Persona(nivelActual=self),
 			new Persona(nivelActual=self),new Persona(nivelActual=self),
 			new Persona(nivelActual=self),new Persona(nivelActual=self)
+
 		]
 
 	override method configurate() {//configura el nivel 1
@@ -27,7 +28,7 @@ class Nivel1 inherits Nivel {
 		puntaje.iniciarBarraDePuntos(0)
 		self.ponerElementos(1, enemigos)
 		self.ponerElementos(2, pociones)
-		self.ponerElementos(2, trampas)
+		self.ponerElementos(5, trampas)
 		self.ponerElementos(6, personas)
 		grimly.resetPosition()
 		game.addVisual(grimly)

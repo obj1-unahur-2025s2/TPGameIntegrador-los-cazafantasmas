@@ -10,7 +10,7 @@ import puntaje.*
 
 // el fantasma que controla el jugador
 object grimly {
-  var image = "FantasmaNormal.png"
+  var image = "fantasma_frente.png"
   var position = game.at(14,1)
   var nivelActual=new Nivel1()
 
@@ -25,7 +25,7 @@ object grimly {
     sonidoDaño.volume(0.15)
     sonidoDaño.play()
     self.image("fantasmaDaño.png")
-    game.schedule(200, { self.image("FantasmaNormal.png")})
+    game.schedule(200, { self.image("fantasma_frente.png")})
     self.resetPosition()
     nivelActual.chequearCondicionDerrota()
     vidaGrimly.perderVida()
@@ -48,7 +48,7 @@ object grimly {
     const sonidoAtaque= game.sound("sonidoAtaque2.mp3")
     sonidoAtaque.volume(0.30)
     sonidoAtaque.play()
-    game.schedule(500, { self.image("FantasmaNormal.png")})
+    game.schedule(500, { self.image("fantasma_frente.png")})
     if(aqui.size() > 1){
       aqui.first().asustarse(self)
     }

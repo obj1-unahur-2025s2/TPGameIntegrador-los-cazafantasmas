@@ -13,16 +13,24 @@ object controles {
 		const nivel2 = new Nivel2()
 
 		keyboard.w().onPressDo(
-			{ grimly.position(arriba.moverseAProximaPosicion(grimly.position())) }
+			{ grimly.position(arriba.moverseAProximaPosicion(grimly.position())) 
+			  grimly.image("fantasma_detras.png")
+			}
 		)
 		keyboard.s().onPressDo(
-			{ grimly.position(abajo.moverseAProximaPosicion(grimly.position())) }
+			{ grimly.position(abajo.moverseAProximaPosicion(grimly.position()))
+			  grimly.image("fantasma_frente.png")
+			}
 		)
 		keyboard.a().onPressDo(
-			{ grimly.position(izquierda.moverseAProximaPosicion(grimly.position())) }
+			{ grimly.position(izquierda.moverseAProximaPosicion(grimly.position())) 
+			  grimly.image("fantasma_izquierda.png")
+			}
 		)
 		keyboard.d().onPressDo(
-			{ grimly.position(derecha.moverseAProximaPosicion(grimly.position())) }
+			{ grimly.position(derecha.moverseAProximaPosicion(grimly.position())) 
+			  grimly.image("fantasma_derecha.png")
+			}
 		)
 		keyboard.e().onPressDo(
 			{ grimly.asustar(game.getObjectsIn(grimly.position())) }
@@ -30,7 +38,7 @@ object controles {
 		
 		keyboard.num1().onPressDo({ 
 			if ((estadoJuego.nivelActual() != "nivel1") && (estadoJuego.nivelActual() != "nivel2"))
-					{nivel1.configurate()}//agregar new nivel
+					{nivel1.configurate()}
 			}
 		)
 		keyboard.num2().onPressDo({ 
@@ -96,6 +104,8 @@ object posicionesInvalidas {
 		game.at(15, 8),
 		game.at(16, 8),
 		game.at(17, 8),
+		game.at(10, 9),
+		game.at(17, 9),
 		game.at(17, 10),
 		game.at(17, 11),
 		game.at(17, 12),

@@ -13,3 +13,4 @@ import pantallaInicio.*
 program GhostRevenge {
     juego.configurar()
 }
+

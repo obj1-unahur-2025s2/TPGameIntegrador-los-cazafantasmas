@@ -42,7 +42,7 @@ object pantallaInicio {
   method configurate() {
     game.clear()
     estadoJuego.cambiarNivelActual("")
-    grimly.image("FantasmaNormal.png")
+    grimly.image("fantasma_frente.png")
     grimly.resetPosition()
     posicionesInvalidas.cargarInicio()
     controles.configurarTeclas()

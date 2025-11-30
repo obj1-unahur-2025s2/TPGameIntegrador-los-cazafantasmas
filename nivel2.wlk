@@ -26,7 +26,7 @@ class Nivel2 inherits Nivel {
 		puntaje.iniciarBarraDePuntos(0)
 		self.ponerElementos(2, enemigos)
 		self.ponerElementos(1, pociones)
-		self.ponerElementos(4, trampas)
+		self.ponerElementos(9, trampas)
 		self.ponerElementos(6, personas)
 		grimly.resetPosition()
 		grimly.actualizarNivelActual(self)
