@@ -15,7 +15,7 @@ class Nivel {
   var property elementosEnNivel = [] // Lista de elementos recolectables interactivos
   const property enemigos = [new Cazafantasma(nivelActual=self),new Cazafantasma(nivelActual=self)]
   const property pociones = [new Pocion(),new Pocion()]
-  const property trampas = [new Trampa(),new Trampa(),new Trampa()]
+  const property trampas = [new Trampa(),new Trampa(),new Trampa(),new Trampa(),new Trampa(),new Trampa(),new Trampa(),new Trampa(),new Trampa(),new Trampa()]
 
   method hayElementoEn(posicion) = elementosEnNivel.any({ e => e.position() == posicion && e.esInteractivo() })
  						

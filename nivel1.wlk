@@ -12,7 +12,11 @@ import pantallaInicio.*
 //nivel 1 (hijo de "niveles")
 class Nivel1 inherits Nivel {
 
-  	const personas = [new Persona(nivelActual=self),new Persona(nivelActual=self),new Persona(nivelActual=self),new Persona(nivelActual=self)]
+	const personas = [
+			new Persona(nivelActual=self),new Persona(nivelActual=self),
+			new Persona(nivelActual=self),new Persona(nivelActual=self),
+			new Persona(nivelActual=self),new Persona(nivelActual=self)
+		]
 
 	override method configurate() {//configura el nivel 1
 		super()
@@ -23,8 +27,8 @@ class Nivel1 inherits Nivel {
 		puntaje.iniciarBarraDePuntos(0)
 		self.ponerElementos(1, enemigos)
 		self.ponerElementos(2, pociones)
-		self.ponerElementos(1, trampas)
-		self.ponerElementos(4, personas)
+		self.ponerElementos(2, trampas)
+		self.ponerElementos(6, personas)
 		grimly.resetPosition()
 		game.addVisual(grimly)
 		grimly.actualizarNivelActual(self)

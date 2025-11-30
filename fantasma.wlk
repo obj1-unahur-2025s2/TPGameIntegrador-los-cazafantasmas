@@ -11,11 +11,13 @@ import puntaje.*
 // el fantasma que controla el jugador
 object grimly {
   var image = "FantasmaNormal.png"
-  var position = game.at(14,0)
+  var position = game.at(14,1)
   var nivelActual=new Nivel1()
 
+  method position() = position
+
   method resetPosition() {
-    position = game.at(14,0)
+    position = game.at(14,1)
   }
   
   method recibirDaño(cant) { // método que se ejecuta cuando grimly recibe daño
@@ -65,8 +67,6 @@ object grimly {
   method image(nueva) {
     image = nueva
   }
-  
-  method position() = position
   
   method position(nueva) {
     position = nueva
